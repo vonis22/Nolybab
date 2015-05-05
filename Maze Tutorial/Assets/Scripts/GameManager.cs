@@ -5,13 +5,13 @@ public class GameManager : MonoBehaviour {
 
 	public Maze mazePrefab;
 
-	private Maze mazeInstance;
+	public Maze mazeInstance;
 
-	private void Start () {
+	public void Start () {
 		BeginGame();
 	}
 	
-	private void Update () {
+	public void Update () {
 		if (Input.GetKeyDown(KeyCode.F1)) {
 			RestartGame();
 		}
@@ -19,11 +19,12 @@ public class GameManager : MonoBehaviour {
 
 	private void BeginGame () {
 		mazeInstance = Instantiate(mazePrefab) as Maze;
-		StartCoroutine(mazeInstance.Generate());
+		//StartCoroutine(mazeInstance.Generate());
+		mazeInstance.Generate ();
 	}
 
 	private void RestartGame () {
-		StopAllCoroutines();
+		//StopAllCoroutines();
 		Destroy(mazeInstance.gameObject);
 		BeginGame();
 	}

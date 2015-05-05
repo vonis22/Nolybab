@@ -11,15 +11,16 @@ public class Maze : MonoBehaviour {
 	public float generationStepDelay;
 
 	public MazePassage passagePrefab;
-
+	public GameObject playerPrefab;
 	public MazeDoor doorPrefab;
 
 	[Range(0f, 1f)]
 	public float doorProbability;
 
 	public MazeWall[] wallPrefabs;
-
-	private MazeCell[,] cells;
+	public List<MazeCell> activeCells;// = new List<MazeCell>();
+	public MazeCell[,] cells;
+	private bool playerSpawned = false;
 
 	public IntVector2 RandomCoordinates {
 		get {
@@ -35,18 +36,28 @@ public class Maze : MonoBehaviour {
 		return cells[coordinates.x, coordinates.z];
 	}
 
-	public IEnumerator Generate () {
-		WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
+	public void Generate () {
+		//WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
 		cells = new MazeCell[size.x, size.z];
-		List<MazeCell> activeCells = new List<MazeCell>();
+		activeCells = new List<MazeCell>();
 		DoFirstGenerationStep(activeCells);
-		while (activeCells.Count > 0) {
-			yield return delay;
+		while (activeCells.Count > 0) 
+		{
+			//yield return delay;
 			DoNextGenerationStep(activeCells);
+		}
+		if (activeCells.Count <= 0) 
+		{
+
 		}
 	}
 
+	public void SpawnPlayer()
+	{
+		Instantiate (playerPrefab);
+	}
 	private void DoFirstGenerationStep (List<MazeCell> activeCells) {
+
 		activeCells.Add(CreateCell(RandomCoordinates));
 	}
 
@@ -84,7 +95,17 @@ public class Maze : MonoBehaviour {
 		newCell.transform.localPosition = new Vector3(coordinates.x - size.x * 0.5f + 0.5f, 0f, coordinates.z - size.z * 0.5f + 0.5f);
 		return newCell;
 	}
+	
+	public void Update ()
+	{
 
+		if ( activeCells.Count == 0 && playerSpawned == false)
+		{
+			SpawnPlayer();
+			playerSpawned = true;
+		}
+
+	}
 	private void CreatePassage (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
 		MazePassage prefab = Random.value < doorProbability ? doorPrefab : passagePrefab;
 		MazePassage passage = Instantiate(prefab) as MazePassage;
