@@ -4,26 +4,36 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	public Maze mazePrefab;
-
 	public Maze mazeInstance;
+	public GameObject playerPrefab;
 
-	public void Start () {
+	public float floorTimer = 60.0f; 
+
+	public void Start () 
+	{
 		BeginGame();
 	}
 	
-	public void Update () {
-		if (Input.GetKeyDown(KeyCode.F1)) {
+	public void Update () 
+	{
+		floorTimer -= Time.deltaTime;
+		//print (floorTimer);
+
+		if (Input.GetKeyDown(KeyCode.F1)) 
+		{
 			RestartGame();
 		}
 	}
 
-	private void BeginGame () {
+	private void BeginGame () 
+	{
 		mazeInstance = Instantiate(mazePrefab) as Maze;
 		//StartCoroutine(mazeInstance.Generate());
 		mazeInstance.Generate ();
 	}
 
-	private void RestartGame () {
+	private void RestartGame () 
+	{
 		//StopAllCoroutines();
 		Destroy(mazeInstance.gameObject);
 		BeginGame();
