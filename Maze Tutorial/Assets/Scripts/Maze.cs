@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class Maze : MonoBehaviour {
 
+	public MazeMap cameraChange;
+	public GameObject m;
+
 	public IntVector2 size;
 
 	public MazeCell cellPrefab;
@@ -34,6 +37,12 @@ public class Maze : MonoBehaviour {
 
 	public MazeCell GetCell (IntVector2 coordinates) {
 		return cells[coordinates.x, coordinates.z];
+	}
+
+	public void Start()
+	{
+		//GameObject m = GameObject.FindGameObjectsWithTag ("MapCamera");
+		cameraChange = m.GetComponent<MazeMap>();
 	}
 
 	public void Generate () {
@@ -104,6 +113,8 @@ public class Maze : MonoBehaviour {
 			SpawnPlayer();
 			playerSpawned = true;
 		}
+
+		cameraChange.sizeMaze = size.x;
 
 	}
 	private void CreatePassage (MazeCell cell, MazeCell otherCell, MazeDirection direction) {

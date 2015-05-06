@@ -101,7 +101,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				}
 			}
 
-			print (wallStrength);
+			//print (wallStrength);
 
             
 
