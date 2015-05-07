@@ -42,11 +42,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-		public bool canMine = false;
-		public float miningDelay;
-		public float miningTimer;
-		public bool mining = false;
-		public int wallStrength = 3;
 
         // Use this for initialization
         private void Start()
@@ -62,49 +57,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 
-			miningTimer = miningDelay;
+
         }
 
-		public void OnTriggerEnter (Collider c)
-		{
-			if (c.tag == "BreakWall")
-			{
-				canMine = true;
-			}
-		}
 
-		public void OnTriggerExit (Collider c)
-		{
-			if (c.tag == "BreakWall")
-			{
-				canMine = false;
-			}
-		}
+
+
 		
         public void Update()
-        {
-			if (canMine == true && Input.GetKeyDown(KeyCode.E) && miningTimer == miningDelay)
-			{
-				mining = true;
-			}
-
-			if (mining == true)
-			{
-				miningTimer -= Time.deltaTime;
-
-				//wallstrength moet misschien per muur in een script oid, anders destroy je alle muren tegelijk
-				if (miningTimer <= 0.0f)
-				{
-					wallStrength -= 1;
-					miningTimer = miningDelay;
-					mining = false;
-				}
-			}
-
-			//print (wallStrength);
-
-            
-
+        { 
 			RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)

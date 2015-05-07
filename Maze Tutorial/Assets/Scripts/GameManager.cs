@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour {
 	public GameObject playerPrefab;
 
 	public float floorTimer = 60.0f; 
-
+	public static bool lockCursor;
 	public void Start () 
 	{
+		//Screen.lockCursor = true;
 		BeginGame();
 	}
 	
