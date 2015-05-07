@@ -16,17 +16,15 @@ public class MazeMap : MonoBehaviour
 	{
 		//GameObject m = GameObject.FindGameObjectsWithTag ("Maze");
 		//mazeSize = m.GetComponent<Maze>();
-
 		GetComponent<Camera>().pixelRect = rect;
 		texture = new Texture2D((int)rect.width,(int)rect.height,TextureFormat.ARGB32,false);
 		mat.mainTexture = texture;
-
-		GetComponent<Camera>().orthographicSize = sizeMaze / 2.0f;
+		//GetComponent<Camera>().orthographicSize = sizeMaze / 2.0f;
 	}
 
 	void Update()
 	{
-		print (sizeMaze);
+		//print (sizeMaze);
 	}
 
 	void OnPostRender()

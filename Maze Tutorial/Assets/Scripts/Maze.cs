@@ -43,10 +43,13 @@ public class Maze : MonoBehaviour {
 	{
 		//GameObject m = GameObject.FindGameObjectsWithTag ("MapCamera");
 		cameraChange = m.GetComponent<MazeMap>();
+
 	}
 
-	public void Generate () {
+	public void Generate () 
+	{
 		//WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
+
 		cells = new MazeCell[size.x, size.z];
 		activeCells = new List<MazeCell>();
 		DoFirstGenerationStep(activeCells);
@@ -55,15 +58,13 @@ public class Maze : MonoBehaviour {
 			//yield return delay;
 			DoNextGenerationStep(activeCells);
 		}
-		if (activeCells.Count <= 0) 
-		{
-
-		}
 	}
 
 	public void SpawnPlayer()
 	{
 		Instantiate (playerPrefab);
+		cameraChange.GetComponent<Camera>().orthographicSize = size.x / 2.0f;
+		Instantiate (m);
 	}
 	private void DoFirstGenerationStep (List<MazeCell> activeCells) {
 
@@ -107,6 +108,8 @@ public class Maze : MonoBehaviour {
 	
 	public void Update ()
 	{
+		//cameraChange.sizeMaze = size.x;
+		//cameraChange.GetComponent<Camera>().orthographicSize = size.x / 2.0f;
 
 		if ( activeCells.Count == 0 && playerSpawned == false)
 		{
@@ -114,9 +117,9 @@ public class Maze : MonoBehaviour {
 			playerSpawned = true;
 		}
 
-		cameraChange.sizeMaze = size.x;
-
+		//print (size.x);
 	}
+
 	private void CreatePassage (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
 		MazePassage prefab = Random.value < doorProbability ? doorPrefab : passagePrefab;
 		MazePassage passage = Instantiate(prefab) as MazePassage;
