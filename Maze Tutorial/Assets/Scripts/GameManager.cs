@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	public static bool lockCursor;
 	public void Start () 
 	{
+		// UNCOMMENT onderste line voor locked cursor
 		//Screen.lockCursor = true;
 		BeginGame();
 	}

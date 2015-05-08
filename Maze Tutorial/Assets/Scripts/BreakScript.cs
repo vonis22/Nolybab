@@ -8,6 +8,9 @@ public class BreakScript : MonoBehaviour {
 	public HPhandler script;
 	public GameObject textMesh1;
 	private TextMesh textMesh2;
+	public int damage = 1;
+	private int roundMineTimerRead = 1;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -22,26 +25,28 @@ public class BreakScript : MonoBehaviour {
 		{
 			Destroy(transform.parent.gameObject);
 		}
-
+		//print (roundMineTimerRead);
 	
 	}
 	void OnTriggerStay (Collider c)
 	{
+
 		if (c.tag == "Player")
 		{
 			col1 = GameObject.FindGameObjectWithTag("Player");
 
-			if (col1.GetComponent<HPhandler>().miningTimer <= 0.02f)
+			if (roundMineTimerRead == 0)
 			{
-			hp -=1;
+				hp -= damage;
 			}
 		}
 		else
 		{
 			col1 = null;
 		}
+		roundMineTimerRead = col1.GetComponent<HPhandler> ().roundMineTimer;
 
-		print (col1.GetComponent<HPhandler> ().miningTimer);
+		//print (col1.GetComponent<HPhandler> ().roundMineTimer);
 
 	}
 

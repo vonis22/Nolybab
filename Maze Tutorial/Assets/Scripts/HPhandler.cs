@@ -6,8 +6,8 @@ public class HPhandler : MonoBehaviour {
 	public bool canMine = false;
 	public float miningDelay;
 	public float miningTimer;
+	public int roundMineTimer;
 	public bool mining = false;
-	public int wallStrength = 3;
 
 	// Use this for initialization
 	void Start () 
@@ -18,6 +18,12 @@ public class HPhandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		roundMineTimer = Mathf.FloorToInt (miningTimer);
+		if (roundMineTimer == 0)
+		{
+			miningTimer = miningDelay;
+			mining = false;
+		}
 		if (canMine == true && Input.GetKeyDown(KeyCode.E) && miningTimer == miningDelay)
 		{
 			mining = true;
@@ -28,14 +34,14 @@ public class HPhandler : MonoBehaviour {
 			miningTimer -= Time.deltaTime;
 			
 			//wallstrength moet misschien per muur in een script oid, anders destroy je alle muren tegelijk
-			if (miningTimer <= 0.0f)
-			{
+			//if (miningTimer <= 0.0f)
+			//{
 				//Destroy (c.gameObject);
-				miningTimer = miningDelay;
-				mining = false;
-			}
+				//miningTimer = miningDelay;
+
+			//}
 		}
-		//print (canMine);
+		//print (roundMineTimer);
 		
 		//print (miningTimer);
 	}

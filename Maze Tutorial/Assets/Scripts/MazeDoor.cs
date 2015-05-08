@@ -3,7 +3,6 @@
 public class MazeDoor : MazePassage {
 
 	public Transform hinge;
-	public float hp = 5.0f;
 
 	private MazeDoor OtherSideOfDoor {
 		get {
