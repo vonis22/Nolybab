@@ -25,6 +25,12 @@ public class Maze : MonoBehaviour {
 	public MazeCell[,] cells;
 	private bool playerSpawned = false;
 
+	private Transform firstChild;
+	private Transform lastChild;
+	private Vector3 firstChildCoords;
+	private Vector3 lastChildCoords;
+	public GameObject stairsPrefab;
+
 	public IntVector2 RandomCoordinates {
 		get {
 			return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
@@ -43,6 +49,11 @@ public class Maze : MonoBehaviour {
 	{
 		//GameObject m = GameObject.FindGameObjectsWithTag ("MapCamera");
 		cameraChange = m.GetComponent<MazeMap>();
+		firstChild = transform.GetChild(0);
+		lastChild = transform.GetChild ((size.x * size.z) - 1);
+		firstChildCoords = firstChild.transform.position;
+		lastChildCoords = lastChild.transform.position;
+		Instantiate (stairsPrefab, firstChildCoords, Quaternion.identity);
 
 	}
 
@@ -108,6 +119,19 @@ public class Maze : MonoBehaviour {
 	
 	public void Update ()
 	{
+		//int bound0 = cells.GetUpperBound (0);
+		//int bound1 = cells.GetLowerBound (1);
+
+		/*for (int i = 0; i <=bound0; i++)
+		{
+			for(int x = 0; x <= bound1; x++)
+			{
+				print (cells[i,1]);
+			}
+		}*/
+
+		print (firstChild);
+		print (lastChild);
 		//cameraChange.sizeMaze = size.x;
 		//cameraChange.GetComponent<Camera>().orthographicSize = size.x / 2.0f;
 
@@ -117,7 +141,7 @@ public class Maze : MonoBehaviour {
 			playerSpawned = true;
 		}
 
-		//print (size.x);
+
 	}
 
 	private void CreatePassage (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
