@@ -46,7 +46,7 @@ public class BreakScript : MonoBehaviour {
 		}
 		roundMineTimerRead = col1.GetComponent<HPhandler> ().roundMineTimer;
 
-		//print (col1.GetComponent<HPhandler> ().roundMineTimer);
+		print (col1.GetComponent<HPhandler> ().roundMineTimer);
 
 	}
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Maze : MonoBehaviour {
 
 	public MazeMap cameraChange;
-	public GameObject m;
+	public GameObject mapCam;
 
 	public IntVector2 size;
 
@@ -30,6 +30,7 @@ public class Maze : MonoBehaviour {
 	private Vector3 firstChildCoords;
 	private Vector3 lastChildCoords;
 	public GameObject stairsPrefab;
+	public GameObject endStairs;
 
 	public IntVector2 RandomCoordinates {
 		get {
@@ -47,13 +48,14 @@ public class Maze : MonoBehaviour {
 
 	public void Start()
 	{
-		//GameObject m = GameObject.FindGameObjectsWithTag ("MapCamera");
-		cameraChange = m.GetComponent<MazeMap>();
+
+		cameraChange = mapCam.GetComponent<MazeMap>();
 		firstChild = transform.GetChild(0);
 		lastChild = transform.GetChild ((size.x * size.z) - 1);
 		firstChildCoords = firstChild.transform.position;
 		lastChildCoords = lastChild.transform.position;
 		Instantiate (stairsPrefab, firstChildCoords, Quaternion.identity);
+		Instantiate (endStairs, lastChildCoords, Quaternion.identity);
 
 	}
 
@@ -73,9 +75,10 @@ public class Maze : MonoBehaviour {
 
 	public void SpawnPlayer()
 	{
-		Instantiate (playerPrefab);
+		Instantiate (playerPrefab,firstChildCoords,Quaternion.identity);
 		cameraChange.GetComponent<Camera>().orthographicSize = size.x / 2.0f;
-		Instantiate (m);
+		Instantiate (mapCam);
+
 	}
 	private void DoFirstGenerationStep (List<MazeCell> activeCells) {
 
