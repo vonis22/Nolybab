@@ -27,6 +27,7 @@ public class Maze : MonoBehaviour {
 
 	private Transform firstChild;
 	private Transform lastChild;
+	public Transform lastChildChild;
 	private Vector3 firstChildCoords;
 	private Vector3 lastChildCoords;
 	public GameObject stairsPrefab;
@@ -51,6 +52,8 @@ public class Maze : MonoBehaviour {
 
 		cameraChange = mapCam.GetComponent<MazeMap>();
 		firstChild = transform.GetChild(0);
+		lastChildChild = transform.GetChild ((size.x * size.z) - 1).GetChild (0);
+		Destroy (lastChildChild.gameObject);
 		lastChild = transform.GetChild ((size.x * size.z) - 1);
 		firstChildCoords = firstChild.transform.position;
 		lastChildCoords = lastChild.transform.position;
