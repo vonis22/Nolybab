@@ -8,7 +8,7 @@ public class LadderCollider : MonoBehaviour
 		if (coll.tag == "Player")
 		{
 			Application.LoadLevel("Scene");
-			//print ("Enter");
+			print ("Enter");
 		}
 	}
 
@@ -16,7 +16,7 @@ public class LadderCollider : MonoBehaviour
 	{
 		if (coll.tag == "Player")
 		{
-			//print ("ExitLeave");
+			print ("ExitLeave");
 		}
 	}
 }
