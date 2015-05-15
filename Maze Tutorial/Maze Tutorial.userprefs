@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Maze.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AstarPathfindingProject\Core\AI\AIPath.cs">
     <Files>
-      <File FileName="Assets\Scripts\Maze.cs" Line="148" Column="25" />
+      <File FileName="Assets\AstarPathfindingProject\Core\AI\AIPath.cs" Line="21" Column="19" />
+      <File FileName="Assets\Scripts\Maze.cs" Line="141" Column="5" />
+      <File FileName="Assets\SeePlayer.cs" Line="22" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

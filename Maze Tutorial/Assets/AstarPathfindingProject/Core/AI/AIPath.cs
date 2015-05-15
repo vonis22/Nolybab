@@ -329,7 +329,8 @@ public class AIPath : MonoBehaviour {
 	}
 	
 	public virtual void Update () {
-		
+
+
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());

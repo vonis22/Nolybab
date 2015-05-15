@@ -137,8 +137,8 @@ public class Maze : MonoBehaviour {
 			}
 		}*/
 
-		print (firstChild);
-		print (lastChild);
+	//	print (firstChild);
+		//print (lastChild);
 		//cameraChange.sizeMaze = size.x;
 		//cameraChange.GetComponent<Camera>().orthographicSize = size.x / 2.0f;
 
