@@ -16,7 +16,7 @@ public class Maze : MonoBehaviour {
 	public MazePassage passagePrefab;
 	public GameObject playerPrefab;
 	public MazeDoor doorPrefab;
-
+	public GameObject A_prefab;
 	[Range(0f, 1f)]
 	public float doorProbability;
 
@@ -81,6 +81,7 @@ public class Maze : MonoBehaviour {
 		Instantiate (playerPrefab,firstChildCoords,Quaternion.identity);
 		cameraChange.GetComponent<Camera>().orthographicSize = size.x / 2.0f;
 		Instantiate (mapCam);
+		Instantiate (A_prefab);
 
 	}
 	private void DoFirstGenerationStep (List<MazeCell> activeCells) {
