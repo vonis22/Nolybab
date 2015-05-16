@@ -19,7 +19,7 @@ public class SeePlayer : MonoBehaviour {
 		if (c.tag == "Player")
 		{
 			print (" Ik zie je...");
-			repathSet = 0.5f;
+			this.GetComponentInParent<AIPath> ().repathRate = 0.5f;
 		}
 	}
 }

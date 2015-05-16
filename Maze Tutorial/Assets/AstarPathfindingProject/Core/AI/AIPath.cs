@@ -330,7 +330,7 @@ public class AIPath : MonoBehaviour {
 	
 	public virtual void Update () {
 
-
+		controller.detectCollisions = false;
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());

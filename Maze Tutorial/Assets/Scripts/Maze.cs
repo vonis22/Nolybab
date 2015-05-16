@@ -28,8 +28,12 @@ public class Maze : MonoBehaviour {
 	private Transform firstChild;
 	private Transform lastChild;
 	public Transform lastChildChild;
+
 	private Vector3 firstChildCoords;
 	private Vector3 lastChildCoords;
+	private Vector3 nolyChildCoords;
+
+	public GameObject nolyfab;
 	public GameObject stairsPrefab;
 	public GameObject endStairs;
 
@@ -57,6 +61,7 @@ public class Maze : MonoBehaviour {
 		lastChild = transform.GetChild ((size.x * size.z) - 1);
 		firstChildCoords = firstChild.transform.position;
 		lastChildCoords = lastChild.transform.position;
+		nolyChildCoords = transform.GetChild ((size.x * size.z) -2).transform.position;
 		Instantiate (stairsPrefab, firstChildCoords, Quaternion.identity);
 		Instantiate (endStairs, lastChildCoords, Quaternion.identity);
 
@@ -82,6 +87,7 @@ public class Maze : MonoBehaviour {
 		cameraChange.GetComponent<Camera>().orthographicSize = size.x / 2.0f;
 		Instantiate (mapCam);
 		Instantiate (A_prefab);
+		Instantiate (nolyfab, nolyChildCoords, Quaternion.identity);
 
 	}
 	private void DoFirstGenerationStep (List<MazeCell> activeCells) {
