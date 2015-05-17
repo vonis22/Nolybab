@@ -340,6 +340,7 @@ public class AIPath : MonoBehaviour {
 
 		if (sanity <= 0)
 		{
+			//repathRate = 0.5f;
 			target = GameObject.FindGameObjectWithTag ("Player").transform;
 		}
 		else

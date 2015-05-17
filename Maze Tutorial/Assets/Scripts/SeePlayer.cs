@@ -5,10 +5,12 @@ public class SeePlayer : MonoBehaviour {
 	public float repathSet;
 	public float seeTimer;
 	public bool decreaseTimer = false;
+	public AIPath aiScript;
 
 	void Start () 
 	{
 		repathSet = this.GetComponentInParent<AIPath> ().repathRate;
+		aiScript = GameObject.FindGameObjectWithTag ("Maze").GetComponent<AIPath> ();
 	}
 
 	void Update () 
@@ -27,13 +29,22 @@ public class SeePlayer : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerStay (Collider c)
+	{
+		if (c.tag == "Player")
+		{
+			print (" Ik zie je...");
+			seeTimer = 2.0f;
+		}
+
+	}
+
 	void OnTriggerEnter(Collider c)
 	{
 		if (c.tag == "Player")
 		{
-			seeTimer = 2.0f;
-			print (" Ik zie je...");
 			this.GetComponentInParent<AIPath> ().repathRate = 0.5f;
+			//aiScript.SearchPath();
 		}
 	}
 
