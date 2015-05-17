@@ -36,7 +36,11 @@ using Pathfinding.RVO;
 [RequireComponent(typeof(Seeker))]
 [AddComponentMenu("Pathfinding/AI/AIPath (generic)")]
 public class AIPath : MonoBehaviour {
-	
+
+	private Maze mazeScript;
+	private int mazeSizeX;
+	private int mazeSizeZ;
+	public int sanity;
 	/** Determines how often it will search for new paths. 
 	 * If you have fast moving targets or AIs, you might want to set it to a lower value.
 	 * The value is in seconds between path requests.
@@ -171,9 +175,13 @@ public class AIPath : MonoBehaviour {
 	 * \see RepeatTrySearchPath
 	 */
 	protected virtual void Start () {
+		GameObject mazeInstance = GameObject.FindGameObjectWithTag ("Maze");
+		mazeScript = mazeInstance.GetComponent<Maze>();
+		mazeSizeX = mazeScript.size.x;
+		mazeSizeZ = mazeScript.size.z;
+
 		startHasRun = true;
 		OnEnable ();
-		target = GameObject.FindGameObjectWithTag ("Player").transform;
 	}
 	
 	/** Run at start and when reenabled.
@@ -330,7 +338,16 @@ public class AIPath : MonoBehaviour {
 	
 	public virtual void Update () {
 
-		controller.detectCollisions = false;
+		if (sanity <= 0)
+		{
+			target = GameObject.FindGameObjectWithTag ("Player").transform;
+		}
+		else
+		{
+			target = GameObject.FindGameObjectWithTag ("Maze").transform.GetChild(Random.Range(0,(mazeSizeX * mazeSizeZ)-1));
+		}
+		//print (target);
+
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());
