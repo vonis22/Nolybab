@@ -120,7 +120,6 @@ public class AIPath : MonoBehaviour {
 	/** Cached NavmeshController component */
 	protected NavmeshController navController;
 	
-	protected RVOController rvoController;
 	
 	/** Cached Rigidbody component */
 	protected Rigidbody rigid;
@@ -164,8 +163,6 @@ public class AIPath : MonoBehaviour {
 		//Cache some other components (not all are necessarily there)
 		controller = GetComponent<CharacterController>();
 		navController = GetComponent<NavmeshController>();
-		rvoController = GetComponent<RVOController>();
-		if ( rvoController != null ) rvoController.enableRotation = false;
 		rigid = GetComponent<Rigidbody>();
 	}
 	
@@ -175,15 +172,14 @@ public class AIPath : MonoBehaviour {
 	 * \see RepeatTrySearchPath
 	 */
 	protected virtual void Start () {
-		GameObject mazeInstance = GameObject.FindGameObjectWithTag ("Maze");
-		mazeScript = mazeInstance.GetComponent<Maze>();
-		mazeSizeX = mazeScript.size.x;
-		mazeSizeZ = mazeScript.size.z;
-
 		startHasRun = true;
 		OnEnable ();
-	}
 	
+	GameObject mazeInstance = GameObject.FindGameObjectWithTag ("Maze");
+	mazeScript = mazeInstance.GetComponent<Maze>();
+	mazeSizeX = mazeScript.size.x;
+	mazeSizeZ = mazeScript.size.z;
+	}
 	/** Run at start and when reenabled.
 	 * Starts RepeatTrySearchPath.
 	 * 
@@ -313,9 +309,6 @@ public class AIPath : MonoBehaviour {
 			dir /= magn;
 			int steps = (int)(magn/pickNextWaypointDist);
 
-#if ASTARDEBUG
-			Debug.DrawLine (p1,p2,Color.red,1);
-#endif
 
 			for (int i=0;i<=steps;i++) {
 				CalculateVelocity (p1);
@@ -326,9 +319,6 @@ public class AIPath : MonoBehaviour {
 	}
 	
 	public virtual Vector3 GetFeetPosition () {
-		if (rvoController != null) {
-			return tr.position - Vector3.up*rvoController.height*0.5f;
-		} else
 		if (controller != null) {
 			return tr.position - Vector3.up*controller.height*0.5F;
 		}
@@ -338,9 +328,10 @@ public class AIPath : MonoBehaviour {
 	
 	public virtual void Update () {
 
+
 		if (sanity <= 0)
 		{
-			//repathRate = 0.5f;
+			//repathRate =0.5f;
 			target = GameObject.FindGameObjectWithTag ("Player").transform;
 		}
 		else
@@ -348,7 +339,6 @@ public class AIPath : MonoBehaviour {
 			target = GameObject.FindGameObjectWithTag ("Maze").transform.GetChild(Random.Range(0,(mazeSizeX * mazeSizeZ)-1));
 		}
 		//print (target);
-
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());
@@ -356,13 +346,7 @@ public class AIPath : MonoBehaviour {
 		//Rotate towards targetDirection (filled in by CalculateVelocity)
 		RotateTowards (targetDirection);
 	
-		if (rvoController != null) {
-			rvoController.Move (dir);
-		} else
 		if (navController != null) {
-#if FALSE
-			navController.SimpleMove (GetFeetPosition(),dir);
-#endif
 		} else if (controller != null) {
 			controller.SimpleMove (dir);
 		} else if (rigid != null) {
@@ -451,13 +435,6 @@ public class AIPath : MonoBehaviour {
 		float dot = Vector3.Dot (dir.normalized,forward);
 		float sp = speed * Mathf.Max (dot,minMoveScale) * slowdown;
 		
-#if ASTARDEBUG
-		Debug.DrawLine (vPath[currentWaypointIndex-1] , vPath[currentWaypointIndex],Color.black);
-		Debug.DrawLine (GetFeetPosition(),targetPosition,Color.red);
-		Debug.DrawRay (targetPosition,Vector3.up, Color.red);
-		Debug.DrawRay (GetFeetPosition(),dir,Color.yellow);
-		Debug.DrawRay (GetFeetPosition(),forward*sp,Color.cyan);
-#endif
 		
 		if (Time.deltaTime	> 0) {
 			sp = Mathf.Clamp (sp,0,targetDist/(Time.deltaTime*2));
