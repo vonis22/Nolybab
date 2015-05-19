@@ -9,7 +9,7 @@ public class pickslaan : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Mouse0)) {
+		if (Input.GetKeyDown (KeyCode.E)) {
 			GetComponent<Animation> ().Play ("slaan");
 		}
 	}

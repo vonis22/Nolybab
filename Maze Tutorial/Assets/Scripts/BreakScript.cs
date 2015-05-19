@@ -31,10 +31,10 @@ public class BreakScript : MonoBehaviour {
 	void OnTriggerStay (Collider c)
 	{
 
-		if (c.tag == "Player")
+		if (c.tag == "Pickaxe")
 		{
-			col1 = GameObject.FindGameObjectWithTag("Player");
-
+			col1 = GameObject.FindGameObjectWithTag("Pickaxe");
+			print("hak");
 			if (roundMineTimerRead == 0)
 			{
 				hp -= damage;
@@ -44,9 +44,9 @@ public class BreakScript : MonoBehaviour {
 		{
 			col1 = null;
 		}
-		roundMineTimerRead = col1.GetComponent<HPhandler> ().roundMineTimer;
+		//roundMineTimerRead = col1.GetComponent<HPhandler> ().roundMineTimer;
 
-		print (col1.GetComponent<HPhandler> ().roundMineTimer);
+		//print (col1.GetComponent<HPhandler> ().roundMineTimer);
 
 	}
 
