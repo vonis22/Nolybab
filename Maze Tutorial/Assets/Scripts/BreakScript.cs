@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BreakScript : MonoBehaviour {
 
@@ -20,14 +21,27 @@ public class BreakScript : MonoBehaviour {
 	public AudioClip breakSound_5;
 	public AudioClip breakSound_6;
 	public AudioClip breakSound_7;
+	public AudioClip crumblingWall;
 
+	//Array of the sounds
+	public AudioClip[] breakSounds;
 
 	void Start ()
 	{
+		breakSounds = new AudioClip[] {
+			breakSound_0,
+			breakSound_1,
+			breakSound_2,
+			breakSound_3,
+			breakSound_4,
+			breakSound_5,
+			breakSound_6,
+			breakSound_7
+		};
 	}
+
 	void Update () 
 	{
-
 		textMesh1.GetComponent<TextMesh> ().text = hp.ToString();
 		//textMesh2.text = hp.ToString();
 		if (hp <= 0)
@@ -35,41 +49,33 @@ public class BreakScript : MonoBehaviour {
 			StartCoroutine (crumbleKill ());
 			//Brokkel af animatie
 		}
-
-		//print (roundMineTimerRead);
 	}
+
 	IEnumerator crumbleKill()
 	{
-		yield return new WaitForSeconds (2);
+		GetComponent<AudioSource> ().clip = crumblingWall;
+		GetComponent<AudioSource> ().Play();
+		yield return new WaitForSeconds (0.75f);
 		Destroy(transform.parent.gameObject);
+	}
+
+	void PlaySound()
+	{
+		GetComponent<AudioSource> ().clip = breakSounds [Random.Range (5, breakSounds.Length)];
+		GetComponent<AudioSource>().Play();
 	}
 
 	void OnTriggerEnter (Collider c)
 	{
 		if (c.tag == "Pickaxe")
 		{
-			col1 = GameObject.FindGameObjectWithTag("Pickaxe");
-			print("hak");
+			//Wall gets damaged
 			hp -= damage;
-			GetComponent<AudioSource> ().clip = breakSound_0;
-			GetComponent<AudioSource>().Play();
-			//PlaySound
-			//PlayParticle Animation
 
-//			if (roundMineTimerRead == 0)
-//			{
-//				hp -= damage;
-//			}
+			//Sound will be played
+			PlaySound();
+
+			//Play Particle Animation
 		}
-		else
-		{
-			col1 = null;
-		}
-		//roundMineTimerRead = col1.GetComponent<HPhandler> ().roundMineTimer;
-
-		//print (col1.GetComponent<HPhandler> ().roundMineTimer);
-
 	}
-
-
 }
