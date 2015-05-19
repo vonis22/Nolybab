@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 	public void Start () 
 	{
 		// UNCOMMENT onderste line voor locked cursor
-		//Screen.lockCursor = true;
+		Screen.lockCursor = true;
 		Physics.IgnoreLayerCollision (10, 11);
 		
 		BeginGame();
