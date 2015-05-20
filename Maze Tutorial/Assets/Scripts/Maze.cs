@@ -63,7 +63,8 @@ public class Maze : MonoBehaviour {
 		lastChildCoords = lastChild.transform.position;
 		nolyChildCoords = transform.GetChild ((size.x * size.z) -2).transform.position;
 		Instantiate (stairsPrefab, firstChildCoords, Quaternion.identity);
-		Instantiate (endStairs, lastChildCoords, Quaternion.identity);
+
+		Instantiate (endStairs,new Vector3(lastChildCoords.x,(lastChildCoords.y - 0.055f),lastChildCoords.z), Quaternion.identity);
 
 	}
 
