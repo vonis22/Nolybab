@@ -53,16 +53,22 @@ public class BreakScript : MonoBehaviour {
 
 	IEnumerator crumbleKill()
 	{
-		GetComponent<AudioSource> ().clip = crumblingWall;
-		GetComponent<AudioSource> ().Play();
-		yield return new WaitForSeconds (0.75f);
+
+		//GetComponent<AudioSource> ().Play();
+		yield return new WaitForSeconds (1);
 		Destroy(transform.parent.gameObject);
 	}
 
 	void PlaySound()
 	{
-		GetComponent<AudioSource> ().clip = breakSounds [Random.Range (5, breakSounds.Length)];
+		if (hp > 0) {
+			GetComponent<AudioSource> ().clip = breakSounds [Random.Range (5, breakSounds.Length)];
+		} else {
+			GetComponent<AudioSource> ().clip = crumblingWall;
+		}
+
 		GetComponent<AudioSource>().Play();
+
 	}
 
 	void OnTriggerEnter (Collider c)
