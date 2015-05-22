@@ -40,7 +40,9 @@ public class AIPath : MonoBehaviour {
 	private Maze mazeScript;
 	private int mazeSizeX;
 	private int mazeSizeZ;
-	public int sanity;
+	public float sanity;
+	public float sanityDecrease;
+
 	/** Determines how often it will search for new paths. 
 	 * If you have fast moving targets or AIs, you might want to set it to a lower value.
 	 * The value is in seconds between path requests.
@@ -326,9 +328,11 @@ public class AIPath : MonoBehaviour {
 		return tr.position;
 	}
 	
-	public virtual void Update () {
+	public virtual void Update () 
+	{
+		sanity -= Time.deltaTime * sanityDecrease / 10;
 
-
+		//If sanity is smaller or equal to 0, Nolybab will come and find you. Else he will just wander around.
 		if (sanity <= 0)
 		{
 			//repathRate =0.5f;
@@ -338,6 +342,7 @@ public class AIPath : MonoBehaviour {
 		{
 			target = GameObject.FindGameObjectWithTag ("Maze").transform.GetChild(Random.Range(0,(mazeSizeX * mazeSizeZ)-1));
 		}
+
 		//print (target);
 		if (!canMove) { return; }
 		

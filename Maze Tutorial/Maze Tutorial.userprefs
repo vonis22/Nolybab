@@ -1,12 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Maze.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SeeNolybab.cs">
     <Files>
-      <File FileName="Assets\Scripts\Maze.cs" Line="67" Column="82" />
+      <File FileName="Assets\AstarPathfindingProject\Core\AI\AIPath.cs" Line="322" Column="2" />
+      <File FileName="Assets\SeeNolybab.cs" Line="24" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="F:\Nolybab\Nolybab\Maze Tutorial\Assets\AstarPathfindingProject\Core\AI\AIPath.cs" line="176" />
+      <Breakpoint file="F:\Nolybab\Nolybab\Maze Tutorial\Assets\AstarPathfindingProject\Core\AI\AIPath.cs" line="331" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

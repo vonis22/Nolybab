@@ -135,6 +135,7 @@
      <Compile Include="Assets\Scripts\SeePlayer.cs" />
      <Compile Include="Assets\Scripts\WallSounds.cs" />
      <Compile Include="Assets\Scripts\pickslaan.cs" />
+     <Compile Include="Assets\SeeNolybab.cs" />
      <Compile Include="Assets\torch\scene\script\TorchSlider.cs" />
      <Compile Include="Assets\torch\scene\script\Torchslider2.cs" />
      <Compile Include="Assets\torch\scripts\Torchelight.cs" />

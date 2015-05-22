@@ -15,7 +15,7 @@ public class SeePlayer : MonoBehaviour {
 
 	void Update () 
 	{
-		print (seeTimer);
+//		print (seeTimer);
 
 		if (decreaseTimer == true)
 		{
