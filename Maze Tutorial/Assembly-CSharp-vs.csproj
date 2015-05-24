@@ -132,10 +132,10 @@
      <Compile Include="Assets\Scripts\MazeMap.cs" />
      <Compile Include="Assets\Scripts\MazePassage.cs" />
      <Compile Include="Assets\Scripts\MazeWall.cs" />
+     <Compile Include="Assets\Scripts\SeeNolybab.cs" />
      <Compile Include="Assets\Scripts\SeePlayer.cs" />
      <Compile Include="Assets\Scripts\WallSounds.cs" />
      <Compile Include="Assets\Scripts\pickslaan.cs" />
-     <Compile Include="Assets\SeeNolybab.cs" />
      <Compile Include="Assets\torch\scene\script\TorchSlider.cs" />
      <Compile Include="Assets\torch\scene\script\Torchslider2.cs" />
      <Compile Include="Assets\torch\scripts\Torchelight.cs" />
@@ -162,10 +162,10 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Ionic.Zip.Reduced">
- <HintPath>F:/Nolybab/Nolybab/Maze Tutorial/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ <HintPath>E:/Users/Vincent/Documents/GitHub/Nolybab/Maze Tutorial/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.JsonFx">
- <HintPath>F:/Nolybab/Nolybab/Maze Tutorial/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ <HintPath>E:/Users/Vincent/Documents/GitHub/Nolybab/Maze Tutorial/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

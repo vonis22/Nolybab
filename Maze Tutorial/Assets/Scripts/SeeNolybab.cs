@@ -3,7 +3,9 @@ using System.Collections;
 
 public class SeeNolybab : MonoBehaviour {
 
-	public Transform nolyFab;
+	public float interval =2.5f;
+	private GameObject nolyFab;
+
 //	public Collider nolyCollider;
 //	private Camera cam;
 //	private Plane[] planes;
@@ -13,20 +15,22 @@ public class SeeNolybab : MonoBehaviour {
 
 	void Start () 
 	{
-//		cam = GetComponent<Camera>();
+
+		//		cam = GetComponent<Camera>();
 //		planes = GeometryUtility.CalculateFrustumPlanes (cam);
 //		nolyCollider = nolyFab.GetComponent<Collider> ();
 	}
 
 	void Update () 
 	{
+		CanSeeEnemy ();
 		//Vector3 fwd = transform.TransformDirection(Vector3.forward);
-		Vector3 fwd = nolyFab.position;
+		//Vector3 fwd = nolyFab.position;
 
-		if (Physics.Raycast(transform.position, fwd, 10))
-		{
-			print("There is something in front of the object!");
-		}
+	//	if (Physics.Raycast(transform.position, fwd, 10))
+	//	{
+	//		print("There is something in front of the object!");
+	//	}
 
 //		if (GeometryUtility.TestPlanesAABB(planes, nolyCollider.bounds))
 //		{
@@ -36,5 +40,10 @@ public class SeeNolybab : MonoBehaviour {
 //		{
 //			print ("Nothing has been detected");
 //		}
+	}
+
+	void CanSeeEnemy()
+	{
+		Vector3 here = transform.position;
 	}
 }
