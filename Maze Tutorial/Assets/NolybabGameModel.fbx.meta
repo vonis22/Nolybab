@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: 685df6e60c079eb4da41801879cb724f
+timeCreated: 1432647536
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Accents
+    100002: Armlets
+    100004: Belt
+    100006: ChainArmletLeft
+    100008: ChainArmletRight
+    100010: ChainBeltFrontLeft
+    100012: ChainBeltFrontRight
+    100014: ChainBeltRearLeft
+    100016: ChainBeltRearRight
+    100018: ChainTorso
+    100020: Eyes
+    100022: //RootNode
+    100024: Skull
+    100026: Torso
+    400000: Accents
+    400002: Armlets
+    400004: Belt
+    400006: ChainArmletLeft
+    400008: ChainArmletRight
+    400010: ChainBeltFrontLeft
+    400012: ChainBeltFrontRight
+    400014: ChainBeltRearLeft
+    400016: ChainBeltRearRight
+    400018: ChainTorso
+    400020: Eyes
+    400022: //RootNode
+    400024: Skull
+    400026: Torso
+    2300000: Accents
+    2300002: Armlets
+    2300004: Belt
+    2300006: ChainArmletLeft
+    2300008: ChainArmletRight
+    2300010: ChainBeltFrontLeft
+    2300012: ChainBeltFrontRight
+    2300014: ChainBeltRearLeft
+    2300016: ChainBeltRearRight
+    2300018: ChainTorso
+    2300020: Eyes
+    2300022: Skull
+    2300024: Torso
+    3300000: Accents
+    3300002: Armlets
+    3300004: Belt
+    3300006: ChainArmletLeft
+    3300008: ChainArmletRight
+    3300010: ChainBeltFrontLeft
+    3300012: ChainBeltFrontRight
+    3300014: ChainBeltRearLeft
+    3300016: ChainBeltRearRight
+    3300018: ChainTorso
+    3300020: Eyes
+    3300022: Skull
+    3300024: Torso
+    4300000: Torso
+    4300002: Accents
+    4300004: ChainArmletRight
+    4300006: ChainArmletLeft
+    4300008: ChainBeltRearLeft
+    4300010: ChainBeltFrontLeft
+    4300012: ChainBeltRearRight
+    4300014: ChainBeltFrontRight
+    4300016: ChainTorso
+    4300018: Armlets
+    4300020: Eyes
+    4300022: Skull
+    4300024: Belt
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
