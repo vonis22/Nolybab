@@ -14,6 +14,7 @@
  
  function CanSeeEnemy(): GameObject {
    var here = transform.position; 
+   
    for (var enemy: GameObject in enemyList){
      // if enemy not destroyed yet, and is in front the camera...
      if (enemy && enemy.GetComponent.<Renderer>().isVisible){
@@ -35,6 +36,7 @@
  function Update(){
    var enemyAtSight = CanSeeEnemy(); // check if some enemy at sight
    if (enemyAtSight){
+   
      // player can see the enemy, and its GameObject reference is in enemyAtSight
    }
    // other Update code, if any

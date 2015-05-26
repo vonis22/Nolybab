@@ -42,7 +42,8 @@ public class AIPath : MonoBehaviour {
 	private int mazeSizeZ;
 	public float sanity;
 	public float sanityDecrease;
-
+	private SeeNolybab playerSeesBab_script;
+	public float sanityDecreaseValue;
 	/** Determines how often it will search for new paths. 
 	 * If you have fast moving targets or AIs, you might want to set it to a lower value.
 	 * The value is in seconds between path requests.
@@ -174,9 +175,10 @@ public class AIPath : MonoBehaviour {
 	 * \see RepeatTrySearchPath
 	 */
 	protected virtual void Start () {
+		sanityDecreaseValue = sanityDecrease;
 		startHasRun = true;
 		OnEnable ();
-	
+		playerSeesBab_script = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<SeeNolybab>();
 	GameObject mazeInstance = GameObject.FindGameObjectWithTag ("Maze");
 	mazeScript = mazeInstance.GetComponent<Maze>();
 	mazeSizeX = mazeScript.size.x;
@@ -331,6 +333,15 @@ public class AIPath : MonoBehaviour {
 	public virtual void Update () 
 	{
 		sanity -= Time.deltaTime * sanityDecrease / 10;
+
+		if (playerSeesBab_script.nolybabIsVisible == true)
+		{
+			sanityDecrease = (sanityDecreaseValue * 10);
+		} 
+		else
+		{
+			sanityDecrease = sanityDecreaseValue;
+		}
 
 		//If sanity is smaller or equal to 0, Nolybab will come and find you. Else he will just wander around.
 		if (sanity <= 0)

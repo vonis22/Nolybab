@@ -3,19 +3,18 @@ using System.Collections;
 
 public class SeeNolybab : MonoBehaviour {
 
-	public float interval =2.5f;
-	private GameObject nolyFab;
 
 //	public Collider nolyCollider;
 //	private Camera cam;
 //	private Plane[] planes;
-
-
-
+	public GameObject nolyFab;
+	private Camera cam;
+	public bool nolybabIsVisible;
 
 	void Start () 
 	{
-
+		nolyFab = GameObject.FindGameObjectWithTag ("Nolybab");
+		cam = GetComponent<Camera> ();
 		//		cam = GetComponent<Camera>();
 //		planes = GeometryUtility.CalculateFrustumPlanes (cam);
 //		nolyCollider = nolyFab.GetComponent<Collider> ();
@@ -23,7 +22,22 @@ public class SeeNolybab : MonoBehaviour {
 
 	void Update () 
 	{
-		CanSeeEnemy ();
+		RaycastHit hit;
+		//Ray seeRay = new Ray (new Vector3(transform.position.x,transform.position.y,transform.position.z), Vector3.forward);
+		Ray seeRay = new Ray (cam.transform.position, cam.transform.forward);
+		Debug.DrawRay (cam.transform.position,cam.transform.forward);
+		if(Physics.Raycast(seeRay, out hit))
+		   {
+			if(hit.collider.tag == ("Nolybab"))
+			   {
+					CanSeeEnemy();
+			   }
+			else 
+			{
+				nolybabIsVisible = false;
+			}
+		   }
+		
 		//Vector3 fwd = transform.TransformDirection(Vector3.forward);
 		//Vector3 fwd = nolyFab.position;
 
@@ -44,6 +58,7 @@ public class SeeNolybab : MonoBehaviour {
 
 	void CanSeeEnemy()
 	{
-		Vector3 here = transform.position;
+		print("Je ziet Nolybab");
+		nolybabIsVisible = true;
 	}
 }

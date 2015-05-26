@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SeeNolybabJS.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Fantasy AI Free Edition\README.txt">
     <Files>
-      <File FileName="Assets\SeeNolybabJS.js" Line="31" Column="23" />
-      <File FileName="Assets\Scripts\SeeNolybab.cs" Line="1" Column="1" />
+      <File FileName="Assets\SeeNolybabJS.js" Line="27" Column="35" />
+      <File FileName="Assets\Scripts\SeeNolybab.cs" Line="31" Column="8" />
+      <File FileName="Assets\Scripts\SeePlayer.cs" Line="13" Column="80" />
+      <File FileName="Assets\Fantasy AI Free Edition\README.txt" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
