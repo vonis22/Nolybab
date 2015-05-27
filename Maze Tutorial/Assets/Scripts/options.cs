@@ -36,6 +36,17 @@ public class options : MonoBehaviour
 	public Slider masterVolumeSlider;
 	public Slider musicVolumeSlider;
 	public Slider effectVolumeSlider;
+
+	public AudioClip[] backgroundMusicClip;
+	public AudioClip backgroundMusicClip_0;
+	public AudioClip backgroundMusicClip_1;
+	public AudioClip backgroundMusicClip_2;
+
+	public AudioClip backgroundMusicPart1;
+	public AudioClip backgroundMusicPart2;
+
+	bool secondClip = false;
+	bool thirdClip = false;
 	
 	public void Awake () 
 	{
@@ -50,21 +61,47 @@ public class options : MonoBehaviour
 		//Screen.lockCursor = true;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
+
+		backgroundMusicClip = new AudioClip[] 
+		{
+			backgroundMusicClip_0,
+			backgroundMusicClip_1,
+			backgroundMusicClip_2,
+		};
 	}
 
 	public IEnumerator Seeker()
 	{
 		yield return new WaitForSeconds (0.1f);
+
+		BackgroundMusic = GameObject.Find ("Background Music").GetComponent<AudioSource> ();
+		BackgroundMusic.clip = backgroundMusicClip [Random.Range (0, backgroundMusicClip.Length)];
+		backgroundMusic = BackgroundMusic;
+
 		backgroundMusic.Play ();
+
+		yield return new WaitForSeconds (backgroundMusic.clip.length);
+		secondClip = true;
+
+		if (secondClip)
+		{
+			backgroundMusic.clip = backgroundMusicPart1;
+			backgroundMusic.Play ();
+		}
+
+		yield return new WaitForSeconds (backgroundMusic.clip.length);
+		thirdClip = true;
+
+		if (thirdClip)
+		{
+			backgroundMusic.clip = backgroundMusicPart2;
+			backgroundMusic.loop = true;
+			backgroundMusic.Play ();
+		}
 	}
 	
 	void Update ()
 	{
-		BackgroundMusic = GameObject.Find ("Background Music").GetComponent<AudioSource> ();
-		LevelMusicSource = GameObject.FindWithTag ("EndLadder").GetComponent<AudioSource> ();
-		BackgroundMusic.clip = LevelMusicSource.clip;
-		backgroundMusic = BackgroundMusic;
-
 		foreach(AudioSource BreakWallSource in FindObjectsOfType(typeof(AudioSource)))
 		{
 			if (BreakWallSource.tag == ("BreakWall"))
