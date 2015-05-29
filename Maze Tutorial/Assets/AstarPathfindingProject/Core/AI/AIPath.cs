@@ -44,6 +44,8 @@ public class AIPath : MonoBehaviour {
 	public float sanityDecrease;
 	private SeeNolybab playerSeesBab_script;
 	public float sanityDecreaseValue;
+	public bool increaseSanity = false;
+
 	/** Determines how often it will search for new paths. 
 	 * If you have fast moving targets or AIs, you might want to set it to a lower value.
 	 * The value is in seconds between path requests.
@@ -332,6 +334,8 @@ public class AIPath : MonoBehaviour {
 	
 	public virtual void Update () 
 	{
+		print (increaseSanity);
+
 		sanity -= Time.deltaTime * sanityDecrease / 10;
 
 		if (playerSeesBab_script.nolybabIsVisible == true)
@@ -341,6 +345,17 @@ public class AIPath : MonoBehaviour {
 		else
 		{
 			sanityDecrease = sanityDecreaseValue;
+		}
+
+		if (increaseSanity)
+		{
+			sanity += 20;
+			increaseSanity = false;
+		}
+
+		if (sanity > 100)
+		{
+			sanity = 100;
 		}
 
 		//If sanity is smaller or equal to 0, Nolybab will come and find you. Else he will just wander around.
