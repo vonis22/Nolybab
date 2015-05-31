@@ -119,11 +119,11 @@
      <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
      <Compile Include="Assets\FlickerScript.cs" />
-     <Compile Include="Assets\PickUpPowerUp3.cs" />
      <Compile Include="Assets\Scripts\BreakScript.cs" />
      <Compile Include="Assets\Scripts\FirstPersonController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HPhandler.cs" />
+     <Compile Include="Assets\Scripts\HammerSwing.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />
      <Compile Include="Assets\Scripts\LadderCollider.cs" />
      <Compile Include="Assets\Scripts\Maze.cs" />
@@ -135,6 +135,9 @@
      <Compile Include="Assets\Scripts\MazePassage.cs" />
      <Compile Include="Assets\Scripts\MazeWall.cs" />
      <Compile Include="Assets\Scripts\PickSwing.cs" />
+     <Compile Include="Assets\Scripts\PickUpPowerUp1.cs" />
+     <Compile Include="Assets\Scripts\PickUpPowerUp2.cs" />
+     <Compile Include="Assets\Scripts\PickUpPowerUp3.cs" />
      <Compile Include="Assets\Scripts\SeeNolybab.cs" />
      <Compile Include="Assets\Scripts\SeePlayer.cs" />
      <Compile Include="Assets\Scripts\WallSounds.cs" />

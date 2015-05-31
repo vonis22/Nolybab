@@ -83,5 +83,16 @@ public class BreakScript : MonoBehaviour {
 
 			//Play Particle Animation
 		}
+
+		if (c.tag == "Sledgehammer")
+		{
+			//Wall gets damaged
+			hp -= damage * 100;
+			
+			//Sound will be played
+			PlaySound();
+			
+			//Play Particle Animation
+		}
 	}
 }

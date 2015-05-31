@@ -33,12 +33,18 @@ public class Maze : MonoBehaviour {
 	private Vector3 lastChildCoords;
 	private Vector3 nolyChildCoords;
 	private Vector3 randomSpawnCoords;
-	public Vector3 RandomPowerupCoordinates;
+	public Vector3 RandomPowerupCoordinates1;
+	public Vector3 RandomPowerupCoordinates2;
+	public Vector3 RandomPowerupCoordinates3;
+
 
 	public GameObject nolyfab;
 	public GameObject stairsPrefab;
 	public GameObject endStairs;
+	public GameObject powerUp1;
+	public GameObject powerUp2;
 	public GameObject powerUp3;
+
 
 	public IntVector2 RandomCoordinates {
 		get {
@@ -56,7 +62,9 @@ public class Maze : MonoBehaviour {
 
 	public void Start()
 	{
-		RandomPowerupCoordinates = transform.GetChild(Random.Range (0, (size.x * size.z - 1))).transform.position;
+		RandomPowerupCoordinates1 = transform.GetChild(Random.Range (0, (size.x * size.z - 1))).transform.position;
+		RandomPowerupCoordinates2 = transform.GetChild(Random.Range (0, (size.x * size.z - 1))).transform.position;
+		RandomPowerupCoordinates3 = transform.GetChild(Random.Range (0, (size.x * size.z - 1))).transform.position;
 
 		cameraChange = mapCam.GetComponent<MazeMap>();
 		firstChild = transform.GetChild(0);
@@ -69,7 +77,9 @@ public class Maze : MonoBehaviour {
 		Instantiate (stairsPrefab, firstChildCoords, Quaternion.identity);
 		Instantiate (endStairs,new Vector3(lastChildCoords.x,(lastChildCoords.y - 0.055f),lastChildCoords.z), Quaternion.identity);
 
-		Instantiate (powerUp3, RandomPowerupCoordinates, Quaternion.identity);
+		Instantiate (powerUp1, RandomPowerupCoordinates1, Quaternion.identity);
+		Instantiate (powerUp2, RandomPowerupCoordinates2, Quaternion.identity);
+		Instantiate (powerUp3, RandomPowerupCoordinates3, Quaternion.identity);
 	}
 
 	public void Generate () 
