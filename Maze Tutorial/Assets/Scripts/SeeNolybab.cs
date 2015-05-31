@@ -10,11 +10,13 @@ public class SeeNolybab : MonoBehaviour {
 	public GameObject nolyFab;
 	private Camera cam;
 	public bool nolybabIsVisible;
-
+	private Camera FPScontrollerFabCam;
+	public float fovTimer;
 	void Start () 
 	{
 		nolyFab = GameObject.FindGameObjectWithTag ("Nolybab");
 		cam = GetComponent<Camera> ();
+		FPScontrollerFabCam = GameObject.FindGameObjectWithTag ("Player").transform.GetChild (0).GetComponent<Camera>();
 		//		cam = GetComponent<Camera>();
 //		planes = GeometryUtility.CalculateFrustumPlanes (cam);
 //		nolyCollider = nolyFab.GetComponent<Collider> ();
@@ -35,9 +37,18 @@ public class SeeNolybab : MonoBehaviour {
 			else 
 			{
 				nolybabIsVisible = false;
+				//FPScontrollerFabCam.fieldOfView = 75;
 			}
 		   }
-		
+		if (nolybabIsVisible)
+		{
+			//Fov of the player changes when he sees Nolybab
+			FPScontrollerFabCam.fieldOfView += 10 * Time.deltaTime;
+
+			print("Je ziet Nolybab");
+
+		}
+		print (FPScontrollerFabCam.fieldOfView);
 		//Vector3 fwd = transform.TransformDirection(Vector3.forward);
 		//Vector3 fwd = nolyFab.position;
 
@@ -58,7 +69,6 @@ public class SeeNolybab : MonoBehaviour {
 
 	void CanSeeEnemy()
 	{
-		print("Je ziet Nolybab");
 		nolybabIsVisible = true;
 	}
 }

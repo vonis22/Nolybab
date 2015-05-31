@@ -9,6 +9,7 @@ public class PickUpPowerUp1 : MonoBehaviour {
 	void Start()
 	{
 		script = GameObject.FindGameObjectWithTag ("Nolybab").GetComponent<AIPath>();
+		GetComponent<AIPathOriginal>().enabled = false;
 	}
 
 	void OnTriggerStay (Collider coll)
@@ -18,7 +19,7 @@ public class PickUpPowerUp1 : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.E))
 			{
 				CreateDirectionSign();
-				Destroy(gameObject);
+				//Destroy(gameObject);
 			}
 		}
 	}
@@ -42,6 +43,7 @@ public class PickUpPowerUp1 : MonoBehaviour {
 	void CreateDirectionSign()
 	{
 		//Has to be done in another script, because this script will be destroyed
+		GetComponent<AIPathOriginal> ().enabled = true;
 	}
 
 	

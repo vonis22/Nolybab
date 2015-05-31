@@ -4,13 +4,20 @@ using System.Collections;
 public class PickUpPowerUp2 : MonoBehaviour {
 
 	private bool canPrintMessage = false;
-	private AIPath script;
+	private AIPath aiScript;
+	private HPhandler hpScript;
+
 
 	void Start()
 	{
-		script = GameObject.FindGameObjectWithTag ("Nolybab").GetComponent<AIPath>();
+		StartCoroutine (DefineValues ());
 	}
-
+	IEnumerator DefineValues()
+	{
+		yield return new WaitForSeconds (0.1f);
+		aiScript = GameObject.FindGameObjectWithTag ("Nolybab").GetComponent<AIPath>();
+		hpScript = GameObject.FindGameObjectWithTag ("Player").GetComponent<HPhandler> ();
+	}
 	void OnTriggerStay (Collider coll)
 	{
 		if (coll.tag == "Player")
@@ -42,9 +49,9 @@ public class PickUpPowerUp2 : MonoBehaviour {
 	void SwitchAxe()
 	{
 		print ("You will get a sledgehammer now");
-
-		//Destroy Axe
-		//Instantiate SledgeHammer
+		//Pickaxe becomes inactive Hammer becomes active
+		hpScript.hammerActive = true;
+		//startHammerTimer here
 	}
 	
 	public void OnGUI ()

@@ -3,64 +3,46 @@ using System.Collections;
 
 public class HPhandler : MonoBehaviour {
 
-	public bool canMine = false;
-	public float miningDelay;
-	public float miningTimer;
-	public int roundMineTimer;
-	public bool mining = false;
-
+//	public bool canMine = false;
+//	public float miningDelay;
+//	public float miningTimer;
+//	public int roundMineTimer;
+//	public bool mining = false;
+	public bool hammerActive = false;
+	public float hammerUses = 5;
 	// Use this for initialization
 	void Start () 
 	{
-		miningTimer = miningDelay;
+		//miningTimer = miningDelay;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		roundMineTimer = Mathf.FloorToInt (miningTimer);
-		if (roundMineTimer == 0)
-		{
-			miningTimer = miningDelay;
-			mining = false;
-		}
-		if (canMine == true && Input.GetKeyDown(KeyCode.E) && miningTimer == miningDelay)
-		{
-			mining = true;
-		}
 		
-		if (mining == true)
+			if (hammerActive)
+			{
+				//Hamer is Actief
+				transform.GetChild(3).gameObject.SetActive(false);
+				transform.GetChild(4).gameObject.SetActive(true);
+			} else
+			{
+			//Pickaxe is actief
+				transform.GetChild(3).gameObject.SetActive(true);
+				transform.GetChild(4).gameObject.SetActive(false);
+			}
+
+		if (hammerUses <= 0)
 		{
-			miningTimer -= Time.deltaTime;
-			
-			//wallstrength moet misschien per muur in een script oid, anders destroy je alle muren tegelijk
-			//if (miningTimer <= 0.0f)
-			//{
-				//Destroy (c.gameObject);
-				//miningTimer = miningDelay;
-
-			//}
+			StartCoroutine(BackToPickaxe());
 		}
-		//print (roundMineTimer);
-		
-		//print (miningTimer);
-	}
 
-	public void OnTriggerEnter (Collider c)
+
+}
+	IEnumerator BackToPickaxe ()
 	{
-		if (c.tag == "BreakWall")
-		{
-			canMine = true;
-		}
+		yield return new WaitForSeconds (1);
+		hammerActive = false;
+		hammerUses = 5;
 	}
-
-	public void OnTriggerExit (Collider c)
-	{
-		if (c.tag == "BreakWall")
-		{
-			canMine = false;
-		}
-	}
-
-
 }

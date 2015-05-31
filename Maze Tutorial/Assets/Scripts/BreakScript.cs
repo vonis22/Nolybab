@@ -6,11 +6,12 @@ public class BreakScript : MonoBehaviour {
 
 	public int hp = 5;
 	public GameObject col1 = null;
-	public HPhandler script;
 	public GameObject textMesh1;
 	private TextMesh textMesh2;
 	public int damage = 1;
 	private int roundMineTimerRead = 1;
+
+	private HPhandler hpScript;
 
 	//AudioClips
 	public AudioClip breakSound_0;
@@ -28,6 +29,7 @@ public class BreakScript : MonoBehaviour {
 
 	void Start ()
 	{
+		StartCoroutine (checkHPScript ());
 		breakSounds = new AudioClip[] {
 			breakSound_0,
 			breakSound_1,
@@ -38,8 +40,15 @@ public class BreakScript : MonoBehaviour {
 			breakSound_6,
 			breakSound_7
 		};
+
+
 	}
 
+	IEnumerator checkHPScript ()
+	{
+		yield return new WaitForSeconds (0.1f);
+		hpScript = GameObject.FindGameObjectWithTag("Player").GetComponent<HPhandler>();
+	}
 	void Update () 
 	{
 		textMesh1.GetComponent<TextMesh> ().text = hp.ToString();
@@ -86,9 +95,10 @@ public class BreakScript : MonoBehaviour {
 
 		if (c.tag == "Sledgehammer")
 		{
+			print ("Sledgehammer hit wall");
 			//Wall gets damaged
 			hp -= damage * 100;
-			
+			hpScript.hammerUses -= 0.5f;
 			//Sound will be played
 			PlaySound();
 			

@@ -80,6 +80,12 @@ public class options : MonoBehaviour
 
 		backgroundMusic.Play ();
 
+		//ControllerSounds & source
+		ControllerSounds = GameObject.Find ("Controller Sounds").GetComponent<AudioSource> ();
+		ControllerSource = GameObject.FindWithTag ("Player").GetComponent<AudioSource> ();
+		ControllerSounds.clip = ControllerSource.clip;
+		ControllerSource.volume = ControllerSounds.volume;
+
 		yield return new WaitForSeconds (backgroundMusic.clip.length);
 		secondClip = true;
 
@@ -123,12 +129,7 @@ public class options : MonoBehaviour
 				RealWallSource.volume = RealWall.volume;
 			}
 		}
-		
-		ControllerSounds = GameObject.Find ("Controller Sounds").GetComponent<AudioSource> ();
-		ControllerSource = GameObject.FindWithTag ("Player").GetComponent<AudioSource> ();
-		ControllerSounds.clip = ControllerSource.clip;
-		ControllerSource.volume = ControllerSounds.volume;
-
+	
 		if (Input.GetKeyDown (KeyCode.Escape))
 		{
 			if (showOptions == false && toggleOptions == true)

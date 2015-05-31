@@ -26,7 +26,7 @@ public class Maze : MonoBehaviour {
 	private bool playerSpawned = false;
 
 	private Transform firstChild;
-	private Transform lastChild;
+	public Transform lastChild;
 	public Transform lastChildChild;
 
 	private Vector3 firstChildCoords;

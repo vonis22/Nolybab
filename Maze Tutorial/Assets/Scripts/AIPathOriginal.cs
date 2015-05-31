@@ -35,17 +35,8 @@ using Pathfinding.RVO;
  */
 [RequireComponent(typeof(Seeker))]
 [AddComponentMenu("Pathfinding/AI/AIPath (generic)")]
-public class AIPath : MonoBehaviour {
-
-	private Maze mazeScript;
-	private int mazeSizeX;
-	private int mazeSizeZ;
-	public float sanity;
-	public float sanityDecrease;
-	private SeeNolybab playerSeesBab_script;
-	public float sanityDecreaseValue;
-	public bool increaseSanity = false;
-
+public class AIPathOriginal : MonoBehaviour {
+	
 	/** Determines how often it will search for new paths. 
 	 * If you have fast moving targets or AIs, you might want to set it to a lower value.
 	 * The value is in seconds between path requests.
@@ -155,7 +146,7 @@ public class AIPath : MonoBehaviour {
 	 * in the awake stage (or rather before start on frame 0).
 	 */
 	private bool startHasRun = false;
-	
+	private Maze mazeScript;
 	/** Initializes reference variables.
 	 * If you override this function you should in most cases call base.Awake () at the start of it.
 	  * */
@@ -169,6 +160,8 @@ public class AIPath : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		navController = GetComponent<NavmeshController>();
 		rigid = GetComponent<Rigidbody>();
+		mazeScript = GameObject.FindGameObjectWithTag ("Maze").GetComponent<Maze> ();
+
 	}
 	
 	/** Starts searching for paths.
@@ -177,15 +170,11 @@ public class AIPath : MonoBehaviour {
 	 * \see RepeatTrySearchPath
 	 */
 	protected virtual void Start () {
-		sanityDecreaseValue = sanityDecrease;
 		startHasRun = true;
 		OnEnable ();
-		playerSeesBab_script = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<SeeNolybab>();
-	GameObject mazeInstance = GameObject.FindGameObjectWithTag ("Maze");
-	mazeScript = mazeInstance.GetComponent<Maze>();
-	mazeSizeX = mazeScript.size.x;
-	mazeSizeZ = mazeScript.size.z;
+
 	}
+	
 	/** Run at start and when reenabled.
 	 * Starts RepeatTrySearchPath.
 	 * 
@@ -332,44 +321,9 @@ public class AIPath : MonoBehaviour {
 		return tr.position;
 	}
 	
-	public virtual void Update () 
-	{
-		//print (increaseSanity);
+	public virtual void Update () {
 
-		sanity -= Time.deltaTime * sanityDecrease / 10;
-
-		if (playerSeesBab_script.nolybabIsVisible == true)
-		{
-			sanityDecrease = (sanityDecreaseValue * 10);
-		} 
-		else
-		{
-			sanityDecrease = sanityDecreaseValue;
-		}
-
-		if (increaseSanity)
-		{
-			sanity += 20;
-			increaseSanity = false;
-		}
-
-		if (sanity > 100)
-		{
-			sanity = 100;
-		}
-
-		//If sanity is smaller or equal to 0, Nolybab will come and find you. Else he will just wander around.
-		if (sanity <= 0)
-		{
-			//repathRate =0.5f;
-			target = GameObject.FindGameObjectWithTag ("Player").transform;
-		}
-		else
-		{
-			target = GameObject.FindGameObjectWithTag ("Maze").transform.GetChild(Random.Range(0,(mazeSizeX * mazeSizeZ)-1));
-		}
-
-		//print (target);
+		target = mazeScript.lastChild.transform;
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());
