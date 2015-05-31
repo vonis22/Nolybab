@@ -40,7 +40,7 @@ public class WallSounds : MonoBehaviour {
 
 	void OnTriggerEnter (Collider c)
 	{
-		if (c.tag == "Pickaxe") 
+		if (c.tag == "Pickaxe" || c.tag == "Sledgehammer") 
 		{
 			PlaySound();
 		}
