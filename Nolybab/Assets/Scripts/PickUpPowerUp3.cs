@@ -8,9 +8,14 @@ public class PickUpPowerUp3 : MonoBehaviour {
 
 	void Start()
 	{
+		StartCoroutine (CheckValues ());
+
+	}
+	IEnumerator CheckValues()
+	{
+		yield return new WaitForSeconds (0.1f);
 		script = GameObject.FindGameObjectWithTag ("Nolybab").GetComponent<AIPath>();
 	}
-
 	void OnTriggerStay (Collider coll)
 	{
 		if (coll.tag == "Player")

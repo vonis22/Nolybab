@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\TestBab\New Unity Project\Assets\Plugins\x86\donotdelete.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WallChangeScript.cs">
     <Files>
-      <File FileName="..\..\TestBab\New Unity Project\Assets\Plugins\x86\donotdelete.txt" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WallChangeScript.cs" Line="31" Column="83" />
+      <File FileName="Assets\Scripts\PickUpPowerUp3.cs" Line="16" Column="42" />
+      <File FileName="Assets\Scripts\SeeNolybab.cs" Line="90" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

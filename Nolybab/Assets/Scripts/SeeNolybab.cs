@@ -84,7 +84,7 @@ public class SeeNolybab : MonoBehaviour {
 				FPScontrollerFabCam.fieldOfView = 75;
 			}
 		}
-		print (FPScontrollerFabCam.fieldOfView);
+		//print (FPScontrollerFabCam.fieldOfView);
 		//Vector3 fwd = transform.TransformDirection(Vector3.forward);
 		//Vector3 fwd = nolyFab.position;
 
