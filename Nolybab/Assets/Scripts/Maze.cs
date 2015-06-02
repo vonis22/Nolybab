@@ -98,7 +98,8 @@ public class Maze : MonoBehaviour {
 
 	public void SpawnPlayer()
 	{
-		Instantiate (playerPrefab,firstChildCoords,Quaternion.identity);
+		//Instantiate (playerPrefab,firstChildCoords,Quaternion.identity);
+		GameObject.FindGameObjectWithTag ("Player").transform.position = new Vector3(firstChildCoords.x,0.4f,firstChildCoords.z);
 		cameraChange.GetComponent<Camera>().orthographicSize = size.x / 2.0f;
 		Instantiate (mapCam);
 		Instantiate (A_prefab);
