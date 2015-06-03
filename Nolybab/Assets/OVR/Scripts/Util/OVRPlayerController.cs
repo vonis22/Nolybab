@@ -159,8 +159,8 @@ public class OVRPlayerController : MonoBehaviour
 			}
 
 			var p = CameraRig.transform.localPosition;
-			p.y = OVRManager.profile.eyeHeight - 0.5f * Controller.height
-				+ Controller.center.y;
+			//p.y = OVRManager.profile.eyeHeight - 0.5f * Controller.height
+			//	+ Controller.center.y;
 			CameraRig.transform.localPosition = p;
 		}
 		else if (InitialPose != null)
@@ -273,14 +273,14 @@ public class OVRPlayerController : MonoBehaviour
 		bool curHatLeft = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.LeftShoulder);
 
 		if (curHatLeft && !prevHatLeft)
-			euler.y -= RotationRatchet;
+			//euler.y -= RotationRatchet;
 
 		prevHatLeft = curHatLeft;
 
 		bool curHatRight = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.RightShoulder);
 
 		if(curHatRight && !prevHatRight)
-			euler.y += RotationRatchet;
+			//euler.y += RotationRatchet;
 
 		prevHatRight = curHatRight;
 

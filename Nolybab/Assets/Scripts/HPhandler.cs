@@ -23,13 +23,17 @@ public class HPhandler : MonoBehaviour {
 			if (hammerActive)
 			{
 				//Hamer is Actief
+			//GameObject.FindGameObjectWithTag("Pickaxe").SetActive(false);
+			//GameObject.FindGameObjectWithTag("Sledgehammer").SetActive(true);
 				transform.GetChild(3).gameObject.SetActive(false);
 				transform.GetChild(4).gameObject.SetActive(true);
 			} else
 			{
 			//Pickaxe is actief
-				transform.GetChild(3).gameObject.SetActive(true);
-				transform.GetChild(4).gameObject.SetActive(false);
+			transform.GetChild(3).gameObject.SetActive(true);
+			transform.GetChild(4).gameObject.SetActive(false);
+			//GameObject.Find("Pickaxe").SetActive(true);
+			//GameObject.Find("Sledgehammer").SetActive(false);;
 			}
 
 		if (hammerUses <= 0)
