@@ -19,6 +19,7 @@ public class HPhandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+
 		
 			if (hammerActive)
 			{

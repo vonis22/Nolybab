@@ -145,6 +145,7 @@ public class OVRPlayerController : MonoBehaviour
 
 	protected virtual void Update()
 	{
+
 		if (useProfileData)
 		{
 			if (InitialPose == null)

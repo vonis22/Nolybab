@@ -21,14 +21,20 @@ Platform assembly: E:\Users\Vincent\Documents\GitHub\Nolybab\Nolybab\Builds\TEST
 Loading E:\Users\Vincent\Documents\GitHub\Nolybab\Nolybab\Builds\TEST5_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll into Unity Child Domain
 Platform assembly: E:\Users\Vincent\Documents\GitHub\Nolybab\Nolybab\Builds\TEST5_Data\Managed\Pathfinding.JsonFx.dll (this message is harmless)
 Loading E:\Users\Vincent\Documents\GitHub\Nolybab\Nolybab\Builds\TEST5_Data\Managed\Pathfinding.JsonFx.dll into Unity Child Domain
-- Completed reload, in  0.037 seconds
+- Completed reload, in  0.364 seconds
 <RI> Initializing input.
 <RI> Input initialized.
-desktop: 1920x1080 144Hz; virtual: 4480x1080 at 0,0
+desktop: 1280x800 60Hz; virtual: 4480x1080 at 0,0
 <RI> Initialized touch support.
 HandleD3DDeviceLost
-  HandleD3DDeviceLost: needs reset, doing it
-FullResetD3DDevice
-ResetD3DDevice
-dev->Reset
-D3Dwindow device not lost anymore
+  HandleD3DDeviceLost: still lost
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: still lost
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: still lost
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: still lost
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: still lost
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: still lost
