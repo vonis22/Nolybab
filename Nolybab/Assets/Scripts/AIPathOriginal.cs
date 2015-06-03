@@ -160,7 +160,7 @@ public class AIPathOriginal : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		navController = GetComponent<NavmeshController>();
 		rigid = GetComponent<Rigidbody>();
-		mazeScript = GameObject.FindGameObjectWithTag ("Maze").GetComponent<Maze> ();
+
 
 	}
 	
@@ -169,11 +169,13 @@ public class AIPathOriginal : MonoBehaviour {
 	 * \see OnEnable
 	 * \see RepeatTrySearchPath
 	 */
-	protected virtual void Start () {
+	protected virtual void Start () 
+	{
 		startHasRun = true;
 		OnEnable ();
-
+		mazeScript = GameObject.FindGameObjectWithTag ("Maze").GetComponent<Maze> ();
 	}
+
 	
 	/** Run at start and when reenabled.
 	 * Starts RepeatTrySearchPath.

@@ -180,7 +180,7 @@ public class AIPath : MonoBehaviour {
 		sanityDecreaseValue = sanityDecrease;
 		startHasRun = true;
 		OnEnable ();
-		playerSeesBab_script = GameObject.FindGameObjectWithTag ("CameraAnchor").GetComponent<SeeNolybab>();
+		playerSeesBab_script = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<SeeNolybab>();
 	GameObject mazeInstance = GameObject.FindGameObjectWithTag ("Maze");
 	mazeScript = mazeInstance.GetComponent<Maze>();
 	mazeSizeX = mazeScript.size.x;

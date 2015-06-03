@@ -8,9 +8,10 @@ public class PickUpPowerUp1 : MonoBehaviour {
 
 	void Start()
 	{
-		script = GameObject.FindGameObjectWithTag ("Nolybab").GetComponent<AIPath>();
 		GetComponent<AIPathOriginal>().enabled = false;
+		script = GameObject.FindGameObjectWithTag ("Nolybab").GetComponent<AIPath>();
 	}
+
 
 	void OnTriggerStay (Collider coll)
 	{
@@ -43,6 +44,9 @@ public class PickUpPowerUp1 : MonoBehaviour {
 	void CreateDirectionSign()
 	{
 		//Has to be done in another script, because this script will be destroyed
+		//transform.GetChild (1).transform.GetChild (0).GetComponent<Animation> ().Play ("RiseFloatingBall");
+		//GameObject.FindGameObjectWithTag("PowerUp1").GetComponent<Animation>().Play ("RiseFloatingBall");
+		transform.GetChild (2).gameObject.SetActive (false);
 		GetComponent<AIPathOriginal> ().enabled = true;
 	}
 
