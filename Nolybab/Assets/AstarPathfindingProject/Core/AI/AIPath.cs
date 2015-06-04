@@ -347,6 +347,7 @@ public class AIPath : MonoBehaviour {
 		sanityDecrease = sanityDecreaseValue;
 		}
 
+		//If Pickup is being taken, sanity + 20
 		if (increaseSanity)
 		{
 			sanity += 20;
@@ -356,6 +357,12 @@ public class AIPath : MonoBehaviour {
 		if (sanity > 100)
 		{
 			sanity = 100;
+		}
+
+		//If map is shown in HPhandler.cs (atm when Alpha1 is pressed)
+		if (Input.GetKey(KeyCode.Alpha1))
+		{
+			sanityDecrease = (sanityDecreaseValue * 5);
 		}
 
 		//If sanity is smaller or equal to 0, Nolybab will come and find you. Else he will just wander around.
