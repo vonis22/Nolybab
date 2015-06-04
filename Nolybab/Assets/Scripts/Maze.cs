@@ -26,6 +26,7 @@ public class Maze : MonoBehaviour {
 	private bool playerSpawned = false;
 
 	private Transform firstChild;
+	private Transform firstChildChild;
 	public Transform lastChild;
 	public Transform lastChildChild;
 
@@ -36,6 +37,7 @@ public class Maze : MonoBehaviour {
 	public Vector3 RandomPowerupCoordinates1;
 	public Vector3 RandomPowerupCoordinates2;
 	public Vector3 RandomPowerupCoordinates3;
+	public Vector3 firstChildChildCoords;
 
 
 	public GameObject nolyfab;
@@ -44,7 +46,7 @@ public class Maze : MonoBehaviour {
 	public GameObject powerUp1;
 	public GameObject powerUp2;
 	public GameObject powerUp3;
-
+	public GameObject mapWallprefab;
 
 	public IntVector2 RandomCoordinates {
 		get {
@@ -68,6 +70,8 @@ public class Maze : MonoBehaviour {
 
 		cameraChange = mapCam.GetComponent<MazeMap>();
 		firstChild = transform.GetChild(0);
+		firstChildChild = transform.GetChild(0).GetChild(6);
+		firstChildChildCoords = transform.GetChild(0).GetChild(6).transform.position;
 		lastChildChild = transform.GetChild ((size.x * size.z) - 1).GetChild (0);
 		Destroy (lastChildChild.gameObject);
 		lastChild = transform.GetChild ((size.x * size.z) - 1);
@@ -104,6 +108,9 @@ public class Maze : MonoBehaviour {
 		Instantiate (mapCam);
 		Instantiate (A_prefab);
 		Instantiate (nolyfab, nolyChildCoords, Quaternion.identity);
+		Destroy (firstChildChild.gameObject);
+		Instantiate (mapWallprefab, firstChildChildCoords, Quaternion.identity);
+
 
 	}
 	private void DoFirstGenerationStep (List<MazeCell> activeCells) {

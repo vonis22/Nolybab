@@ -14,19 +14,36 @@ public class SeeNolybab : MonoBehaviour {
 	private Camera FPScontrollerFabCam;
 	private MotionBlur motionControl;
 	public float fovTimer;
+	private AIPath aiScript;
+	
+
 	void Start () 
 	{
 		nolyFab = GameObject.FindGameObjectWithTag ("Nolybab");
 		cam = GetComponent<Camera> ();
 		FPScontrollerFabCam = GameObject.FindGameObjectWithTag ("Player").transform.GetChild (0).GetComponent<Camera>();
 		motionControl = GameObject.FindGameObjectWithTag ("Player").transform.GetChild (0).GetComponent<MotionBlur> ();
+		StartCoroutine (CheckValues ());
 		//		cam = GetComponent<Camera>();
 //		planes = GeometryUtility.CalculateFrustumPlanes (cam);
 //		nolyCollider = nolyFab.GetComponent<Collider> ();
 	}
 
+	IEnumerator CheckValues ()
+	{
+		yield return new WaitForSeconds (0.1f);
+		aiScript = GameObject.FindGameObjectWithTag ("Nolybab").GetComponent<AIPath> ();
+	}
+
 	void Update () 
 	{
+		GetComponent<VignetteAndChromaticAberration> ().intensity = aiScript.sanity * -0.03f + 3f;
+		GetComponent<VignetteAndChromaticAberration> ().blur = aiScript.sanity * -0.005f + 0.5f;
+		GetComponent<VignetteAndChromaticAberration> ().blurDistance = aiScript.sanity * -0.53f + 53f;
+		GetComponent<VignetteAndChromaticAberration> ().chromaticAberration = aiScript.sanity * 0.72f -72f;
+
+
+
 		RaycastHit hit;
 		//Ray seeRay = new Ray (new Vector3(transform.position.x,transform.position.y,transform.position.z), Vector3.forward);
 		Ray seeRay = new Ray (cam.transform.position, cam.transform.forward);
