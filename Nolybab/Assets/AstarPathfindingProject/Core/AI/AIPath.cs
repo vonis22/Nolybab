@@ -361,7 +361,10 @@ public class AIPath : MonoBehaviour {
 		//If sanity is smaller or equal to 0, Nolybab will come and find you. Else he will just wander around.
 		if (sanity <= 0)
 		{
-			//repathRate =0.5f;
+			repathRate =0.5f;
+			//If game gets harder, speed gets faster
+			//speed = 0.5f;
+			sanity = 0;
 			target = GameObject.FindGameObjectWithTag ("Player").transform;
 		}
 		else

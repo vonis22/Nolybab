@@ -15,15 +15,15 @@ public class WallChangeScript : MonoBehaviour {
 		rend = GetComponent<Renderer>();
 		rend.material.shader = Shader.Find("Standard");
 
-	//	StartCoroutine (CheckValues ());
+//		StartCoroutine (CheckValues ());
 
 	}
 
-	//IEnumerator CheckValues ()
-	//{
-	//	yield return new WaitForSeconds (0.00001f);
-
-	//}
+//	IEnumerator CheckValues ()
+//	{
+//		yield return new WaitForSeconds (0.00001f);
+//
+//	}
 
 	// Update is called once per frame
 	void Update () {

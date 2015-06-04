@@ -33,7 +33,7 @@ public class SeeNolybab : MonoBehaviour {
 		Debug.DrawRay (cam.transform.position,cam.transform.forward);
 		if(Physics.Raycast(seeRay, out hit))
 		   {
-			if(hit.collider.tag == ("Nolybab"))
+			if(hit.collider.tag == ("GameOver"))
 			   {
 					CanSeeEnemy();
 			   }

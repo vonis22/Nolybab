@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: d3e668e470e6db141ad6e1a4dc1c9961
-timeCreated: 1430922993
+timeCreated: 1433359308
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - mat: {fileID: 2100000, guid: ea1dfdd6278511b4d9808c54be0d46a0, type: 2}
-  - mazeSize: {fileID: 11433914, guid: a2395bb8a91944f21b621f2614d6db99, type: 2}
+  - matWallMap: {fileID: 2100000, guid: ea1dfdd6278511b4d9808c54be0d46a0, type: 2}
+  - matThinkMap: {fileID: 2100000, guid: 95fc787166b1e9a49ada93fa1818b25e, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
