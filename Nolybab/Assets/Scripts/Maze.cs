@@ -38,6 +38,7 @@ public class Maze : MonoBehaviour {
 	public Vector3 RandomPowerupCoordinates2;
 	public Vector3 RandomPowerupCoordinates3;
 	public Vector3 firstChildChildCoords;
+	public Vector3 secondChildCoords;
 
 
 	public GameObject nolyfab;
@@ -70,14 +71,15 @@ public class Maze : MonoBehaviour {
 
 		cameraChange = mapCam.GetComponent<MazeMap>();
 		firstChild = transform.GetChild(0);
-		firstChildChild = transform.GetChild(0).GetChild(6);
-		firstChildChildCoords = transform.GetChild(0).GetChild(6).transform.position;
+		firstChildChild = transform.GetChild(0).GetChild(5);
+		firstChildChildCoords = transform.GetChild(0).GetChild(5).transform.position;
 		lastChildChild = transform.GetChild ((size.x * size.z) - 1).GetChild (0);
 		Destroy (lastChildChild.gameObject);
 		lastChild = transform.GetChild ((size.x * size.z) - 1);
 		firstChildCoords = firstChild.transform.position;
 		lastChildCoords = lastChild.transform.position;
 		nolyChildCoords = transform.GetChild ((size.x * size.z) -2).transform.position;
+		secondChildCoords = transform.GetChild (1).transform.position;
 		Instantiate (stairsPrefab, firstChildCoords, Quaternion.identity);
 		Instantiate (endStairs,new Vector3(lastChildCoords.x,(lastChildCoords.y - 0.055f),lastChildCoords.z), Quaternion.identity);
 
@@ -109,7 +111,7 @@ public class Maze : MonoBehaviour {
 		Instantiate (A_prefab);
 		Instantiate (nolyfab, nolyChildCoords, Quaternion.identity);
 		Destroy (firstChildChild.gameObject);
-		Instantiate (mapWallprefab, firstChildChildCoords, Quaternion.identity);
+		Instantiate (mapWallprefab, secondChildCoords, Quaternion.identity);
 
 
 	}

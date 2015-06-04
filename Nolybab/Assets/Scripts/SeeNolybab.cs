@@ -37,10 +37,29 @@ public class SeeNolybab : MonoBehaviour {
 
 	void Update () 
 	{
-		GetComponent<VignetteAndChromaticAberration> ().intensity = aiScript.sanity * -0.03f + 3f;
-		GetComponent<VignetteAndChromaticAberration> ().blur = aiScript.sanity * -0.005f + 0.5f;
-		GetComponent<VignetteAndChromaticAberration> ().blurDistance = aiScript.sanity * -0.53f + 53f;
-		GetComponent<VignetteAndChromaticAberration> ().chromaticAberration = aiScript.sanity * 0.72f -72f;
+		//sanity * x = maximale getal wat je wil hebben
+		//maximale getal / sanity = x
+
+		if (aiScript.sanity <= 40f)
+		{
+			GetComponent<VignetteAndChromaticAberration> ().intensity = aiScript.sanity * -0.075f + 3f;
+			GetComponent<VignetteAndChromaticAberration> ().blur = aiScript.sanity * -0.0125f + 0.5f;
+			GetComponent<VignetteAndChromaticAberration> ().blurDistance = aiScript.sanity * -1.325f + 53f;
+			GetComponent<VignetteAndChromaticAberration> ().chromaticAberration = aiScript.sanity * 1.8f -72f;
+		}
+		else
+		{
+			GetComponent<VignetteAndChromaticAberration> ().intensity = 0f;
+			GetComponent<VignetteAndChromaticAberration> ().blur = 0f;
+			GetComponent<VignetteAndChromaticAberration> ().blurDistance = 0f;
+			GetComponent<VignetteAndChromaticAberration> ().chromaticAberration = 0f;
+		}
+
+		//If sanity = 100, decrease 
+//		GetComponent<VignetteAndChromaticAberration> ().intensity = aiScript.sanity * -0.03f + 3f
+//		GetComponent<VignetteAndChromaticAberration> ().blur = aiScript.sanity * -0.005f + 0.5f;
+//		GetComponent<VignetteAndChromaticAberration> ().blurDistance = aiScript.sanity * -0.53f + 53f;
+//		GetComponent<VignetteAndChromaticAberration> ().chromaticAberration = aiScript.sanity * 0.72f -72f;
 
 
 
