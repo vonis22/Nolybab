@@ -11,4 +11,12 @@ public class changeScene : MonoBehaviour {
 	{
 		GameManager.levelsCleared = 0;
 	}
+
+	void Update()
+	{
+		if (Input.GetButtonDown ("Restart Button") || Input.GetKeyDown (KeyCode.R))
+		{
+			ChangeToScene("Scene");
+		}
+	}
 }

@@ -4,24 +4,20 @@ using System.Collections;
 public class GameOver : MonoBehaviour {
 
 
-	void Start () 
-	{
-		
-	}
-	
-
-	void Update () 
-	{
-		
-	}
-
 	void OnTriggerEnter (Collider coll)
 	{
 		if(coll.tag == "Player")
 		{
 			//Player is game over
 			print ("You are dead....");
-			Application.LoadLevel("GameOver");
+			if(OVRPlayerController.playingWithOculus)
+			{
+				Application.LoadLevel("OculusGameOver");
+			}
+			else
+			{
+				Application.LoadLevel("GameOver");
+			}
 		}
 	}
 

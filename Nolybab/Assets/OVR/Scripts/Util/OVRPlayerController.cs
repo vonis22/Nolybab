@@ -94,6 +94,8 @@ public class OVRPlayerController : MonoBehaviour
 	private bool prevHatRight = false;
 	private float SimulationRate = 60f;
 
+	public static bool playingWithOculus = true;
+
 	void Start()
 	{
 		// Add eye-depth as a camera offset from the player controller

@@ -21,14 +21,22 @@ Platform assembly: F:\Nolybab\Nolybab\Nolybab\Builds\Build v1.3_Data\Managed\Pat
 Loading F:\Nolybab\Nolybab\Nolybab\Builds\Build v1.3_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll into Unity Child Domain
 Platform assembly: F:\Nolybab\Nolybab\Nolybab\Builds\Build v1.3_Data\Managed\Pathfinding.JsonFx.dll (this message is harmless)
 Loading F:\Nolybab\Nolybab\Nolybab\Builds\Build v1.3_Data\Managed\Pathfinding.JsonFx.dll into Unity Child Domain
-- Completed reload, in  0.051 seconds
-desktop: 1920x1080 60Hz; virtual: 3840x1080 at -1920,0
+- Completed reload, in  0.050 seconds
 <RI> Initializing input.
 <RI> Input initialized.
+desktop: 1280x800 60Hz; virtual: 3200x1080 at 0,0
 <RI> Initialized touch support.
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: still lost
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: still lost
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: still lost
 Platform assembly: F:\Nolybab\Nolybab\Nolybab\Builds\Build v1.3_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: F:\Nolybab\Nolybab\Nolybab\Builds\Build v1.3_Data\Managed\System.dll (this message is harmless)
-Setting up 3 worker threads for Enlighten.
-  Thread -> id: fa4 -> priority: 1 
-  Thread -> id: 604 -> priority: 1 
-  Thread -> id: 2538 -> priority: 1 
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: still lost
+Skipped frame because GfxDevice is in invalid state (device lost)
+ 
+(Filename:  Line: 1583)
+
