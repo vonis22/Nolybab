@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HPhandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WallChangeScript.cs">
     <Files>
-      <File FileName="Assets\AstarPathfindingProject\Core\AI\AIPath.cs" Line="365" Column="45" />
-      <File FileName="Assets\Scripts\SeeNolybab.cs" Line="96" Column="15" />
-      <File FileName="Assets\Scripts\HPhandler.cs" Line="46" Column="4" />
+      <File FileName="Assets\Scripts\WallChangeScript.cs" Line="31" Column="83" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="11" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

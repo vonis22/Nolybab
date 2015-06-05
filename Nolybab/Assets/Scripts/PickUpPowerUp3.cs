@@ -5,15 +5,28 @@ public class PickUpPowerUp3 : MonoBehaviour {
 
 	private bool canPrintMessage = false;
 	private AIPath script;
+	private AudioSource audio;
+	public AudioClip pickupSound;
+	public int randomRender;
 
 	void Start()
 	{
+		audio = GetComponent<AudioSource> ();
 		StartCoroutine (CheckValues ());
+		randomRender = (int)Random.Range (0, 3);
 
+		transform.GetChild(0).gameObject.SetActive(false);
+		transform.GetChild(1).gameObject.SetActive(false);
+		transform.GetChild(2).gameObject.SetActive(false);
+
+
+
+		
 	}
 	IEnumerator CheckValues()
 	{
 		yield return new WaitForSeconds (0.1f);
+		transform.GetChild(randomRender).gameObject.SetActive(true);
 		script = GameObject.FindGameObjectWithTag ("Nolybab").GetComponent<AIPath>();
 	}
 	void OnTriggerStay (Collider coll)
@@ -26,8 +39,12 @@ public class PickUpPowerUp3 : MonoBehaviour {
 
 			if(Input.GetKeyDown(KeyCode.E))
 			{
+				audio.PlayOneShot(pickupSound,0.7f);
 				script.increaseSanity = true;
-				Destroy(gameObject);
+				transform.GetChild(0).gameObject.SetActive(false);
+				transform.GetChild(1).gameObject.SetActive(false);
+				transform.GetChild(2).gameObject.SetActive(false);
+				Destroy(gameObject,pickupSound.length);
 			}
 		}
 	}

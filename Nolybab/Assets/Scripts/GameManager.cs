@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour {
 	public GameObject playerPrefab;
 
 	public float floorTimer = 60.0f; 
-	public static bool lockCursor;
+	public bool lockCursor;
+	public static float levelsCleared;
+
 	public void Start () 
 	{
 		// UNCOMMENT onderste line voor locked cursor

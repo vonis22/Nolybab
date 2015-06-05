@@ -5,9 +5,13 @@ public class PickUpPowerUp1 : MonoBehaviour {
 
 	private bool canPrintMessage = false;
 	private AIPath script;
+	public AudioClip pickupSound;
+	private AudioSource audio;
+	private bool pickedUp = false;
 
 	void Start()
 	{
+		audio = GetComponent<AudioSource> ();
 		GetComponent<AIPathOriginal>().enabled = false;
 		script = GameObject.FindGameObjectWithTag ("Nolybab").GetComponent<AIPath>();
 	}
@@ -20,16 +24,22 @@ public class PickUpPowerUp1 : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.E))
 			{
 				CreateDirectionSign();
-				//Destroy(gameObject);
+				audio.PlayOneShot(pickupSound,0.7f);
 			}
 		}
 	}
 
 	void OnTriggerEnter(Collider coll)
 	{
-		if (coll.tag == "Player")
+		if (coll.tag == "Player" && pickedUp == false)
 		{
 			canPrintMessage = true;
+			pickedUp = true;
+
+		}
+		if (coll.tag == "EndLadder")
+		{
+			Destroy(gameObject);
 		}
 	}
 

@@ -6,11 +6,15 @@ public class PickUpPowerUp2 : MonoBehaviour {
 	private bool canPrintMessage = false;
 	private AIPath aiScript;
 	private HPhandler hpScript;
+	private AudioSource audio;
+	public AudioClip pickupSound;
 
 
 	void Start()
 	{
 		StartCoroutine (DefineValues ());
+
+		audio = GetComponent<AudioSource> ();
 	}
 	IEnumerator DefineValues()
 	{
@@ -24,8 +28,10 @@ public class PickUpPowerUp2 : MonoBehaviour {
 		{
 			if(Input.GetKeyDown(KeyCode.E))
 			{
+				audio.PlayOneShot(pickupSound,0.7f);
 				SwitchAxe();
-				Destroy(gameObject);
+				transform.GetChild(0).gameObject.SetActive(false);
+				Destroy(gameObject,pickupSound.length);
 			}
 		}
 	}

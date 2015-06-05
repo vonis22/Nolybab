@@ -22,6 +22,7 @@ public class BreakScript : MonoBehaviour {
 	public AudioClip breakSound_5;
 	public AudioClip breakSound_6;
 	public AudioClip breakSound_7;
+	public AudioClip SledgehammerSound;
 	public AudioClip crumblingWall;
 
 	//Array of the sounds
@@ -55,17 +56,16 @@ public class BreakScript : MonoBehaviour {
 		//textMesh2.text = hp.ToString();
 		if (hp <= 0)
 		{
-			StartCoroutine (crumbleKill ());
+			crumbleKill();
 			//Brokkel af animatie
 		}
 	}
 
-	IEnumerator crumbleKill()
+	void crumbleKill()
 	{
-
-		//GetComponent<AudioSource> ().Play();
-		yield return new WaitForSeconds (1);
-		Destroy(transform.parent.gameObject);
+		transform.parent.GetChild (1).gameObject.SetActive (false);
+		GetComponent<Collider> ().enabled = false;
+		Destroy(transform.parent.gameObject, crumblingWall.length);
 	}
 
 	void PlaySound()
@@ -95,13 +95,14 @@ public class BreakScript : MonoBehaviour {
 
 		if (c.tag == "Sledgehammer")
 		{
-			print ("Sledgehammer hit wall");
+			//print ("Sledgehammer hit wall");
 			//Wall gets damaged
 			hp -= damage * 100;
 			hpScript.hammerUses -= 0.5f;
 			//Sound will be played
-			PlaySound();
-			
+			GetComponent<AudioSource>().clip = SledgehammerSound;
+
+			GetComponent<AudioSource>().Play();
 			//Play Particle Animation
 		}
 	}

@@ -7,4 +7,8 @@ public class changeScene : MonoBehaviour {
 	{
 		Application.LoadLevel (SceneToChangeTo);
 	}
+	public void ResetLevelsCleared()
+	{
+		GameManager.levelsCleared = 0;
+	}
 }
