@@ -65,9 +65,9 @@ public class Maze : MonoBehaviour {
 
 	public void Start()
 	{
-		RandomPowerupCoordinates1 = transform.GetChild(Random.Range (0, (size.x * size.z - 1))).transform.position;
-		RandomPowerupCoordinates2 = transform.GetChild(Random.Range (0, (size.x * size.z - 1))).transform.position;
-		RandomPowerupCoordinates3 = transform.GetChild(Random.Range (0, (size.x * size.z - 1))).transform.position;
+		RandomPowerupCoordinates1 = transform.GetChild(Random.Range (2, (size.x * size.z - 1))).transform.position;
+		RandomPowerupCoordinates2 = transform.GetChild(Random.Range (2, (size.x * size.z - 1))).transform.position;
+		RandomPowerupCoordinates3 = transform.GetChild(Random.Range (2, (size.x * size.z - 1))).transform.position;
 
 		cameraChange = mapCam.GetComponent<MazeMap>();
 		firstChild = transform.GetChild(0);
@@ -86,6 +86,7 @@ public class Maze : MonoBehaviour {
 		Instantiate (powerUp1, RandomPowerupCoordinates1, Quaternion.identity);
 		Instantiate (powerUp2, RandomPowerupCoordinates2, Quaternion.identity);
 		Instantiate (powerUp3, RandomPowerupCoordinates3, Quaternion.identity);
+
 	}
 
 	public void Generate () 
@@ -110,8 +111,9 @@ public class Maze : MonoBehaviour {
 		Instantiate (mapCam);
 		Instantiate (A_prefab);
 		Instantiate (nolyfab, nolyChildCoords, Quaternion.identity);
-		Destroy (firstChildChild.gameObject);
+		//Destroy (firstChildChild.gameObject);
 		Instantiate (mapWallprefab, secondChildCoords, Quaternion.identity);
+		changeScene.loading = false;
 
 
 	}

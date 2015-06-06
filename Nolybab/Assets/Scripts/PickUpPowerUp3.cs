@@ -9,6 +9,8 @@ public class PickUpPowerUp3 : MonoBehaviour {
 	public AudioClip pickupSound;
 	public int randomRender;
 
+
+
 	void Start()
 	{
 		audio = GetComponent<AudioSource> ();

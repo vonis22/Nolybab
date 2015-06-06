@@ -10,6 +10,6 @@ public class ShowLevelsCleared : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = "Game over " + GameManager.levelsCleared.ToString() + " levels cleared";
+		text.text = "Game over \n" + GameManager.levelsCleared.ToString() + " levels cleared";
 	}
 }

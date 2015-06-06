@@ -25,6 +25,7 @@ public class PickUpPowerUp1 : MonoBehaviour {
 			{
 				CreateDirectionSign();
 				audio.PlayOneShot(pickupSound,0.7f);
+				Destroy(gameObject,10.0f);
 			}
 		}
 	}

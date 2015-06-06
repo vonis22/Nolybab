@@ -2,10 +2,16 @@
 using System.Collections;
 
 public class changeScene : MonoBehaviour {
-	
+
+	public static bool loading = false;
+	public GameObject loadingPrefab;
+
+
 	public void ChangeToScene (string SceneToChangeTo)
 	{
+		loading = true;
 		Application.LoadLevel (SceneToChangeTo);
+
 	}
 	public void ResetLevelsCleared()
 	{
@@ -14,9 +20,22 @@ public class changeScene : MonoBehaviour {
 
 	void Update()
 	{
+		Screen.lockCursor = false;
+
 		if (Input.GetButtonDown ("Restart Button") || Input.GetKeyDown (KeyCode.R))
 		{
+			loading = true;
 			ChangeToScene("Scene");
+		}
+
+		if (loading == true)
+		{
+			loadingPrefab.gameObject.SetActive(true);
+			GetComponent<AudioSource>().Stop();
+		}
+		else 
+		{
+			loadingPrefab.gameObject.SetActive(false);
 		}
 	}
 }

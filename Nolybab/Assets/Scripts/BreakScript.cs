@@ -71,7 +71,7 @@ public class BreakScript : MonoBehaviour {
 	void PlaySound()
 	{
 		if (hp > 0) {
-			GetComponent<AudioSource> ().clip = breakSounds [Random.Range (5, breakSounds.Length)];
+			GetComponent<AudioSource> ().clip = breakSounds [Random.Range (0, breakSounds.Length)];
 		} else {
 			GetComponent<AudioSource> ().clip = crumblingWall;
 		}

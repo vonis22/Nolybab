@@ -9,7 +9,6 @@ public class HPhandler : MonoBehaviour {
 
 	void Start () 
 	{
-
 	}
 	
 
@@ -39,6 +38,7 @@ public class HPhandler : MonoBehaviour {
 		if (Input.GetKey(KeyCode.Alpha1))
 		{
 			transform.GetChild(0).transform.GetChild (0).gameObject.SetActive(true);
+
 		}
 		else
 		{
