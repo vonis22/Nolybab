@@ -183,8 +183,8 @@ public class Tutorial_AiNolybab : MonoBehaviour {
 		playerSeesBab_script = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<SeeNolybab>();
 		GameObject mazeInstance = GameObject.FindGameObjectWithTag ("Maze");
 		mazeScript = mazeInstance.GetComponent<Maze>();
-//		mazeSizeX = mazeScript.size.x;
-//		mazeSizeZ = mazeScript.size.z;
+		mazeSizeX = mazeScript.size.x;
+		mazeSizeZ = mazeScript.size.z;
 	}
 	/** Run at start and when reenabled.
 	 * Starts RepeatTrySearchPath.
@@ -347,6 +347,7 @@ public class Tutorial_AiNolybab : MonoBehaviour {
 			sanityDecrease = sanityDecreaseValue;
 		}
 		
+		//If Pickup is being taken, sanity + 20
 		if (increaseSanity)
 		{
 			sanity += 20;
@@ -358,10 +359,19 @@ public class Tutorial_AiNolybab : MonoBehaviour {
 			sanity = 100;
 		}
 		
+		//If map is shown in HPhandler.cs (atm when Alpha1 is pressed)
+		if (Input.GetKey(KeyCode.Alpha1))
+		{
+			sanityDecrease = (sanityDecreaseValue * 5);
+		}
+		
 		//If sanity is smaller or equal to 0, Nolybab will come and find you. Else he will just wander around.
 		if (sanity <= 0)
 		{
-			//repathRate =0.5f;
+			repathRate =0.5f;
+			//If game gets harder, speed gets faster
+			//speed = 0.5f;
+			sanity = 0;
 			target = GameObject.FindGameObjectWithTag ("Player").transform;
 		}
 		else

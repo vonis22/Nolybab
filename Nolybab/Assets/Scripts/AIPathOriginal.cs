@@ -325,7 +325,13 @@ public class AIPathOriginal : MonoBehaviour {
 	
 	public virtual void Update () {
 
-		target = mazeScript.lastChild.transform;
+		if (Application.loadedLevel != 3)
+		{
+			target = mazeScript.lastChild.transform;
+		}
+
+		//target = mazeScript.lastChild.transform;
+
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());

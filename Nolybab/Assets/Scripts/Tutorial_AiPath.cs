@@ -160,7 +160,7 @@ public class Tutorial_AiPath : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		navController = GetComponent<NavmeshController>();
 		rigid = GetComponent<Rigidbody>();
-		mazeScript = GameObject.FindGameObjectWithTag ("Maze").GetComponent<Maze> ();
+		
 		
 	}
 	
@@ -169,11 +169,13 @@ public class Tutorial_AiPath : MonoBehaviour {
 	 * \see OnEnable
 	 * \see RepeatTrySearchPath
 	 */
-	protected virtual void Start () {
+	protected virtual void Start () 
+	{
 		startHasRun = true;
 		OnEnable ();
-		
+		mazeScript = GameObject.FindGameObjectWithTag ("Maze").GetComponent<Maze> ();
 	}
+	
 	
 	/** Run at start and when reenabled.
 	 * Starts RepeatTrySearchPath.
@@ -323,7 +325,7 @@ public class Tutorial_AiPath : MonoBehaviour {
 	
 	public virtual void Update () {
 		
-		//target = mazeScript.lastChild.transform;
+		target = mazeScript.lastChild.transform;
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());
@@ -473,4 +475,3 @@ public class Tutorial_AiPath : MonoBehaviour {
 		return (b-a)*offset + a;
 	}
 }
-
