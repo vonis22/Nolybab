@@ -15,6 +15,7 @@ public class SeeNolybab : MonoBehaviour {
 	private MotionBlur motionControl;
 	public float fovTimer;
 	private AIPath aiScript;
+	public bool seeMap = false;
 	
 
 	void Start () 
@@ -71,6 +72,13 @@ public class SeeNolybab : MonoBehaviour {
 		Debug.DrawRay (cam.transform.position,cam.transform.forward);
 		if(Physics.Raycast(seeRay, out hit))
 		   {
+			if (hit.collider.tag == ("Map"))
+			{
+				seeMap = true;
+			}
+			else
+				seeMap = false;
+
 			if(hit.collider.tag == ("GameOver"))
 			   {
 					CanSeeEnemy();
