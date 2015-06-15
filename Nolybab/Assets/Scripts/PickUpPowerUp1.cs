@@ -7,6 +7,7 @@ public class PickUpPowerUp1 : MonoBehaviour {
 	private AIPath script;
 	public AudioClip pickupSound;
 	private AudioSource audio;
+	//public AudioSource Audio;
 	private bool pickedUp = false;
 
 	void Start()

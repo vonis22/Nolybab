@@ -32,6 +32,16 @@ public class options : MonoBehaviour
 	AudioSource BreakWallSource;
 	AudioSource RealWall;
 	AudioSource RealWallSource;
+	AudioSource Powerup1Sound;
+	AudioSource Powerup1Source;
+	AudioSource Powerup2Sound;
+	AudioSource Powerup2Source;
+	AudioSource Powerup3Sound;
+	AudioSource Powerup3Source;
+	AudioSource TorchSound;
+	AudioSource TorchSource;
+	AudioSource NolybabSounds;
+	AudioSource NolybabSource;
 
 	public Slider masterVolumeSlider;
 	public Slider musicVolumeSlider;
@@ -47,15 +57,11 @@ public class options : MonoBehaviour
 
 	bool secondClip = false;
 	bool thirdClip = false;
+
+	Tutorial script;
 	
 	public void Awake () 
 	{
-		//Instantiate(Sounds, new Vector3(0,0,0), Quaternion.identity);
-		//Instantiate(Options, new Vector3(0,0,0), Quaternion.identity);
-		//Instantiate(Controls, new Vector3(0,0,0), Quaternion.identity);
-		//Instantiate(Graphics, new Vector3(0,0,0), Quaternion.identity);
-		//Instantiate(Audio, new Vector3(0,0,0), Quaternion.identity);
-	
 		StartCoroutine (Seeker ());
 		//Cursor.visible = false;
 		//Screen.lockCursor = true;
@@ -77,8 +83,22 @@ public class options : MonoBehaviour
 		BackgroundMusic = GameObject.Find ("Background Music").GetComponent<AudioSource> ();
 		BackgroundMusic.clip = backgroundMusicClip [Random.Range (0, backgroundMusicClip.Length)];
 		backgroundMusic = BackgroundMusic;
+		backgroundMusic.volume = BackgroundMusic.volume;
 
 		backgroundMusic.Play ();
+
+		foreach (AudioSource TorchSource in FindObjectsOfType(typeof(AudioSource)))
+		{
+			if (TorchSource.name == ("Fire_Wall_Torch"))
+			{
+				TorchSound = GameObject.Find ("Torch Sound").GetComponent<AudioSource> ();
+				TorchSource.GetComponent<AudioSource> ();
+				TorchSound.clip = TorchSource.clip;
+				TorchSource.volume = TorchSound.volume;
+
+				TorchSound.Play ();
+			}
+		}
 
 		yield return new WaitForSeconds (backgroundMusic.clip.length);
 		secondClip = true;
@@ -124,12 +144,40 @@ public class options : MonoBehaviour
 			}
 		}
 
-		//ControllerSounds & source
 		ControllerSounds = GameObject.Find ("Controller Sounds").GetComponent<AudioSource> ();
 		ControllerSource = GameObject.FindWithTag ("Player").GetComponent<AudioSource> ();
 		ControllerSounds.clip = ControllerSource.clip;
 		ControllerSource.volume = ControllerSounds.volume;
-	
+
+		if (GameObject.Find ("Powerup 1(Clone)") != null)
+		{
+			Powerup1Sound = GameObject.Find ("Powerup 1 Sound").GetComponent<AudioSource> ();
+			Powerup1Source = GameObject.Find ("Powerup 1(Clone)").GetComponent<AudioSource> ();
+			Powerup1Sound.clip = Powerup1Source.clip;
+			Powerup1Source.volume = Powerup1Sound.volume;
+		}
+
+		if (GameObject.Find ("Powerup 2(Clone)") != null)
+		{
+			Powerup2Sound = GameObject.Find ("Powerup 2 Sound").GetComponent<AudioSource> ();
+			Powerup2Source = GameObject.Find ("Powerup 2(Clone)").GetComponent<AudioSource> ();
+			Powerup2Sound.clip = Powerup2Source.clip;
+			Powerup2Source.volume = Powerup2Sound.volume;
+		}
+
+		if (GameObject.Find ("Powerup 3(Clone)") != null)
+		{
+			Powerup3Sound = GameObject.Find ("Powerup 3 Sound").GetComponent<AudioSource> ();
+			Powerup3Source = GameObject.Find ("Powerup 3(Clone)").GetComponent<AudioSource> ();
+			Powerup3Sound.clip = Powerup3Source.clip;
+			Powerup3Source.volume = Powerup3Sound.volume;
+		}
+
+		NolybabSounds = GameObject.Find ("Nolybab Sounds").GetComponent<AudioSource> ();
+		NolybabSource = GameObject.Find ("Skull").GetComponent<AudioSource> ();
+		NolybabSounds.clip = NolybabSource.clip;
+		NolybabSource.volume = NolybabSounds.volume;
+
 		if (Input.GetKeyDown (KeyCode.Escape))
 		{
 			if (showOptions == false && toggleOptions == true)
@@ -142,6 +190,7 @@ public class options : MonoBehaviour
 				toggleOptions = false;
 				
 				backgroundMusic.Pause ();
+				TorchSound.Pause();
 
 				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
 				//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = false;
@@ -164,7 +213,8 @@ public class options : MonoBehaviour
 				toggleOptions = true;
 				
 				backgroundMusic.UnPause ();
-
+				TorchSound.UnPause();
+			
 				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
 				//((FirstPersonsController)pause.GetComponent<FirstPersonController>()).enabled = true;
 
@@ -188,6 +238,7 @@ public class options : MonoBehaviour
 				toggleOptions = true;
 
 				backgroundMusic.UnPause ();
+				TorchSound.UnPause();
 
 				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
 				//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
@@ -212,6 +263,7 @@ public class options : MonoBehaviour
 				toggleOptions = true;
 				
 				backgroundMusic.UnPause ();
+				TorchSound.UnPause();
 				
 				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
 				//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
@@ -236,6 +288,7 @@ public class options : MonoBehaviour
 				toggleOptions = true;
 
 				backgroundMusic.UnPause ();
+				TorchSound.UnPause();
 
 				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
 				//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
@@ -248,6 +301,11 @@ public class options : MonoBehaviour
 				//Cursor.visible = false;
 				//Screen.lockCursor = true;
 			}
+		}
+	
+		if (Application.loadedLevel != 3)
+		{
+			Destroy (GameObject.FindGameObjectWithTag ("Player").GetComponent<Tutorial> ());
 		}
 	}
 
@@ -537,6 +595,7 @@ public class options : MonoBehaviour
 			
 			mouseClick.Play ();
 			backgroundMusic.UnPause ();
+			TorchSound.UnPause();
 
 			//GameObject pause = GameObject.FindGameObjectWithTag("Player");
 			//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
