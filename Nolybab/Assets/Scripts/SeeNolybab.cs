@@ -16,7 +16,7 @@ public class SeeNolybab : MonoBehaviour {
 	public float fovTimer;
 	private AIPath aiScript;
 	public bool seeMap = false;
-	
+	public static float clippingPlanePreset;
 
 	void Start () 
 	{
@@ -25,6 +25,7 @@ public class SeeNolybab : MonoBehaviour {
 		FPScontrollerFabCam = GameObject.FindGameObjectWithTag ("Player").transform.GetChild (0).GetComponent<Camera>();
 		motionControl = GameObject.FindGameObjectWithTag ("Player").transform.GetChild (0).GetComponent<MotionBlur> ();
 		StartCoroutine (CheckValues ());
+		//cam.farClipPlane = clippingPlanePreset;
 		//		cam = GetComponent<Camera>();
 //		planes = GeometryUtility.CalculateFrustumPlanes (cam);
 //		nolyCollider = nolyFab.GetComponent<Collider> ();

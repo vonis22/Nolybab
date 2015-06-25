@@ -177,6 +177,7 @@
      <Compile Include="Assets\Scripts\SeeNolybab.cs" />
      <Compile Include="Assets\Scripts\SeePlayer.cs" />
      <Compile Include="Assets\Scripts\ShowLevelsCleared.cs" />
+     <Compile Include="Assets\Scripts\StartScreen.cs" />
      <Compile Include="Assets\Scripts\Tutorial.cs" />
      <Compile Include="Assets\Scripts\Tutorial_AiNolybab.cs" />
      <Compile Include="Assets\Scripts\Tutorial_AiPath.cs" />
@@ -187,6 +188,7 @@
      <Compile Include="Assets\Scripts\WallSounds.cs" />
      <Compile Include="Assets\Scripts\changeScene.cs" />
      <Compile Include="Assets\Scripts\options.cs" />
+     <Compile Include="Assets\UI_Elements\To_MainMenu_Script.cs" />
      <Compile Include="Assets\mapSound.cs" />
      <Compile Include="Assets\torch\scene\script\TorchSlider.cs" />
      <Compile Include="Assets\torch\scene\script\Torchslider2.cs" />
@@ -300,10 +302,10 @@
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Ionic.Zip.Reduced">
- <HintPath>E:/Nolybab/Nolybab/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ <HintPath>E:/Test2/Nolybab/Nolybab/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.JsonFx">
- <HintPath>E:/Nolybab/Nolybab/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ <HintPath>E:/Test2/Nolybab/Nolybab/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>E:/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

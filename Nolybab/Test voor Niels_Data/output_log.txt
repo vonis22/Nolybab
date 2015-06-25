@@ -1,0 +1,76 @@
+Initialize engine version: 5.0.1f1 (5a2e8fe35a68)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvd3dum.dll 9.18.13.5012]
+    Renderer: NVIDIA GeForce GTX 650
+    Vendor:   NVIDIA
+    VRAM:     973 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 NULL=1 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll (this message is harmless)
+Loading E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll into Unity Child Domain
+Platform assembly: E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Pathfinding.JsonFx.dll (this message is harmless)
+Loading E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\Pathfinding.JsonFx.dll into Unity Child Domain
+- Completed reload, in  0.268 seconds
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 3840x1120 at -1920,-40
+<RI> Initialized touch support.
+Platform assembly: E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\TestUI\Nolybab\Nolybab\Test voor Niels_Data\Managed\System.dll (this message is harmless)
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.901939 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 1932.
+Total: 0.729859 ms (FindLiveObjects: 0.092666 ms CreateObjectMapping: 0.102023 ms MarkObjects: 0.525208 ms  DeleteObjects: 0.009357 ms)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SeeNolybab.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at options.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Scanning - Process took 21 ms to complete
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SeeNolybab.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SeeNolybab.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SeeNolybab.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SeeNolybab.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SeeNolybab.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+

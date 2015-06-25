@@ -6,6 +6,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class options : MonoBehaviour
 {
 	public GameObject Sounds;
+	public GameObject StartMenu;
 	public GameObject Options;
 	public GameObject Controls;
 	public GameObject Graphics;
@@ -13,8 +14,12 @@ public class options : MonoBehaviour
 	public GameObject Checkmark;
 	public GameObject RenderDistance;
 	public GameObject ShadowDistance;
+	public GameObject LoadingScreen;
+	public GameObject StartOptions;
+	public GameObject GameOptions;
 	
 	public bool toggleOptions = true;
+	public bool showMenu = false;
 	public bool showOptions = false;
 	public bool showControls = false;
 	public bool showGraphics = false;
@@ -23,6 +28,7 @@ public class options : MonoBehaviour
 	public AudioSource backgroundMusic;
 	public AudioSource mouseClick;
 	public AudioSource hoverSound;
+	public AudioSource startTune;
 
 	AudioSource BackgroundMusic;
 	AudioSource LevelMusicSource;
@@ -62,11 +68,11 @@ public class options : MonoBehaviour
 	
 	public void Awake () 
 	{
-		StartCoroutine (Seeker ());
+		//StartCoroutine (Seeker ());
 		//Cursor.visible = false;
 		//Screen.lockCursor = true;
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+
+		OnLevelWasLoaded ();
 
 		backgroundMusicClip = new AudioClip[] 
 		{
@@ -119,194 +125,224 @@ public class options : MonoBehaviour
 			backgroundMusic.Play ();
 		}
 	}
-	
+
+	void OnLevelWasLoaded ()
+	{
+		if (Application.loadedLevel == 0)
+		{
+			startTune.Play ();
+			Options = StartOptions;
+		}
+
+		if (Application.loadedLevel  == 1 || Application.loadedLevel  == 3)
+		{
+			Options = GameOptions;
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+			StartCoroutine (Seeker ());
+		}
+	}
+
 	void Update ()
 	{
-		foreach(AudioSource BreakWallSource in FindObjectsOfType(typeof(AudioSource)))
+		if (Application.loadedLevel == 1 || Application.loadedLevel == 3)
 		{
-			if (BreakWallSource.tag == ("BreakWall"))
+			foreach (AudioSource BreakWallSource in FindObjectsOfType(typeof(AudioSource)))
 			{
-				BreakWall = GameObject.Find ("Break Wall").GetComponent<AudioSource> ();
-				BreakWallSource.GetComponent<AudioSource> ();
-				BreakWall.clip = BreakWallSource.clip;
-				BreakWallSource.volume = BreakWall.volume;
-			}
-		}
-
-		foreach (AudioSource RealWallSource in FindObjectsOfType(typeof(AudioSource)))
-		{
-			if (RealWallSource.tag == ("RealWall"))
-			{
-				RealWall = GameObject.Find ("Real Wall").GetComponent<AudioSource> ();
-				RealWallSource.GetComponent<AudioSource> ();
-				RealWall.clip = RealWallSource.clip;
-				RealWallSource.volume = RealWall.volume;
-			}
-		}
-
-		ControllerSounds = GameObject.Find ("Controller Sounds").GetComponent<AudioSource> ();
-		ControllerSource = GameObject.FindWithTag ("Player").GetComponent<AudioSource> ();
-		ControllerSounds.clip = ControllerSource.clip;
-		ControllerSource.volume = ControllerSounds.volume;
-
-		if (GameObject.Find ("Powerup 1(Clone)") != null)
-		{
-			Powerup1Sound = GameObject.Find ("Powerup 1 Sound").GetComponent<AudioSource> ();
-			Powerup1Source = GameObject.Find ("Powerup 1(Clone)").GetComponent<AudioSource> ();
-			Powerup1Sound.clip = Powerup1Source.clip;
-			Powerup1Source.volume = Powerup1Sound.volume;
-		}
-
-		if (GameObject.Find ("Powerup 2(Clone)") != null)
-		{
-			Powerup2Sound = GameObject.Find ("Powerup 2 Sound").GetComponent<AudioSource> ();
-			Powerup2Source = GameObject.Find ("Powerup 2(Clone)").GetComponent<AudioSource> ();
-			Powerup2Sound.clip = Powerup2Source.clip;
-			Powerup2Source.volume = Powerup2Sound.volume;
-		}
-
-		if (GameObject.Find ("Powerup 3(Clone)") != null)
-		{
-			Powerup3Sound = GameObject.Find ("Powerup 3 Sound").GetComponent<AudioSource> ();
-			Powerup3Source = GameObject.Find ("Powerup 3(Clone)").GetComponent<AudioSource> ();
-			Powerup3Sound.clip = Powerup3Source.clip;
-			Powerup3Source.volume = Powerup3Sound.volume;
-		}
-
-		NolybabSounds = GameObject.Find ("Nolybab Sounds").GetComponent<AudioSource> ();
-		NolybabSource = GameObject.Find ("Skull").GetComponent<AudioSource> ();
-		NolybabSounds.clip = NolybabSource.clip;
-		NolybabSource.volume = NolybabSounds.volume;
-
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			if (showOptions == false && toggleOptions == true)
-			{
-				Cursor.lockState = CursorLockMode.None;
-				Cursor.visible = true;
-
-				Options.SetActive (true);
-				showOptions = true;
-				toggleOptions = false;
-				
-				backgroundMusic.Pause ();
-				TorchSound.Pause();
-
-				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
-				//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = false;
-
-				foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
+				if (BreakWallSource.tag == ("BreakWall"))
 				{
-					Time.timeScale = 0;
+					BreakWall = GameObject.Find ("Break Wall").GetComponent<AudioSource> ();
+					BreakWallSource.GetComponent<AudioSource> ();
+					BreakWall.clip = BreakWallSource.clip;
+					BreakWallSource.volume = BreakWall.volume;
 				}
+			}
 
-				//Cursor.visible = true;
-				//Screen.lockCursor = false;
-			} 
-			else if(showOptions == true && toggleOptions == false)
+			foreach (AudioSource RealWallSource in FindObjectsOfType(typeof(AudioSource)))
 			{
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
+				if (RealWallSource.tag == ("RealWall"))
+				{
+					RealWall = GameObject.Find ("Real Wall").GetComponent<AudioSource> ();
+					RealWallSource.GetComponent<AudioSource> ();
+					RealWall.clip = RealWallSource.clip;
+					RealWallSource.volume = RealWall.volume;
+				}
+			}
 
-				Options.SetActive (false);
-				showOptions = false;
-				toggleOptions = true;
+			ControllerSounds = GameObject.Find ("Controller Sounds").GetComponent<AudioSource> ();
+			ControllerSource = GameObject.FindWithTag ("Player").GetComponent<AudioSource> ();
+			ControllerSounds.clip = ControllerSource.clip;
+			ControllerSource.volume = ControllerSounds.volume;
+
+			if (GameObject.Find ("Powerup 1(Clone)") != null)
+			{
+				Powerup1Sound = GameObject.Find ("Powerup 1 Sound").GetComponent<AudioSource> ();
+				Powerup1Source = GameObject.Find ("Powerup 1(Clone)").GetComponent<AudioSource> ();
+				Powerup1Sound.clip = Powerup1Source.clip;
+				Powerup1Source.volume = Powerup1Sound.volume;
+			}
+
+			if (GameObject.Find ("Powerup 2(Clone)") != null)
+			{
+				Powerup2Sound = GameObject.Find ("Powerup 2 Sound").GetComponent<AudioSource> ();
+				Powerup2Source = GameObject.Find ("Powerup 2(Clone)").GetComponent<AudioSource> ();
+				Powerup2Sound.clip = Powerup2Source.clip;
+				Powerup2Source.volume = Powerup2Sound.volume;
+			}
+
+			if (GameObject.Find ("Powerup 3(Clone)") != null)
+			{
+				Powerup3Sound = GameObject.Find ("Powerup 3 Sound").GetComponent<AudioSource> ();
+				Powerup3Source = GameObject.Find ("Powerup 3(Clone)").GetComponent<AudioSource> ();
+				Powerup3Sound.clip = Powerup3Source.clip;
+				Powerup3Source.volume = Powerup3Sound.volume;
+			}
+
+			NolybabSounds = GameObject.Find ("Nolybab Sounds").GetComponent<AudioSource> ();
+			NolybabSource = GameObject.Find ("Skull").GetComponent<AudioSource> ();
+			NolybabSounds.clip = NolybabSource.clip;
+			NolybabSource.volume = NolybabSounds.volume;
+
+			if (Input.GetKeyDown (KeyCode.Escape))
+			{
+				if (showOptions == false && toggleOptions == true)
+				{
+					Cursor.lockState = CursorLockMode.None;
+					Cursor.visible = true;
+
+					Options.SetActive (true);
+					showOptions = true;
+					toggleOptions = false;
 				
-				backgroundMusic.UnPause ();
-				TorchSound.UnPause();
+					backgroundMusic.Pause ();
+					TorchSound.Pause ();
+
+					//GameObject pause = GameObject.FindGameObjectWithTag("Player");
+					//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = false;
+
+					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
+					{
+						Time.timeScale = 0;
+					}
+
+					//Cursor.visible = true;
+					//Screen.lockCursor = false;
+				} else if (showOptions == true && toggleOptions == false)
+				{
+					Cursor.lockState = CursorLockMode.Locked;
+					Cursor.visible = false;
+
+					Options.SetActive (false);
+					showOptions = false;
+					toggleOptions = true;
+				
+					backgroundMusic.UnPause ();
+					TorchSound.UnPause ();
 			
-				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
-				//((FirstPersonsController)pause.GetComponent<FirstPersonController>()).enabled = true;
+					//GameObject pause = GameObject.FindGameObjectWithTag("Player");
+					//((FirstPersonsController)pause.GetComponent<FirstPersonController>()).enabled = true;
 
-				foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
-				{
-					Time.timeScale = 1;
+					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
+					{
+						Time.timeScale = 1;
+					}
+
+					//Cursor.visible = false;
+					//Screen.lockCursor = true;
 				}
-
-				//Cursor.visible = false;
-				//Screen.lockCursor = true;
-			}
 			
-			if(showControls == true)
-			{
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-
-				Controls.SetActive (false);
-				showOptions = false;
-				showControls = false;
-				toggleOptions = true;
-
-				backgroundMusic.UnPause ();
-				TorchSound.UnPause();
-
-				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
-				//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
-
-				foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
+				if (showControls == true)
 				{
-					Time.timeScale = 1;
+					Cursor.lockState = CursorLockMode.Locked;
+					Cursor.visible = false;
+
+					Controls.SetActive (false);
+					showOptions = false;
+					showControls = false;
+					toggleOptions = true;
+
+					backgroundMusic.UnPause ();
+					TorchSound.UnPause ();
+
+					//GameObject pause = GameObject.FindGameObjectWithTag("Player");
+					//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
+
+					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
+					{
+						Time.timeScale = 1;
+					}
+
+					//Cursor.visible = false;
+					//Screen.lockCursor = true;
 				}
 
-				//Cursor.visible = false;
-				//Screen.lockCursor = true;
-			}
-
-			if(showGraphics == true)
-			{
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-
-				Graphics.SetActive (false);
-				showOptions = false;
-				showGraphics = false;
-				toggleOptions = true;
-				
-				backgroundMusic.UnPause ();
-				TorchSound.UnPause();
-				
-				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
-				//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
-
-				foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
+				if (showGraphics == true)
 				{
-					Time.timeScale = 1;
-				}
+					Cursor.lockState = CursorLockMode.Locked;
+					Cursor.visible = false;
 
-				//Cursor.visible = false;
-				//Screen.lockCursor = true;
-			}
+					Graphics.SetActive (false);
+					showOptions = false;
+					showGraphics = false;
+					toggleOptions = true;
+				
+					backgroundMusic.UnPause ();
+					TorchSound.UnPause ();
+				
+					//GameObject pause = GameObject.FindGameObjectWithTag("Player");
+					//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
+
+					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
+					{
+						Time.timeScale = 1;
+					}
+
+					//Cursor.visible = false;
+					//Screen.lockCursor = true;
+				}
 			
-			if(showAudio == true)
-			{
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-
-				Audio.SetActive (false);
-				showOptions = false;
-				showAudio = false;
-				toggleOptions = true;
-
-				backgroundMusic.UnPause ();
-				TorchSound.UnPause();
-
-				//GameObject pause = GameObject.FindGameObjectWithTag("Player");
-				//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
-
-				foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
+				if (showAudio == true)
 				{
-					Time.timeScale = 1;
-				}
+					Cursor.lockState = CursorLockMode.Locked;
+					Cursor.visible = false;
 
-				//Cursor.visible = false;
-				//Screen.lockCursor = true;
+					Audio.SetActive (false);
+					showOptions = false;
+					showAudio = false;
+					toggleOptions = true;
+
+					backgroundMusic.UnPause ();
+					TorchSound.UnPause ();
+
+					//GameObject pause = GameObject.FindGameObjectWithTag("Player");
+					//((FirstPersonController)pause.GetComponent<FirstPersonController>()).enabled = true;
+
+					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
+					{
+						Time.timeScale = 1;
+					}
+
+					//Cursor.visible = false;
+					//Screen.lockCursor = true;
+				}
 			}
-		}
 	
-		if (Application.loadedLevel != 3)
-		{
-			Destroy (GameObject.FindGameObjectWithTag ("Player").GetComponent<Tutorial> ());
+			if (Application.loadedLevel != 3)
+			{
+				Destroy (GameObject.FindGameObjectWithTag ("Player").GetComponent<Tutorial> ());
+			}
 		}
+	}
+
+	public void OptionsScreen ()
+	{
+		if (showOptions == false && toggleOptions == true)
+		{
+			StartMenu.SetActive (false);
+			Options.SetActive (true);
+			showOptions = true;
+			toggleOptions = false;
+		} 
 	}
 
 	public void Hover ()
@@ -575,16 +611,17 @@ public class options : MonoBehaviour
 		}
 	}
 	
-	public void QuitGame ()
-	{
-		Application.Quit ();
-		
-		mouseClick.Play ();
-	}
-	
 	public void Back ()
 	{
-		if (showOptions)
+		if (showOptions && Application.loadedLevel == 0)
+		{
+			Options.SetActive (false);
+			StartMenu.SetActive (true);
+			showOptions = false;
+			toggleOptions = true;
+		}
+
+		if (showOptions && Application.loadedLevel == 1 || showOptions && Application.loadedLevel == 3)
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
@@ -638,4 +675,41 @@ public class options : MonoBehaviour
 			mouseClick.Play ();
 		}
 	}
+
+	public void Play ()
+	{
+		LoadingScreen.SetActive (true);
+		StartMenu.SetActive (false);
+		startTune.Stop ();
+		Application.LoadLevel ("Scene");
+		mouseClick.Play ();
+	}
+	
+	public void Tutorial ()
+	{
+		LoadingScreen.SetActive (true);
+		StartMenu.SetActive (false);
+		startTune.Stop ();
+		Application.LoadLevel ("Tutorial");
+		mouseClick.Play ();
+	}
+	
+	public void QuitGame ()
+	{
+		Application.Quit ();
+		mouseClick.Play ();
+	}
+
+//	public void OnLevelWasLoaded(int level)
+//	{
+//		if (level == 3)
+//		{
+//			LoadingScreen.SetActive (false);
+//		}
+//		
+//		if (level == 1)
+//		{
+//			LoadingScreen.SetActive (false);
+//		}
+//	}
 }

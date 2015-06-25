@@ -46,15 +46,15 @@ public class Tutorial : MonoBehaviour
 	{
 		if (snActive && startNotification != null)
 		{
-			Timer -= Time.deltaTime;
+//			Timer -= Time.deltaTime;
 
-			if (Timer <= 0)
-			{
-				startNotification.SetActive (false);
-				snActive = false;
-				Destroy(startNotification);
-				Timer = 3;
-			}
+//			if (Timer <= 0)
+//			{
+//				startNotification.SetActive (false);
+//				snActive = false;
+//				Destroy(startNotification);
+//				Timer = 3;
+//			}
 
 			if (Input.GetKeyDown (KeyCode.F))
 			{
@@ -66,15 +66,15 @@ public class Tutorial : MonoBehaviour
 
 		if (pu1Active && instructionsPU1 != null)
 		{
-			Timer -= Time.deltaTime;
+//			Timer -= Time.deltaTime;
 			
-			if (Timer <= 0)
-			{
-				instructionsPU1.SetActive (false);
-				pu1Active = false;
-				Destroy(instructionsPU1);
-				Timer = 3;
-			}
+//			if (Timer <= 0)
+//			{
+//				instructionsPU1.SetActive (false);
+//				pu1Active = false;
+//				Destroy(instructionsPU1);
+//				Timer = 3;
+//			}
 
 			if (Input.GetKeyDown (KeyCode.F))
 			{
@@ -86,15 +86,15 @@ public class Tutorial : MonoBehaviour
 
 		if (pu2Active && instructionsPU2 != null)
 		{
-			Timer -= Time.deltaTime;
+//			Timer -= Time.deltaTime;
 			
-			if (Timer <= 0)
-			{
-				instructionsPU2.SetActive (false);
-				pu2Active = false;
-				Destroy(instructionsPU2);
-				Timer = 3;
-			}
+//			if (Timer <= 0)
+//			{
+//				instructionsPU2.SetActive (false);
+//				pu2Active = false;
+//				Destroy(instructionsPU2);
+//				Timer = 3;
+//			}
 
 			if (Input.GetKeyDown (KeyCode.F))
 			{
@@ -106,15 +106,15 @@ public class Tutorial : MonoBehaviour
 
 		if (pu3Active && instructionsPU3 != null)
 		{
-			Timer -= Time.deltaTime;
+//			Timer -= Time.deltaTime;
 			
-			if (Timer <= 0)
-			{
-				instructionsPU3.SetActive (false);
-				pu3Active = false;
-				Destroy(instructionsPU3);
-				Timer = 3;
-			}
+//			if (Timer <= 0)
+//			{
+//				instructionsPU3.SetActive (false);
+//				pu3Active = false;
+//				Destroy(instructionsPU3);
+//				Timer = 3;
+//			}
 
 			if (Input.GetKeyDown (KeyCode.F))
 			{
@@ -126,15 +126,15 @@ public class Tutorial : MonoBehaviour
 
 		if (bwActive && instructionsBW != null)
 		{
-			Timer -= Time.deltaTime;
+//			Timer -= Time.deltaTime;
 			
-			if (Timer <= 0)
-			{
-				instructionsBW.SetActive (false);
-				bwActive = false;
-				Destroy(instructionsBW);
-				Timer = 3;
-			}
+//			if (Timer <= 0)
+//			{
+//				instructionsBW.SetActive (false);
+//				bwActive = false;
+//				Destroy(instructionsBW);
+//				Timer = 3;
+//			}
 
 			if (Input.GetKeyDown (KeyCode.F))
 			{
@@ -152,18 +152,18 @@ public class Tutorial : MonoBehaviour
 				mapActive = true;
 			}
 
-			if (mapActive)
-			{
-				Timer -= Time.deltaTime;
-				
-				if (Timer <= 0)
-				{
-					instructionsMap.SetActive (false);
-					mapActive = false;
-					Destroy(instructionsMap);
-					Timer = 3;
-				}
-			}
+//			if (mapActive)
+//			{
+//				Timer -= Time.deltaTime;
+//				
+//				if (Timer <= 0)
+//				{
+//					instructionsMap.SetActive (false);
+//					mapActive = false;
+//					Destroy(instructionsMap);
+//					Timer = 3;
+//				}
+//			}
 
 			if (Input.GetKeyDown (KeyCode.F) && mapActive)
 			{
@@ -181,18 +181,18 @@ public class Tutorial : MonoBehaviour
 				nolybabActive = true;
 			}
 
-			if (nolybabActive)
-			{
-				Timer -= Time.deltaTime;
-			
-				if (Timer <= 0)
-				{
-					instructionsNolybab.SetActive (false);
-					nolybabActive = false;
-					Destroy(instructionsNolybab);
-					Timer = 3;
-				}
-			}
+//			if (nolybabActive)
+//			{
+//				Timer -= Time.deltaTime;
+//			
+//				if (Timer <= 0)
+//				{
+//					instructionsNolybab.SetActive (false);
+//					nolybabActive = false;
+//					Destroy(instructionsNolybab);
+//					Timer = 3;
+//				}
+//			}
 
 			if (Input.GetKeyDown (KeyCode.F) && nolybabActive)
 			{
