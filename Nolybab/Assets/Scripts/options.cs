@@ -48,6 +48,10 @@ public class options : MonoBehaviour
 	AudioSource TorchSource;
 	AudioSource NolybabSounds;
 	AudioSource NolybabSource;
+	AudioSource WatchMapSound;
+	AudioSource WatchMapSource;
+
+	AudioClip WatchMapSoundClip;
 
 	public Slider masterVolumeSlider;
 	public Slider musicVolumeSlider;
@@ -63,6 +67,8 @@ public class options : MonoBehaviour
 
 	bool secondClip = false;
 	bool thirdClip = false;
+
+	mapSound WatchMapScript;
 
 	Tutorial script;
 	
@@ -202,6 +208,13 @@ public class options : MonoBehaviour
 			NolybabSource = GameObject.Find ("Skull").GetComponent<AudioSource> ();
 			NolybabSounds.clip = NolybabSource.clip;
 			NolybabSource.volume = NolybabSounds.volume;
+
+			WatchMapSound = GameObject.Find ("Watch Map Sound").GetComponent<AudioSource> ();
+			WatchMapSource = GameObject.Find ("FirstPersonCharacter").GetComponent<AudioSource> ();
+			WatchMapScript = GameObject.Find ("FirstPersonCharacter").GetComponent<mapSound> ();
+			WatchMapSoundClip = WatchMapScript.mapSoundClip;
+			WatchMapSound.clip = WatchMapSoundClip;
+			WatchMapSource.volume = WatchMapSound.volume;
 
 			if (Input.GetKeyDown (KeyCode.Escape))
 			{
@@ -456,7 +469,7 @@ public class options : MonoBehaviour
 
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "Medium";
 			GameObject.Find("Texture Text").GetComponent<Text>().text = "Medium";
-			GameObject.Find("Setting Text").GetComponent<Text>().text = "None";
+			GameObject.Find("Setting Text").GetComponent<Text>().text = "2X";
 			Checkmark.SetActive(true);
 		}
 		
