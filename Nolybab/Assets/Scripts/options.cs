@@ -162,6 +162,18 @@ public class options : MonoBehaviour
 	{
 		if (Application.loadedLevel == 1 || Application.loadedLevel == 3)
 		{
+//			if (!oculusCheck)
+//			{
+//				FPSController = GameObject.Find ("FPSController");
+//				OculusController.SetActive (false);
+//			}
+//			
+//			if (oculusCheck)
+//			{
+//				OculusController = GameObject.Find ("FPSController - VR 1");
+//				FPSController.SetActive (false);
+//			}
+
 			if (!oculusCheck)
 			{
 				FPSController.SetActive (true);
@@ -374,6 +386,9 @@ public class options : MonoBehaviour
 			GameOverSource = GameObject.Find ("Main Camera").GetComponent<AudioSource> ();
 			GameOverSound.clip = GameOverSource.clip;
 			GameOverSource.volume = GameOverSound.volume;
+
+			Destroy (FPSController);
+			Destroy (OculusController);
 		}
 	}
 

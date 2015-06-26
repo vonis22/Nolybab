@@ -30,7 +30,22 @@ public class Tutorial : MonoBehaviour
 
 		if (Application.loadedLevel == 3)
 		{
-			startNotification.SetActive (true);
+			startNotification = GameObject.Find ("Start Notification");
+			instructionsPU1 = GameObject.Find ("Instructions Powerup 1");
+			instructionsPU2 = GameObject.Find ("Instructions Powerup 2");
+			instructionsPU3 = GameObject.Find ("Instructions Powerup 3");
+			instructionsBW = GameObject.Find ("Instructions Breakable Wall");
+			instructionsMap = GameObject.Find ("Instructions Map");
+			instructionsNolybab = GameObject.Find ("Instructions Nolybab");
+
+			instructionsPU1.SetActive (false);
+			instructionsPU2.SetActive (false);
+			instructionsPU3.SetActive (false);
+			instructionsBW.SetActive (false);
+			instructionsMap.SetActive (false);
+			instructionsNolybab.SetActive (false);
+
+			//startNotification.SetActive (true);
 			snActive = true;
 		}
 	}

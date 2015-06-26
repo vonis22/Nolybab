@@ -5,6 +5,8 @@ public class changeScene : MonoBehaviour {
 
 	public static bool loading = false;
 	public GameObject loadingPrefab;
+	public AudioSource hoverSound;
+	public AudioSource mouseClick;
 
 
 	public void ChangeToScene (string SceneToChangeTo)
@@ -37,5 +39,15 @@ public class changeScene : MonoBehaviour {
 		{
 			loadingPrefab.gameObject.SetActive(false);
 		}
+	}
+
+	public void Hover ()
+	{
+		hoverSound.Play ();
+	}
+
+	public void MouseClick ()
+	{
+		mouseClick.Play ();
 	}
 }
