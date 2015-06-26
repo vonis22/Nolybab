@@ -25,7 +25,7 @@ public class changeScene : MonoBehaviour {
 		if (Input.GetButtonDown ("Restart Button") || Input.GetKeyDown (KeyCode.R))
 		{
 			loading = true;
-			ChangeToScene("Scene");
+			ChangeToScene("Start");
 		}
 
 		if (loading == true)

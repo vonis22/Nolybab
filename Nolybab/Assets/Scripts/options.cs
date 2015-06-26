@@ -17,6 +17,10 @@ public class options : MonoBehaviour
 	public GameObject LoadingScreen;
 	public GameObject StartOptions;
 	public GameObject GameOptions;
+	public GameObject Title;
+
+	public GameObject FPSController;
+	public GameObject OculusController;
 	
 	public bool toggleOptions = true;
 	public bool showMenu = false;
@@ -50,6 +54,8 @@ public class options : MonoBehaviour
 	AudioSource NolybabSource;
 	AudioSource WatchMapSound;
 	AudioSource WatchMapSource;
+	AudioSource GameOverSound;
+	AudioSource GameOverSource;
 
 	AudioClip WatchMapSoundClip;
 
@@ -71,6 +77,8 @@ public class options : MonoBehaviour
 	mapSound WatchMapScript;
 
 	Tutorial script;
+
+	bool oculusCheck = false;
 	
 	public void Awake () 
 	{
@@ -134,6 +142,7 @@ public class options : MonoBehaviour
 
 	void OnLevelWasLoaded ()
 	{
+		//float position = new Vector3 (
 		if (Application.loadedLevel == 0)
 		{
 			startTune.Play ();
@@ -153,6 +162,16 @@ public class options : MonoBehaviour
 	{
 		if (Application.loadedLevel == 1 || Application.loadedLevel == 3)
 		{
+			if (!oculusCheck)
+			{
+				FPSController.SetActive (true);
+			}
+			
+			if (oculusCheck)
+			{
+				OculusController.SetActive(true);
+			}
+
 			foreach (AudioSource BreakWallSource in FindObjectsOfType(typeof(AudioSource)))
 			{
 				if (BreakWallSource.tag == ("BreakWall"))
@@ -345,17 +364,36 @@ public class options : MonoBehaviour
 				Destroy (GameObject.FindGameObjectWithTag ("Player").GetComponent<Tutorial> ());
 			}
 		}
+
+		if (Application.loadedLevel == 2)
+		{
+			backgroundMusic.Stop ();
+			TorchSound.Stop ();
+
+			GameOverSound = GameObject.Find ("Game Over Sound").GetComponent<AudioSource> ();
+			GameOverSource = GameObject.Find ("Main Camera").GetComponent<AudioSource> ();
+			GameOverSound.clip = GameOverSource.clip;
+			GameOverSource.volume = GameOverSound.volume;
+		}
 	}
 
 	public void OptionsScreen ()
 	{
 		if (showOptions == false && toggleOptions == true)
 		{
+			foreach (Transform child in Options.transform)
+			{
+				Vector3 position = new Vector3 (192, 0, 0);
+				child.localPosition += position;
+			}
+
 			StartMenu.SetActive (false);
 			Options.SetActive (true);
 			showOptions = true;
 			toggleOptions = false;
-		} 
+
+			mouseClick.Play ();
+		}
 	}
 
 	public void Hover ()
@@ -365,6 +403,15 @@ public class options : MonoBehaviour
 
 	public void ControlOptions ()
 	{
+		if (Application.loadedLevel == 0)
+		{
+			foreach (Transform child in Controls.transform)
+			{
+				Vector3 position = new Vector3 (192, 0, 0);
+				child.localPosition += position;
+			}
+		}
+
 		Options.SetActive (false);
 		Controls.SetActive (true);
 		showOptions = false;
@@ -382,6 +429,15 @@ public class options : MonoBehaviour
 
 	public void GraphicOptions ()
 	{
+		if (Application.loadedLevel == 0)
+		{
+			foreach (Transform child in Graphics.transform)
+			{
+				Vector3 position = new Vector3 (192, 0, 0);
+				child.localPosition += position;
+			}
+		}
+
 		Options.SetActive (false);
 		Graphics.SetActive (true);
 		showOptions = false;
@@ -601,6 +657,15 @@ public class options : MonoBehaviour
 
 	public void AudioOptions ()
 	{
+		if (Application.loadedLevel == 0)
+		{
+			foreach (Transform child in Audio.transform)
+			{
+				Vector3 position = new Vector3 (192, 0, 0);
+				child.localPosition += position;
+			}
+		}
+
 		Options.SetActive (false);
 		Audio.SetActive (true);
 		showOptions = false;
@@ -628,10 +693,18 @@ public class options : MonoBehaviour
 	{
 		if (showOptions && Application.loadedLevel == 0)
 		{
+			foreach (Transform child in Options.transform)
+			{
+				Vector3 position = new Vector3 (192, 0, 0);
+				child.localPosition -= position;
+			}
+
 			Options.SetActive (false);
 			StartMenu.SetActive (true);
 			showOptions = false;
 			toggleOptions = true;
+
+			mouseClick.Play ();
 		}
 
 		if (showOptions && Application.loadedLevel == 1 || showOptions && Application.loadedLevel == 3)
@@ -660,6 +733,15 @@ public class options : MonoBehaviour
 		
 		if (showControls)
 		{
+			if (Application.loadedLevel == 0)
+			{
+				foreach (Transform child in Controls.transform)
+				{
+					Vector3 position = new Vector3 (192, 0, 0);
+					child.localPosition -= position;
+				}
+			}
+
 			Controls.SetActive (false);
 			Options.SetActive (true);
 			showOptions = true;
@@ -670,6 +752,15 @@ public class options : MonoBehaviour
 
 		if (showGraphics)
 		{
+			if (Application.loadedLevel == 0)
+			{
+				foreach (Transform child in Graphics.transform)
+				{
+					Vector3 position = new Vector3 (192, 0, 0);
+					child.localPosition -= position;
+				}
+			}
+
 			Graphics.SetActive (false);
 			Options.SetActive (true);
 			showOptions = true;
@@ -680,6 +771,15 @@ public class options : MonoBehaviour
 		
 		if (showAudio)
 		{
+			if (Application.loadedLevel == 0)
+			{
+				foreach (Transform child in Audio.transform)
+				{
+					Vector3 position = new Vector3 (192, 0, 0);
+					child.localPosition -= position;
+				}
+			}
+
 			Audio.SetActive (false);
 			Options.SetActive (true);
 			showOptions = true;
@@ -693,18 +793,20 @@ public class options : MonoBehaviour
 	{
 		LoadingScreen.SetActive (true);
 		StartMenu.SetActive (false);
+		Title.SetActive (false);
 		startTune.Stop ();
-		Application.LoadLevel ("Scene");
 		mouseClick.Play ();
+		Application.LoadLevel ("Scene");
 	}
 	
 	public void Tutorial ()
 	{
 		LoadingScreen.SetActive (true);
 		StartMenu.SetActive (false);
+		Title.SetActive (false);
 		startTune.Stop ();
-		Application.LoadLevel ("Tutorial");
 		mouseClick.Play ();
+		Application.LoadLevel ("Tutorial");
 	}
 	
 	public void QuitGame ()
@@ -713,16 +815,8 @@ public class options : MonoBehaviour
 		mouseClick.Play ();
 	}
 
-//	public void OnLevelWasLoaded(int level)
-//	{
-//		if (level == 3)
-//		{
-//			LoadingScreen.SetActive (false);
-//		}
-//		
-//		if (level == 1)
-//		{
-//			LoadingScreen.SetActive (false);
-//		}
-//	}
+	public void OculusRift ()
+	{
+		oculusCheck = true;
+	}
 }
