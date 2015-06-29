@@ -77,9 +77,12 @@ public class options : MonoBehaviour
 	mapSound WatchMapScript;
 
 	Tutorial script;
+	SeeNolybab nolybabScript;
+	FirstPersonController fpsScript;
+	Tutorial tutorialScript;
 
 	bool oculusCheck = false;
-	
+
 	public void Awake () 
 	{
 		//StartCoroutine (Seeker ());
@@ -160,28 +163,68 @@ public class options : MonoBehaviour
 
 	void Update ()
 	{
-		if (Application.loadedLevel == 1 || Application.loadedLevel == 3)
+		if (Application.loadedLevel == 0)
 		{
-//			if (!oculusCheck)
-//			{
-//				FPSController = GameObject.Find ("FPSController");
-//				OculusController.SetActive (false);
-//			}
-//			
-//			if (oculusCheck)
-//			{
-//				OculusController = GameObject.Find ("FPSController - VR 1");
-//				FPSController.SetActive (false);
-//			}
-
 			if (!oculusCheck)
 			{
 				FPSController.SetActive (true);
+				OculusController.SetActive (false);
+
+				nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
+				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = false;
+
+				fpsScript = GameObject.Find("FPSController").GetComponent<FirstPersonController>();
+				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = false;
+
+				Camera mainFCP = GameObject.Find("FirstPersonCharacter").GetComponent<Camera>();
+				mainFCP.farClipPlane = RenderDistance.GetComponent<Slider>().value;
+
 			}
 			
 			if (oculusCheck)
 			{
+				FPSController.SetActive (false);
 				OculusController.SetActive(true);
+
+				nolybabScript = GameObject.Find("LeftEyeAnchor").GetComponent<SeeNolybab>();
+				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = false;
+
+				nolybabScript = GameObject.Find("RightEyeAnchor").GetComponent<SeeNolybab>();
+				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = false;
+
+				fpsScript = GameObject.Find("FPSController - VR 1").GetComponent<FirstPersonController>();
+				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = false;
+
+				Camera leftEyeFCP = GameObject.Find("LeftEyeAnchor").GetComponent<Camera>();
+				Camera rightEyeFCP = GameObject.Find("RightEyeAnchor").GetComponent<Camera>();
+
+				leftEyeFCP.farClipPlane = RenderDistance.GetComponent<Slider>().value;
+				rightEyeFCP.farClipPlane = leftEyeFCP.farClipPlane;
+
+			}
+		}
+
+		if (Application.loadedLevel == 1 || Application.loadedLevel == 3)
+		{
+			if (!oculusCheck)
+			{
+				nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
+				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = true;
+
+				fpsScript = GameObject.Find("FPSController").GetComponent<FirstPersonController>();
+				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = true;
+			}
+
+			if (oculusCheck)
+			{
+				nolybabScript = GameObject.Find("LeftEyeAnchor").GetComponent<SeeNolybab>();
+				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = true;
+				
+				nolybabScript = GameObject.Find("RightEyeAnchor").GetComponent<SeeNolybab>();
+				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = true;
+
+				fpsScript = GameObject.Find("FPSController - VR 1").GetComponent<FirstPersonController>();
+				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = true;
 			}
 
 			foreach (AudioSource BreakWallSource in FindObjectsOfType(typeof(AudioSource)))
@@ -371,9 +414,34 @@ public class options : MonoBehaviour
 				}
 			}
 	
-			if (Application.loadedLevel != 3)
+			if (Application.loadedLevel == 3)
 			{
-				Destroy (GameObject.FindGameObjectWithTag ("Player").GetComponent<Tutorial> ());
+				if (!oculusCheck)
+				{
+					tutorialScript = GameObject.Find("FPSController").GetComponent<Tutorial>();
+					((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = true;
+				}
+
+				if (oculusCheck)
+				{
+					tutorialScript = GameObject.Find("FPSController - VR 1").GetComponent<Tutorial>();
+					((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = true;
+				}
+
+			}
+			else
+			{
+				if (!oculusCheck)
+				{
+					tutorialScript = GameObject.Find("FPSController").GetComponent<Tutorial>();
+					((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+				}
+
+				if (oculusCheck)
+				{
+					tutorialScript = GameObject.Find("FPSController - VR 1").GetComponent<Tutorial>();
+					((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+				}
 			}
 		}
 
@@ -832,6 +900,14 @@ public class options : MonoBehaviour
 
 	public void OculusRift ()
 	{
-		oculusCheck = true;
+		if(GameObject.Find ("Oculus Rift Toggle").GetComponent<Toggle>().isOn == true)
+		{
+			oculusCheck = true;
+		}
+
+		if(GameObject.Find ("Oculus Rift Toggle").GetComponent<Toggle>().isOn == false)
+		   {
+			oculusCheck = false;
+		}
 	}
 }
