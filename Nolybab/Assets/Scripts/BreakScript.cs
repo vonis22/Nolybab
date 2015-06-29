@@ -10,7 +10,8 @@ public class BreakScript : MonoBehaviour {
 	private TextMesh textMesh2;
 	public int damage = 1;
 	private int roundMineTimerRead = 1;
-
+	//public GameObject crumbleWallPrefab;
+	//public bool crumbleWallSpawned = false;
 	private HPhandler hpScript;
 
 	//AudioClips
@@ -49,15 +50,15 @@ public class BreakScript : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (0.1f);
 		hpScript = GameObject.FindGameObjectWithTag("Player").GetComponent<HPhandler>();
+
 	}
 	void Update () 
 	{
 		textMesh1.GetComponent<TextMesh> ().text = hp.ToString();
-		//textMesh2.text = hp.ToString();
-		if (hp <= 0)
-		{
+		if (hp <= 0){
+
 			crumbleKill();
-			//Brokkel af animatie
+
 		}
 	}
 
