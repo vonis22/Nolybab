@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -152,15 +152,22 @@
      <Compile Include="Assets\OVR\Scripts\Util\OVRScreenFade.cs" />
      <Compile Include="Assets\OVR\Scripts\Util\OVRTrackerBounds.cs" />
      <Compile Include="Assets\Scripts\AIPathOriginal.cs" />
+     <Compile Include="Assets\Scripts\AudioSingleton.cs" />
      <Compile Include="Assets\Scripts\BreakScript.cs" />
+     <Compile Include="Assets\Scripts\ControlsSingleton.cs" />
+     <Compile Include="Assets\Scripts\FPSControllerSingleton.cs" />
+     <Compile Include="Assets\Scripts\FPSvr1Singleton.cs" />
      <Compile Include="Assets\Scripts\FirstPersonController.cs" />
      <Compile Include="Assets\Scripts\FlickerScript.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GameOptionsSingleton.cs" />
      <Compile Include="Assets\Scripts\GameOver.cs" />
+     <Compile Include="Assets\Scripts\GraphicsSingleton.cs" />
      <Compile Include="Assets\Scripts\HPhandler.cs" />
      <Compile Include="Assets\Scripts\HammerSwing.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />
      <Compile Include="Assets\Scripts\LadderCollider.cs" />
+     <Compile Include="Assets\Scripts\LoadingScreenSingleton.cs" />
      <Compile Include="Assets\Scripts\Maze.cs" />
      <Compile Include="Assets\Scripts\MazeCell.cs" />
      <Compile Include="Assets\Scripts\MazeCellEdge.cs" />
@@ -170,7 +177,8 @@
      <Compile Include="Assets\Scripts\MazePassage.cs" />
      <Compile Include="Assets\Scripts\MazeWall.cs" />
      <Compile Include="Assets\Scripts\NolyTalks.cs" />
-     <Compile Include="Assets\Scripts\NolybabGIFAnimation.cs" />
+     <Compile Include="Assets\Scripts\OptionsMenuSingleton.cs" />
+     <Compile Include="Assets\Scripts\OptionsSingleton.cs" />
      <Compile Include="Assets\Scripts\PickSwing.cs" />
      <Compile Include="Assets\Scripts\PickUpPowerUp1.cs" />
      <Compile Include="Assets\Scripts\PickUpPowerUp2.cs" />
@@ -178,8 +186,9 @@
      <Compile Include="Assets\Scripts\SeeNolybab.cs" />
      <Compile Include="Assets\Scripts\SeePlayer.cs" />
      <Compile Include="Assets\Scripts\ShowLevelsCleared.cs" />
+     <Compile Include="Assets\Scripts\SoundsSingleton.cs" />
+     <Compile Include="Assets\Scripts\StartMenuSingleton.cs" />
      <Compile Include="Assets\Scripts\StartScreen.cs" />
-     <Compile Include="Assets\Scripts\ThomasGIFAnimation.cs" />
      <Compile Include="Assets\Scripts\Tutorial.cs" />
      <Compile Include="Assets\Scripts\Tutorial_AiNolybab.cs" />
      <Compile Include="Assets\Scripts\Tutorial_AiPath.cs" />
@@ -301,16 +310,16 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Ionic.Zip.Reduced">
- <HintPath>F:/Nolybab/Nolybab/Nolybab/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ <HintPath>C:/Users/Windows/Documents/Nolybab/Nolybab/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.JsonFx">
- <HintPath>F:/Nolybab/Nolybab/Nolybab/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ <HintPath>C:/Users/Windows/Documents/Nolybab/Nolybab/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>E:/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

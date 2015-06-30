@@ -22,14 +22,45 @@ public class Tutorial : MonoBehaviour
 	bool nolybabActive = false;
 	bool seekObjects = false;
 
+	public bool reload = false;
+
 	float Timer = 3;
 
 	void Awake ()
 	{
-		//StartCoroutine (Seeker ());
 	}
 
 	void Start ()
+	{
+//		startNotification = GameObject.Find ("Start Notification");
+//		instructionsPU1 = GameObject.Find ("Instructions Powerup 1");
+//		instructionsPU2 = GameObject.Find ("Instructions Powerup 2");
+//		instructionsPU3 = GameObject.Find ("Instructions Powerup 3");
+//		instructionsBW = GameObject.Find ("Instructions Breakable Wall");
+//		instructionsMap = GameObject.Find ("Instructions Map");
+//		instructionsNolybab = GameObject.Find ("Instructions Nolybab");
+//		
+//		instructionsPU1.SetActive (false);
+//		instructionsPU2.SetActive (false);
+//		instructionsPU3.SetActive (false);
+//		instructionsBW.SetActive (false);
+//		instructionsMap.SetActive (false);
+//		instructionsNolybab.SetActive (false);
+//		
+//		//startNotification.SetActive (true);
+//		snActive = true;
+//
+//		StartCoroutine (Seeker ());
+	}
+
+	IEnumerator Seeker()
+	{
+		yield return new WaitForSeconds (0.1f);
+		script = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<SeeNolybab> ();
+		seekObjects = true;
+	}
+
+	void Reload ()
 	{
 		startNotification = GameObject.Find ("Start Notification");
 		instructionsPU1 = GameObject.Find ("Instructions Powerup 1");
@@ -48,19 +79,18 @@ public class Tutorial : MonoBehaviour
 		
 		//startNotification.SetActive (true);
 		snActive = true;
-
+		
 		StartCoroutine (Seeker ());
-	}
-
-	IEnumerator Seeker()
-	{
-		yield return new WaitForSeconds (0.1f);
-		script = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<SeeNolybab> ();
-		seekObjects = true;
 	}
 
 	void Update ()
 	{
+		if (reload)
+		{
+			Reload ();
+			reload = false;
+		}
+
 		if (snActive && startNotification != null)
 		{
 //			Timer -= Time.deltaTime;

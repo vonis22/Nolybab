@@ -11,7 +11,7 @@ public class SeeNolybab : MonoBehaviour {
 	public GameObject nolyFab;
 	private Camera cam;
 	public bool nolybabIsVisible;
-	private Camera FPScontrollerFabCam;
+	public Camera FPScontrollerFabCam;
 	private MotionBlur motionControl;
 	public float fovTimer;
 	private AIPath aiScript;
