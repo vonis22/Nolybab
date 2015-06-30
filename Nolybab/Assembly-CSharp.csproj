@@ -170,6 +170,7 @@
      <Compile Include="Assets\Scripts\MazePassage.cs" />
      <Compile Include="Assets\Scripts\MazeWall.cs" />
      <Compile Include="Assets\Scripts\NolyTalks.cs" />
+     <Compile Include="Assets\Scripts\NolybabGIFAnimation.cs" />
      <Compile Include="Assets\Scripts\PickSwing.cs" />
      <Compile Include="Assets\Scripts\PickUpPowerUp1.cs" />
      <Compile Include="Assets\Scripts\PickUpPowerUp2.cs" />
@@ -178,6 +179,7 @@
      <Compile Include="Assets\Scripts\SeePlayer.cs" />
      <Compile Include="Assets\Scripts\ShowLevelsCleared.cs" />
      <Compile Include="Assets\Scripts\StartScreen.cs" />
+     <Compile Include="Assets\Scripts\ThomasGIFAnimation.cs" />
      <Compile Include="Assets\Scripts\Tutorial.cs" />
      <Compile Include="Assets\Scripts\Tutorial_AiNolybab.cs" />
      <Compile Include="Assets\Scripts\Tutorial_AiPath.cs" />

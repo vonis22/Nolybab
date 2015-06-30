@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a0e2175f1bd4db445ac1269886d96eca
+timeCreated: 1435666553
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ThomasStillFab: {fileID: 120696, guid: 4140cccc17e43d7478c10468589eae47, type: 2}
+  - ThomasRun_1Fab: {fileID: 163334, guid: 4140cccc17e43d7478c10468589eae47, type: 2}
+  - ThomasRun_2Fab: {fileID: 168446, guid: 4140cccc17e43d7478c10468589eae47, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
