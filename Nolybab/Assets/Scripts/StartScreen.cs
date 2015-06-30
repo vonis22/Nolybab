@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class StartScreen : MonoBehaviour
 {
 	public GameObject OptionHandler;
+	public GameObject StartMenu;
 	public GameObject LoadingScreen;
 	public GameObject Sounds;
 	public GameObject Options;
@@ -22,6 +23,7 @@ public class StartScreen : MonoBehaviour
 		DontDestroyOnLoad (Controls);
 		DontDestroyOnLoad (Graphics);
 		DontDestroyOnLoad (Audio);
+		DontDestroyOnLoad (StartMenu);
 		DontDestroyOnLoad (LoadingScreen);
 		DontDestroyOnLoad (FPSController);
 		DontDestroyOnLoad (OculusController);
