@@ -1,65 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PickUpDiaryPage.cs">
-    <Files>
-      <File FileName="Assets\Scripts\options.cs" Line="330" Column="10" />
-      <File FileName="Assets\setStoryMode.cs" Line="1" Column="1" />
-      <File FileName="Assets\startMovie.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Tutorial_AiPath.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FlickerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Tutorial.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SeePlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ControlsSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\StartScreen.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AIPathOriginal.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FPSvr1Singleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Tutorial_PickUpPowerUp3.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Tutorial_AiNolybab.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\IntVector2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SeeNolybab.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LoadingScreenSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameOver.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HammerSwing.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MazeMap.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PickUpPowerUp3.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\StartMenuSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\WallChangeScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FPSControllerSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OptionsMenuSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\WallSounds.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ShowLevelsCleared.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\changeScene.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LadderCollider.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FirstPersonController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MazePassage.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MazeDirection.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MazeWall.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MazeCell.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SoundsSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ThomasGIFAnimation.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NolyTalks.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HPhandler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Tutorial_SeePlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AudioSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Tutorial_PickUpPowerUp1.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MazeCellEdge.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Maze.cs" Line="121" Column="4" />
-      <File FileName="Assets\Scripts\GameOptionsSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BreakScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PickUpPowerUp1.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\mapSound.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PickSwing.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PickUpPowerUp2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OptionsSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MazeDoor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SeeNolybabJS.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NolybabGIFAnimation.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GraphicsSingleton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Effects\ImageEffects\Scripts\DepthOfFieldDeprecated.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PickUpDiaryPage.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

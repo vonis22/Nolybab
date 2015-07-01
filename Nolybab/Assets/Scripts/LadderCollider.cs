@@ -11,7 +11,18 @@ public class LadderCollider : MonoBehaviour
 		if (coll.tag == "Player")
 		{
 			GameManager.levelsCleared += 1;
-			
+
+			if (startMovie.storyMode){
+				if (PickUpDiaryPage.currentLevel == 4)
+				{
+					PickUpDiaryPage.currentLevel = 1;
+					Application.LoadLevel("Start");
+				}
+				else 
+				{
+					PickUpDiaryPage.currentLevel += 1;
+				}
+			}
 			if (Application.loadedLevel == 3)
 			{
 				Application.LoadLevel("Start");

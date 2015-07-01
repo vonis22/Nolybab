@@ -16,6 +16,7 @@ public class GameOver : MonoBehaviour {
 			}
 			else
 			{
+				PickUpDiaryPage.currentLevel = 1;
 				Application.LoadLevel("GameOver");
 			}
 		}

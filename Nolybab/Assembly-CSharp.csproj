@@ -203,9 +203,9 @@
      <Compile Include="Assets\Scripts\changeScene.cs" />
      <Compile Include="Assets\Scripts\mapSound.cs" />
      <Compile Include="Assets\Scripts\options.cs" />
+     <Compile Include="Assets\Scripts\setStoryMode.cs" />
+     <Compile Include="Assets\Scripts\startMovie.cs" />
      <Compile Include="Assets\UI_Elements\To_MainMenu_Script.cs" />
-     <Compile Include="Assets\setStoryMode.cs" />
-     <Compile Include="Assets\startMovie.cs" />
      <Compile Include="Assets\torch\scene\script\TorchSlider.cs" />
      <Compile Include="Assets\torch\scene\script\Torchslider2.cs" />
      <Compile Include="Assets\torch\scripts\Torchelight.cs" />

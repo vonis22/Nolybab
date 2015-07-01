@@ -9,7 +9,7 @@ public class PickUpDiaryPage : MonoBehaviour {
 	private AudioSource audio;
 	public AudioClip pickupSound;
 	public Texture pickUpTexture;
-	public int currentLevel = 1;
+	public static int currentLevel = 1;
 
 	public Texture Page1;
 	public Texture Page2;
