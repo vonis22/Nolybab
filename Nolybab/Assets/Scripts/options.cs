@@ -108,11 +108,8 @@ public class options : MonoBehaviour
 		
 		backgroundMusic.Play ();
 
-		NolybabSounds = GameObject.Find ("Nolybab Sounds").GetComponent<AudioSource> ();
-		NolybabSource = GameObject.Find ("Skull").GetComponent<AudioSource> ();
-		NolybabSounds.clip = NolybabSource.clip;
-		NolybabSource.volume = NolybabSounds.volume;
 
+		
 		foreach (AudioSource TorchSource in FindObjectsOfType(typeof(AudioSource)))
 		{
 			if (TorchSource.name == ("Fire_Wall_Torch"))
@@ -310,7 +307,10 @@ public class options : MonoBehaviour
 				Powerup3Source.volume = Powerup3Sound.volume;
 			}
 			
-
+			NolybabSounds = GameObject.Find ("Nolybab Sounds").GetComponent<AudioSource> ();
+			NolybabSource = GameObject.Find ("Skull1").GetComponent<AudioSource> ();
+			NolybabSounds.clip = NolybabSource.clip;
+			NolybabSource.volume = NolybabSounds.volume;
 			
 			if (!oculusCheck)
 			{
@@ -321,7 +321,7 @@ public class options : MonoBehaviour
 				WatchMapSound.clip = WatchMapSoundClip;
 				WatchMapSource.volume = WatchMapSound.volume;
 			}
-			print(Time.timeScale);
+			
 			if (Input.GetKeyDown (KeyCode.Escape))
 			{
 				if (Time.timeScale == 1)
@@ -344,6 +344,7 @@ public class options : MonoBehaviour
 					
 					backgroundMusic.Pause ();
 					TorchSound.Pause ();
+					
 					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
 					{
 						Time.timeScale = 0;
@@ -488,6 +489,8 @@ public class options : MonoBehaviour
 				
 				nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
 				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).FPScontrollerFabCam.fieldOfView = 75;
+				
+				reloader = false;
 			}
 		}
 		
@@ -989,7 +992,7 @@ public class options : MonoBehaviour
 		Title.SetActive (false);
 		startTune.Stop ();
 		mouseClick.Play ();
-		Application.LoadLevelAsync ("Scene");
+		Application.LoadLevel ("Scene");
 	}
 	
 	public void Tutorial ()
@@ -1016,7 +1019,7 @@ public class options : MonoBehaviour
 			((Tutorial)tutorialScript.GetComponent<Tutorial>()).reload = true;
 		}
 		
-		Application.LoadLevelAsync ("Tutorial");
+		Application.LoadLevel ("Tutorial");
 	}
 	
 	public void QuitGame ()
