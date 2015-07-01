@@ -9,6 +9,7 @@ public class PickUpPowerUp1 : MonoBehaviour {
 	private AudioSource audio;
 	//public AudioSource Audio;
 	private bool pickedUp = false;
+	public Texture pickUpTexture;
 
 	void Start()
 	{
@@ -24,9 +25,13 @@ public class PickUpPowerUp1 : MonoBehaviour {
 		{
 			if(Input.GetKeyDown(KeyCode.E))
 			{
-				CreateDirectionSign();
-				audio.PlayOneShot(pickupSound,0.7f);
-				Destroy(gameObject,10.0f);
+				if (pickedUp == false)
+				{
+					CreateDirectionSign();
+					audio.PlayOneShot(pickupSound,0.7f);
+					Destroy(gameObject,10.0f);
+					pickedUp = true;
+				}
 			}
 		}
 	}
@@ -36,8 +41,6 @@ public class PickUpPowerUp1 : MonoBehaviour {
 		if (coll.tag == "Player" && pickedUp == false)
 		{
 			canPrintMessage = true;
-			pickedUp = true;
-
 		}
 		if (coll.tag == "EndLadder")
 		{
@@ -72,7 +75,8 @@ public class PickUpPowerUp1 : MonoBehaviour {
 
 		if(canPrintMessage)
 		{
-			GUI.Label(new Rect(Screen.width / 100*50 +1 ,Screen.height / 20*3 ,150 ,150), "Press E to pickup".ToString(), powerFont);
+			GUI.DrawTexture(new Rect(Screen.width / 100*50 , Screen.height / 20*15 ,75,75), pickUpTexture); 
+			//GUI.Label(new Rect(Screen.width / 100*50 +1 ,Screen.height / 20*3 ,150 ,150), "Press E to pickup".ToString(), powerFont);
 		}
 	}
 

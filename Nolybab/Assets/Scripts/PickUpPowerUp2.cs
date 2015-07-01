@@ -8,6 +8,7 @@ public class PickUpPowerUp2 : MonoBehaviour {
 	private HPhandler hpScript;
 	private AudioSource audio;
 	public AudioClip pickupSound;
+	public Texture pickUpTexture;
 
 
 	void Start()
@@ -69,7 +70,8 @@ public class PickUpPowerUp2 : MonoBehaviour {
 
 		if(canPrintMessage)
 		{
-			GUI.Label(new Rect(Screen.width / 100*50 +1 ,Screen.height / 20*3 ,150 ,150), "Press E to pickup".ToString(), powerFont);
+			GUI.DrawTexture(new Rect(Screen.width / 100*50 , Screen.height / 20*15 ,75,75), pickUpTexture);  
+			//GUI.Label(new Rect(Screen.width / 100*50 +1 ,Screen.height / 20*3 ,150 ,150), "Press E to pickup".ToString(), powerFont);
 		}
 	}
 
