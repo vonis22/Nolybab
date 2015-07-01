@@ -7,6 +7,8 @@ public class HPhandler : MonoBehaviour {
 	public bool hammerActive = false;
 	public float hammerUses = 5;
 
+	public bool paused = false;
+
 	void Start () 
 	{
 	}
@@ -35,14 +37,25 @@ public class HPhandler : MonoBehaviour {
 			StartCoroutine(BackToPickaxe());
 		}
 
-		if (Input.GetKey(KeyCode.Alpha1))
+		if (Input.GetKey(KeyCode.Q) && paused == false)
 		{
 			transform.GetChild(0).transform.GetChild (0).gameObject.SetActive(true);
-
 		}
 		else
 		{
 			transform.GetChild(0).transform.GetChild (0).gameObject.SetActive(false);
+		}
+
+		if (Input.GetKeyDown (KeyCode.Escape))
+		{
+			if (paused)
+			{
+				paused = false;
+			}
+			else
+			{
+				paused = true;
+			}
 		}
 
 

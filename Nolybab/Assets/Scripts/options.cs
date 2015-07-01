@@ -107,7 +107,12 @@ public class options : MonoBehaviour
 		backgroundMusic.volume = BackgroundMusic.volume;
 		
 		backgroundMusic.Play ();
-		
+
+		NolybabSounds = GameObject.Find ("Nolybab Sounds").GetComponent<AudioSource> ();
+		NolybabSource = GameObject.Find ("Skull").GetComponent<AudioSource> ();
+		NolybabSounds.clip = NolybabSource.clip;
+		NolybabSource.volume = NolybabSounds.volume;
+
 		foreach (AudioSource TorchSource in FindObjectsOfType(typeof(AudioSource)))
 		{
 			if (TorchSource.name == ("Fire_Wall_Torch"))
@@ -305,10 +310,7 @@ public class options : MonoBehaviour
 				Powerup3Source.volume = Powerup3Sound.volume;
 			}
 			
-			NolybabSounds = GameObject.Find ("Nolybab Sounds").GetComponent<AudioSource> ();
-			NolybabSource = GameObject.Find ("Skull").GetComponent<AudioSource> ();
-			NolybabSounds.clip = NolybabSource.clip;
-			NolybabSource.volume = NolybabSounds.volume;
+
 			
 			if (!oculusCheck)
 			{
