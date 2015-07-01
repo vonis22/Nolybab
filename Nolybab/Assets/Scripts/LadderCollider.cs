@@ -4,8 +4,14 @@ using System.Collections;
 public class LadderCollider : MonoBehaviour
 {
 	private GameManager GMScript;
+	public AudioClip endAudio;
+	private AudioSource audio;
 	options script;
-	
+
+	void Start ()
+	{
+		audio = GetComponent<AudioSource> ();
+	}
 	void OnTriggerEnter (Collider coll)
 	{
 		if (coll.tag == "Player")
@@ -15,14 +21,14 @@ public class LadderCollider : MonoBehaviour
 			if (startMovie.storyMode){
 				if (PickUpDiaryPage.currentLevel == 4)
 				{
-					PickUpDiaryPage.currentLevel = 1;
-					Application.LoadLevel("Start");
+					StartCoroutine(EndStory());
 				}
 				else 
 				{
 					PickUpDiaryPage.currentLevel += 1;
+					Application.LoadLevel ("Scene");
 				}
-			}
+			} else {
 			if (Application.loadedLevel == 3)
 			{
 				Application.LoadLevel("Start");
@@ -40,6 +46,7 @@ public class LadderCollider : MonoBehaviour
 			}
 			
 			print ("Enter");
+			}
 		}
 	}
 	
@@ -49,5 +56,15 @@ public class LadderCollider : MonoBehaviour
 		{
 			print ("ExitLeave");
 		}
+	}
+
+	IEnumerator EndStory ()
+	{
+		PickUpDiaryPage.currentLevel = 1;
+		audio.PlayOneShot (endAudio);
+		Time.timeScale = 0;
+		yield return new WaitForSeconds (endAudio.length);
+		audio.Stop ();
+		Application.LoadLevel("Start");
 	}
 }

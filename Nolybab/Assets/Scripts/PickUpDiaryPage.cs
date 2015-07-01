@@ -11,11 +11,19 @@ public class PickUpDiaryPage : MonoBehaviour {
 	public Texture pickUpTexture;
 	public static int currentLevel = 1;
 
+
+
 	public Texture Page1;
 	public Texture Page2;
 	public Texture Page3;
 	public Texture Page4;
 	public bool showPage;
+
+	public AudioClip talkThomas1;
+	public AudioClip talkThomas2;
+	public AudioClip talkThomas3;
+	public AudioClip talkThomas4;
+	public AudioClip talkThomas5;
 
 
 	void Start()
@@ -36,11 +44,31 @@ public class PickUpDiaryPage : MonoBehaviour {
 		{
 			if(Input.GetKeyDown(KeyCode.E))
 			{
-				audio.PlayOneShot(pickupSound,0.7f);
+				//audio.PlayOneShot(pickupSound,0.7f);
 				//transform.GetChild(0).gameObject.SetActive(false);
 				showPage = true;
 				canPrintMessage = false;
-			
+
+				if (currentLevel == 1)
+				{
+					audio.Stop ();
+					audio.PlayOneShot(talkThomas1,0.7f);
+				}
+				if (currentLevel == 2)
+				{
+					audio.Stop ();
+					audio.PlayOneShot(talkThomas3,0.7f);
+				}
+				if (currentLevel == 3)
+				{
+					audio.Stop ();
+					audio.PlayOneShot(talkThomas3,0.7f);
+				}
+				if (currentLevel == 4)
+				{
+					audio.Stop ();
+					audio.PlayOneShot(talkThomas4, 0.7f);
+				}
 
 			}
 		}
@@ -58,9 +86,26 @@ public class PickUpDiaryPage : MonoBehaviour {
 	{
 		if (coll.tag == "Player")
 		{
+			if (showPage)
+			{
+				if (currentLevel == 1)
+				{
+					audio.Stop ();
+					audio.PlayOneShot(talkThomas2,0.7f);
+				}
+				if (currentLevel == 4)
+				{
+					audio.Stop ();
+					audio.PlayOneShot(talkThomas5,0.7f);
+				}
+			}
+
 			canPrintMessage = false;
 			showPage = false;
+
+		
 		}
+
 	}
 
 	

@@ -10,6 +10,7 @@ public class PickUpPowerUp1 : MonoBehaviour {
 	//public AudioSource Audio;
 	private bool pickedUp = false;
 	public Texture pickUpTexture;
+	public AudioClip dissapearSound;
 
 	void Start()
 	{
@@ -28,14 +29,22 @@ public class PickUpPowerUp1 : MonoBehaviour {
 				if (pickedUp == false)
 				{
 					CreateDirectionSign();
-					audio.PlayOneShot(pickupSound,0.7f);
-					Destroy(gameObject,10.0f);
-					pickedUp = true;
+					StartCoroutine(DestroyPowerUp ());
+
 				}
 			}
 		}
 	}
+	IEnumerator DestroyPowerUp ()
+	{
+		pickedUp = true;
+		audio.PlayOneShot(pickupSound,0.7f);
+		yield return new WaitForSeconds (10.0f);
+		audio.PlayOneShot (dissapearSound, 0.7f);
+		transform.GetChild (1).gameObject.SetActive (false);
+		Destroy (gameObject,dissapearSound.length);
 
+	}
 	void OnTriggerEnter(Collider coll)
 	{
 		if (coll.tag == "Player" && pickedUp == false)
