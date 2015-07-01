@@ -12,7 +12,7 @@ public class GameOver : MonoBehaviour {
 			print ("You are dead....");
 			if(OVRPlayerController.playingWithOculus)
 			{
-				Application.LoadLevel("OculusGameOver");
+				Application.LoadLevel("OculusGameOver1");
 			}
 			else
 			{

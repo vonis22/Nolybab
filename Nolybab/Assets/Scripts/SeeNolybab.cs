@@ -16,6 +16,7 @@ public class SeeNolybab : MonoBehaviour {
 	public float fovTimer;
 	private AIPath aiScript;
 	public bool seeMap = false;
+	public bool seeDiary = false;
 	public static float clippingPlanePreset;
 
 	void Start () 
@@ -73,6 +74,11 @@ public class SeeNolybab : MonoBehaviour {
 		Debug.DrawRay (cam.transform.position,cam.transform.forward);
 		if(Physics.Raycast(seeRay, out hit))
 		   {
+			if (hit.collider.tag == ("Diary"))
+			{
+				seeDiary = true;
+			}
+
 			if (hit.collider.tag == ("Map"))
 			{
 				seeMap = true;

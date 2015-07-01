@@ -1008,7 +1008,7 @@ public class options : MonoBehaviour
 			((Tutorial)tutorialScript.GetComponent<Tutorial>()).reload = true;
 		}
 		
-		Application.LoadLevel ("Tutorial");
+		Application.LoadLevelAsync ("Tutorial");
 	}
 	
 	public void QuitGame ()
