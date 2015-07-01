@@ -19,7 +19,7 @@ public class options : MonoBehaviour
 	public GameObject StartOptions;
 	public GameObject GameOptions;
 	public GameObject Title;
-
+	
 	public GameObject FPSController;
 	public GameObject OculusController;
 	
@@ -34,7 +34,7 @@ public class options : MonoBehaviour
 	public AudioSource mouseClick;
 	public AudioSource hoverSound;
 	public AudioSource startTune;
-
+	
 	AudioSource BackgroundMusic;
 	AudioSource LevelMusicSource;
 	AudioSource ControllerSounds;
@@ -57,39 +57,40 @@ public class options : MonoBehaviour
 	AudioSource WatchMapSource;
 	AudioSource GameOverSound;
 	AudioSource GameOverSource;
-
+	
 	AudioClip WatchMapSoundClip;
-
+	
 	public Slider masterVolumeSlider;
 	public Slider musicVolumeSlider;
 	public Slider effectVolumeSlider;
-
+	
 	public AudioClip[] backgroundMusicClip;
 	public AudioClip backgroundMusicClip_0;
 	public AudioClip backgroundMusicClip_1;
 	public AudioClip backgroundMusicClip_2;
-
+	
 	public AudioClip backgroundMusicPart1;
 	public AudioClip backgroundMusicPart2;
-
+	
 	bool secondClip = false;
 	bool thirdClip = false;
-
+	
 	mapSound WatchMapScript;
-
+	
 	Tutorial script;
 	SeeNolybab nolybabScript;
 	FirstPersonController fpsScript;
 	Tutorial tutorialScript;
-
+	
 	bool oculusCheck = false;
 	public bool restarter = false;
-
+	public bool reloader = false;
+	
 	public void Awake () 
 	{
 		OnLevelWasLoaded ();
 	}
-
+	
 	public IEnumerator Seeker()
 	{
 		yield return new WaitForSeconds (0.1f);
@@ -99,14 +100,14 @@ public class options : MonoBehaviour
 			backgroundMusicClip_1,
 			backgroundMusicClip_2,
 		};
-
+		
 		BackgroundMusic = GameObject.Find ("Background Music").GetComponent<AudioSource> ();
 		BackgroundMusic.clip = backgroundMusicClip [Random.Range (0, backgroundMusicClip.Length)];
 		backgroundMusic = BackgroundMusic;
 		backgroundMusic.volume = BackgroundMusic.volume;
-
+		
 		backgroundMusic.Play ();
-
+		
 		foreach (AudioSource TorchSource in FindObjectsOfType(typeof(AudioSource)))
 		{
 			if (TorchSource.name == ("Fire_Wall_Torch"))
@@ -115,23 +116,23 @@ public class options : MonoBehaviour
 				TorchSource.GetComponent<AudioSource> ();
 				TorchSound.clip = TorchSource.clip;
 				TorchSource.volume = TorchSound.volume;
-
+				
 				TorchSound.Play ();
 			}
 		}
-
+		
 		yield return new WaitForSeconds (backgroundMusic.clip.length);
 		secondClip = true;
-
+		
 		if (secondClip)
 		{
 			backgroundMusic.clip = backgroundMusicPart1;
 			backgroundMusic.Play ();
 		}
-
+		
 		yield return new WaitForSeconds (backgroundMusic.clip.length);
 		thirdClip = true;
-
+		
 		if (thirdClip)
 		{
 			backgroundMusic.clip = backgroundMusicPart2;
@@ -139,7 +140,7 @@ public class options : MonoBehaviour
 			backgroundMusic.Play ();
 		}
 	}
-
+	
 	void OnLevelWasLoaded ()
 	{
 		if (Application.loadedLevel == 0)
@@ -160,16 +161,21 @@ public class options : MonoBehaviour
 			OculusController.SetActive(false);
 			FPSController.SetActive(true);
 			FPSController.SetActive (false);
-
+			
 			StartMenu.SetActive (true);
-
+			
 			Options = StartOptions;
 			Options.SetActive (true);
 			Options.SetActive (false);
-
+			
 			startTune.Play ();
+			
+			StopAllCoroutines();
+			
+			//nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
+			//((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).FPScontrollerFabCam.fieldOfView = 75;
 		}
-
+		
 		if (Application.loadedLevel  == 1 || Application.loadedLevel  == 3)
 		{
 			Options = GameOptions;
@@ -179,63 +185,63 @@ public class options : MonoBehaviour
 			StartCoroutine (Seeker ());
 		}
 	}
-
+	
 	void Update ()
 	{
 		if (Application.loadedLevel == 0)
 		{
 			Title = GameObject.Find ("Title");
-
+			
 			if (!oculusCheck)
 			{
 				FPSController.SetActive (true);
 				OculusController.SetActive (false);
-
+				
 				nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
 				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = false;
-
+				
 				fpsScript = GameObject.Find("FPSController1").GetComponent<FirstPersonController>();
 				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = false;
-
+				
 				Camera mainFCP = GameObject.Find("FirstPersonCharacter").GetComponent<Camera>();
 				mainFCP.farClipPlane = RenderDistance.GetComponent<Slider>().value;
-
+				
 			}
 			
 			if (oculusCheck)
 			{
 				FPSController.SetActive (false);
 				OculusController.SetActive(true);
-
+				
 				nolybabScript = GameObject.Find("LeftEyeAnchor").GetComponent<SeeNolybab>();
 				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = false;
-
+				
 				nolybabScript = GameObject.Find("RightEyeAnchor").GetComponent<SeeNolybab>();
 				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = false;
-
+				
 				fpsScript = GameObject.Find("FPSController - VR11").GetComponent<FirstPersonController>();
 				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = false;
-
+				
 				Camera leftEyeFCP = GameObject.Find("LeftEyeAnchor").GetComponent<Camera>();
 				Camera rightEyeFCP = GameObject.Find("RightEyeAnchor").GetComponent<Camera>();
-
+				
 				leftEyeFCP.farClipPlane = RenderDistance.GetComponent<Slider>().value;
 				rightEyeFCP.farClipPlane = leftEyeFCP.farClipPlane;
-
+				
 			}
 		}
-
+		
 		if (Application.loadedLevel == 1 || Application.loadedLevel == 3)
 		{
 			if (!oculusCheck)
 			{
 				nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
 				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = true;
-
+				
 				fpsScript = GameObject.Find("FPSController1").GetComponent<FirstPersonController>();
 				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = true;
 			}
-
+			
 			if (oculusCheck)
 			{
 				nolybabScript = GameObject.Find("LeftEyeAnchor").GetComponent<SeeNolybab>();
@@ -243,11 +249,11 @@ public class options : MonoBehaviour
 				
 				nolybabScript = GameObject.Find("RightEyeAnchor").GetComponent<SeeNolybab>();
 				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = true;
-
+				
 				fpsScript = GameObject.Find("FPSController - VR11").GetComponent<FirstPersonController>();
 				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = true;
 			}
-
+			
 			foreach (AudioSource BreakWallSource in FindObjectsOfType(typeof(AudioSource)))
 			{
 				if (BreakWallSource.tag == ("BreakWall"))
@@ -258,7 +264,7 @@ public class options : MonoBehaviour
 					BreakWallSource.volume = BreakWall.volume;
 				}
 			}
-
+			
 			foreach (AudioSource RealWallSource in FindObjectsOfType(typeof(AudioSource)))
 			{
 				if (RealWallSource.tag == ("RealWall"))
@@ -269,12 +275,12 @@ public class options : MonoBehaviour
 					RealWallSource.volume = RealWall.volume;
 				}
 			}
-
+			
 			ControllerSounds = GameObject.Find ("Controller Sounds").GetComponent<AudioSource> ();
 			ControllerSource = GameObject.FindWithTag ("Player").GetComponent<AudioSource> ();
 			ControllerSounds.clip = ControllerSource.clip;
 			ControllerSource.volume = ControllerSounds.volume;
-
+			
 			if (GameObject.Find ("Powerup 1(Clone)") != null)
 			{
 				Powerup1Sound = GameObject.Find ("Powerup 1 Sound").GetComponent<AudioSource> ();
@@ -282,7 +288,7 @@ public class options : MonoBehaviour
 				Powerup1Sound.clip = Powerup1Source.clip;
 				Powerup1Source.volume = Powerup1Sound.volume;
 			}
-
+			
 			if (GameObject.Find ("Powerup 2(Clone)") != null)
 			{
 				Powerup2Sound = GameObject.Find ("Powerup 2 Sound").GetComponent<AudioSource> ();
@@ -290,7 +296,7 @@ public class options : MonoBehaviour
 				Powerup2Sound.clip = Powerup2Source.clip;
 				Powerup2Source.volume = Powerup2Sound.volume;
 			}
-
+			
 			if (GameObject.Find ("Powerup 3(Clone)") != null)
 			{
 				Powerup3Sound = GameObject.Find ("Powerup 3 Sound").GetComponent<AudioSource> ();
@@ -298,12 +304,12 @@ public class options : MonoBehaviour
 				Powerup3Sound.clip = Powerup3Source.clip;
 				Powerup3Source.volume = Powerup3Sound.volume;
 			}
-
+			
 			NolybabSounds = GameObject.Find ("Nolybab Sounds").GetComponent<AudioSource> ();
 			NolybabSource = GameObject.Find ("Skull").GetComponent<AudioSource> ();
 			NolybabSounds.clip = NolybabSource.clip;
 			NolybabSource.volume = NolybabSounds.volume;
-
+			
 			if (!oculusCheck)
 			{
 				WatchMapSound = GameObject.Find ("Watch Map Sound").GetComponent<AudioSource> ();
@@ -313,148 +319,199 @@ public class options : MonoBehaviour
 				WatchMapSound.clip = WatchMapSoundClip;
 				WatchMapSource.volume = WatchMapSound.volume;
 			}
-
+			
 			if (Input.GetKeyDown (KeyCode.Escape))
 			{
 				if (showOptions == false && toggleOptions == true)
 				{
 					Cursor.lockState = CursorLockMode.None;
 					Cursor.visible = true;
-
+					
 					Options.SetActive (true);
 					showOptions = true;
 					toggleOptions = false;
-				
+					
 					backgroundMusic.Pause ();
 					TorchSound.Pause ();
-
+					
 					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
 					{
 						Time.timeScale = 0;
 					}
-
+					
 					//Cursor.visible = true;
 					//Screen.lockCursor = false;
 				} else if (showOptions == true && toggleOptions == false)
 				{
 					Cursor.lockState = CursorLockMode.Locked;
 					Cursor.visible = false;
-
+					
 					Options.SetActive (false);
 					showOptions = false;
 					toggleOptions = true;
-				
+					
 					backgroundMusic.UnPause ();
 					TorchSound.UnPause ();
-
+					
 					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
 					{
 						Time.timeScale = 1;
 					}
-
+					
 					//Cursor.visible = false;
 					//Screen.lockCursor = true;
 				}
-			
+				
 				if (showControls == true)
 				{
 					Cursor.lockState = CursorLockMode.Locked;
 					Cursor.visible = false;
-
+					
 					Controls.SetActive (false);
 					showOptions = false;
 					showControls = false;
 					toggleOptions = true;
-
+					
 					backgroundMusic.UnPause ();
 					TorchSound.UnPause ();
-
+					
 					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
 					{
 						Time.timeScale = 1;
 					}
-
+					
 					//Cursor.visible = false;
 					//Screen.lockCursor = true;
 				}
-
+				
 				if (showGraphics == true)
 				{
 					Cursor.lockState = CursorLockMode.Locked;
 					Cursor.visible = false;
-
+					
 					Graphics.SetActive (false);
 					showOptions = false;
 					showGraphics = false;
 					toggleOptions = true;
-				
+					
 					backgroundMusic.UnPause ();
 					TorchSound.UnPause ();
-
+					
 					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
 					{
 						Time.timeScale = 1;
 					}
-
+					
 					//Cursor.visible = false;
 					//Screen.lockCursor = true;
 				}
-			
+				
 				if (showAudio == true)
 				{
 					Cursor.lockState = CursorLockMode.Locked;
 					Cursor.visible = false;
-
+					
 					Audio.SetActive (false);
 					showOptions = false;
 					showAudio = false;
 					toggleOptions = true;
-
+					
 					backgroundMusic.UnPause ();
 					TorchSound.UnPause ();
-
+					
 					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
 					{
 						Time.timeScale = 1;
 					}
-
+					
 					//Cursor.visible = false;
 					//Screen.lockCursor = true;
 				}
 			}
 		}
-	
+		
 		if (Application.loadedLevel == 3)
 		{
-			if (!oculusCheck)
+			if (reloader)
 			{
-				tutorialScript = GameObject.Find("FPSController1").GetComponent<Tutorial>();
-				((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = true;
+				if (!oculusCheck)
+				{
+					nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
+					((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = false;
+					
+					fpsScript = GameObject.Find("FPSController1").GetComponent<FirstPersonController>();
+					((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = false;
+					
+					tutorialScript = GameObject.Find("FPSController1").GetComponent<Tutorial>();
+					//((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+					Destroy (tutorialScript);
+					
+					FPSController.transform.position = new Vector3 (0,0.125f,0);
+					FPSController.transform.localEulerAngles = new Vector3 (0,0,0);
+				}
+				
+				if (oculusCheck)
+				{
+					nolybabScript = GameObject.Find("LeftEyeAnchor").GetComponent<SeeNolybab>();
+					((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = false;
+					
+					nolybabScript = GameObject.Find("RightEyeAnchor").GetComponent<SeeNolybab>();
+					((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).enabled = false;
+					
+					fpsScript = GameObject.Find("FPSController - VR11").GetComponent<FirstPersonController>();
+					((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = false;
+					
+					tutorialScript = GameObject.Find("FPSController - VR11").GetComponent<Tutorial>();
+					//((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+					Destroy(tutorialScript);
+					
+					OculusController.transform.position = new Vector3 (0,0.125f,0);
+					OculusController.transform.localEulerAngles = new Vector3 (0,0,0);
+				}
+				
+				Screen.lockCursor = false;
+				
+				backgroundMusic.Stop ();
+				TorchSound.Stop ();
+				
+				StopAllCoroutines();
+				
+				nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
+				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).FPScontrollerFabCam.fieldOfView = 75;
 			}
-
-			if (oculusCheck)
-			{
-				tutorialScript = GameObject.Find("FPSController - VR11").GetComponent<Tutorial>();
-				((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = true;
-			}
-
 		}
-
+		
 		if (Application.loadedLevel == 1)
 		{
 			if (!oculusCheck)
 			{
 				tutorialScript = GameObject.Find("FPSController1").GetComponent<Tutorial>();
-				((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+				//((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+				Destroy(tutorialScript);
 			}
-
+			
 			if (oculusCheck)
 			{
 				tutorialScript = GameObject.Find("FPSController - VR11").GetComponent<Tutorial>();
-				((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+				//((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+				Destroy(tutorialScript);
+			}
+			
+			if (reloader)
+			{
+				backgroundMusic.Stop ();
+				TorchSound.Stop ();
+				
+				//StopAllCoroutines();
+				//StartCoroutine(Seeker ());
+				
+				nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
+				((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).FPScontrollerFabCam.fieldOfView = 75;
+				
+				reloader = false;
 			}
 		}
-
+		
 		if (Application.loadedLevel == 2)
 		{
 			if (!oculusCheck)
@@ -464,10 +521,11 @@ public class options : MonoBehaviour
 				
 				fpsScript = GameObject.Find("FPSController1").GetComponent<FirstPersonController>();
 				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = false;
-
+				
 				tutorialScript = GameObject.Find("FPSController1").GetComponent<Tutorial>();
-				((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
-
+				//((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+				Destroy(tutorialScript);
+				
 				FPSController.transform.position = new Vector3 (0,0.125f,0);
 				FPSController.transform.localEulerAngles = new Vector3 (0,0,0);
 			}
@@ -482,28 +540,29 @@ public class options : MonoBehaviour
 				
 				fpsScript = GameObject.Find("FPSController - VR11").GetComponent<FirstPersonController>();
 				((FirstPersonController)fpsScript.GetComponent<FirstPersonController>()).enabled = false;
-
+				
 				tutorialScript = GameObject.Find("FPSController - VR11").GetComponent<Tutorial>();
-				((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
-
+				//((Tutorial)tutorialScript.GetComponent<Tutorial>()).enabled = false;
+				Destroy(tutorialScript);
+				
 				OculusController.transform.position = new Vector3 (0,0.125f,0);
 				OculusController.transform.localEulerAngles = new Vector3 (0,0,0);
 			}
-
+			
 			backgroundMusic.Stop ();
 			TorchSound.Stop ();
-
+			
 			GameOverSound = GameObject.Find ("Game Over Sound").GetComponent<AudioSource> ();
 			GameOverSource = GameObject.Find ("Main Camera").GetComponent<AudioSource> ();
 			GameOverSound.clip = GameOverSource.clip;
 			GameOverSource.volume = GameOverSound.volume;
-
+			
 			StopAllCoroutines();
 			nolybabScript = GameObject.Find("FirstPersonCharacter").GetComponent<SeeNolybab>();
 			((SeeNolybab)nolybabScript.GetComponent<SeeNolybab>()).FPScontrollerFabCam.fieldOfView = 75;
 		}
 	}
-
+	
 	public void OptionsScreen ()
 	{
 		if (showOptions == false && toggleOptions == true)
@@ -513,21 +572,21 @@ public class options : MonoBehaviour
 				Vector3 position = new Vector3 (192, 0, 0);
 				child.localPosition += position;
 			}
-
+			
 			StartMenuButtons.SetActive (false);
 			Options.SetActive (true);
 			showOptions = true;
 			toggleOptions = false;
-
+			
 			mouseClick.Play ();
 		}
 	}
-
+	
 	public void Hover ()
 	{
 		hoverSound.Play ();
 	}
-
+	
 	public void ControlOptions ()
 	{
 		if (Application.loadedLevel == 0)
@@ -538,7 +597,7 @@ public class options : MonoBehaviour
 				child.localPosition += position;
 			}
 		}
-
+		
 		Options.SetActive (false);
 		Controls.SetActive (true);
 		showOptions = false;
@@ -553,7 +612,7 @@ public class options : MonoBehaviour
 		//FirstPersonController script = slider.GetComponent<FirstPersonController>();
 		//script.sensitivity = sensitivity;
 	}
-
+	
 	public void GraphicOptions ()
 	{
 		if (Application.loadedLevel == 0)
@@ -564,7 +623,7 @@ public class options : MonoBehaviour
 				child.localPosition += position;
 			}
 		}
-
+		
 		Options.SetActive (false);
 		Graphics.SetActive (true);
 		showOptions = false;
@@ -572,45 +631,45 @@ public class options : MonoBehaviour
 		
 		mouseClick.Play ();
 	}
-
+	
 	public void QualityOptions (int Quality)
 	{
 		QualitySettings.SetQualityLevel (Quality,true);
 		int qualityLevel = QualitySettings.GetQualityLevel ();
-
+		
 		if(qualityLevel == 5)
 		{
 			QualitySettings.SetQualityLevel (6,true);
-
+			
 			if (QualitySettings.masterTextureLimit != 0)
 			{
 				QualitySettings.masterTextureLimit = 0;
 			}
-
+			
 			if (QualitySettings.vSyncCount != 1);
 			{
 				QualitySettings.vSyncCount = 1;
 			}
-
+			
 			if (QualitySettings.antiAliasing != 2)
 			{
 				QualitySettings.antiAliasing = 2;
 			}
-
+			
 			if (Camera.main.farClipPlane != 10)
 			{
 				Camera.main.farClipPlane = 10;
 				RenderDistance.GetComponent<Slider>().value = 10;
 			}
-
+			
 			if (QualitySettings.shadowDistance != 150)
 			{
 				QualitySettings.shadowDistance = 150;
 				ShadowDistance.GetComponent<Slider>().value = 150;
 			}
-
+			
 			QualitySettings.SetQualityLevel (5,true);
-
+			
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "High";
 			GameObject.Find("Texture Text").GetComponent<Text>().text = "High";
 			GameObject.Find("Setting Text").GetComponent<Text>().text = "2X";
@@ -620,28 +679,28 @@ public class options : MonoBehaviour
 		if(qualityLevel == 3)
 		{
 			QualitySettings.SetQualityLevel (6,true);
-
+			
 			if (QualitySettings.masterTextureLimit != 1)
 			{
 				QualitySettings.masterTextureLimit = 1;
 			}
-
+			
 			if (QualitySettings.vSyncCount != 1);
 			{
 				QualitySettings.vSyncCount = 1;
 			}
-
+			
 			if (QualitySettings.antiAliasing != 2)
 			{
 				QualitySettings.antiAliasing = 2;
 			}
-
+			
 			if (Camera.main.farClipPlane != 10)
 			{
 				Camera.main.farClipPlane = 10;
 				RenderDistance.GetComponent<Slider>().value = 10;
 			}
-
+			
 			if (QualitySettings.shadowDistance != 40)
 			{
 				QualitySettings.shadowDistance = 40;
@@ -649,7 +708,7 @@ public class options : MonoBehaviour
 			}
 			
 			QualitySettings.SetQualityLevel (3,true);
-
+			
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "Medium";
 			GameObject.Find("Texture Text").GetComponent<Text>().text = "Medium";
 			GameObject.Find("Setting Text").GetComponent<Text>().text = "2X";
@@ -659,28 +718,28 @@ public class options : MonoBehaviour
 		if(qualityLevel == 0)
 		{
 			QualitySettings.SetQualityLevel (6,true);
-
+			
 			if (QualitySettings.masterTextureLimit != 0)
 			{
 				QualitySettings.masterTextureLimit = 2;
 			}
-
+			
 			if (QualitySettings.vSyncCount != 0);
 			{
 				QualitySettings.vSyncCount = 0;
 			}
-
+			
 			if (QualitySettings.antiAliasing != 0)
 			{
 				QualitySettings.antiAliasing = 0;
 			}
-
+			
 			if (Camera.main.farClipPlane != 5)
 			{
 				Camera.main.farClipPlane = 5;
 				RenderDistance.GetComponent<Slider>().value = 5;
 			}
-
+			
 			if (QualitySettings.shadowDistance != 15)
 			{
 				QualitySettings.shadowDistance = 15;
@@ -688,19 +747,19 @@ public class options : MonoBehaviour
 			}
 			
 			QualitySettings.SetQualityLevel (0,true);
-
+			
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "Low";
 			GameObject.Find("Texture Text").GetComponent<Text>().text = "Low";
 			GameObject.Find("Setting Text").GetComponent<Text>().text = "None";
 			Checkmark.SetActive(false);
 		}
 	}
-
+	
 	public void TextureQualityOptions (int textureQuality)
 	{
 		QualitySettings.SetQualityLevel (6,true);
 		QualitySettings.masterTextureLimit = textureQuality;
-
+		
 		if(QualitySettings.masterTextureLimit == 0)
 		{
 			GameObject.Find("Texture Text").GetComponent<Text>().text = "High";
@@ -719,11 +778,11 @@ public class options : MonoBehaviour
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "Custom";
 		}
 	}
-
+	
 	public void VSyncOptions ()
 	{
 		QualitySettings.SetQualityLevel (6,true);
-
+		
 		if( QualitySettings.vSyncCount == 1)
 		{
 			QualitySettings.vSyncCount = 0;
@@ -737,51 +796,51 @@ public class options : MonoBehaviour
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "Custom";
 		}
 	}
-
+	
 	public void AntiAliasingOptions (int antiAliasing)
 	{
 		QualitySettings.SetQualityLevel (6,true);
 		QualitySettings.antiAliasing = antiAliasing;
-
+		
 		if(QualitySettings.antiAliasing == 0)
 		{
 			GameObject.Find("Setting Text").GetComponent<Text>().text = "None";
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "Custom";
 		}
-
+		
 		if(QualitySettings.antiAliasing == 2)
 		{
 			GameObject.Find("Setting Text").GetComponent<Text>().text = "2X";
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "Custom";
 		}
-
+		
 		if(QualitySettings.antiAliasing == 4)
 		{
 			GameObject.Find("Setting Text").GetComponent<Text>().text = "4X";
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "Custom";
 		}
-
+		
 		if(QualitySettings.antiAliasing == 8)
 		{
 			GameObject.Find("Setting Text").GetComponent<Text>().text = "8X";
 			GameObject.Find("Quality Text").GetComponent<Text>().text = "Custom";
 		}
 	}
-
+	
 	public void RenderDistanceOptions (float renderDistance)
 	{
 		QualitySettings.SetQualityLevel (6,true);
 		Camera.main.farClipPlane = renderDistance;
 		GameObject.Find("Quality Text").GetComponent<Text>().text = "Custom";
 	}
-
+	
 	public void ShadowDistanceOptions (float shadowDistance)
 	{
 		QualitySettings.SetQualityLevel (6,true);
 		QualitySettings.shadowDistance = shadowDistance;
 		GameObject.Find("Quality Text").GetComponent<Text>().text = "Custom";
 	}
-
+	
 	public void AudioOptions ()
 	{
 		if (Application.loadedLevel == 0)
@@ -792,7 +851,7 @@ public class options : MonoBehaviour
 				child.localPosition += position;
 			}
 		}
-
+		
 		Options.SetActive (false);
 		Audio.SetActive (true);
 		showOptions = false;
@@ -800,7 +859,7 @@ public class options : MonoBehaviour
 		
 		mouseClick.Play ();
 	}
-
+	
 	public void ChangeMasterVolume ()
 	{
 		if (masterVolumeSlider.value != 0)
@@ -825,20 +884,20 @@ public class options : MonoBehaviour
 				Vector3 position = new Vector3 (192, 0, 0);
 				child.localPosition -= position;
 			}
-
+			
 			Options.SetActive (false);
 			StartMenuButtons.SetActive (true);
 			showOptions = false;
 			toggleOptions = true;
-
+			
 			mouseClick.Play ();
 		}
-
+		
 		if (showOptions && Application.loadedLevel == 1 || showOptions && Application.loadedLevel == 3)
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
-
+			
 			Options.SetActive (false);
 			showOptions = false;
 			toggleOptions = true;
@@ -846,7 +905,7 @@ public class options : MonoBehaviour
 			mouseClick.Play ();
 			backgroundMusic.UnPause ();
 			TorchSound.UnPause();
-
+			
 			foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
 			{
 				Time.timeScale = 1;
@@ -865,7 +924,7 @@ public class options : MonoBehaviour
 					child.localPosition -= position;
 				}
 			}
-
+			
 			Controls.SetActive (false);
 			Options.SetActive (true);
 			showOptions = true;
@@ -873,7 +932,7 @@ public class options : MonoBehaviour
 			
 			mouseClick.Play ();
 		}
-
+		
 		if (showGraphics)
 		{
 			if (Application.loadedLevel == 0)
@@ -884,7 +943,7 @@ public class options : MonoBehaviour
 					child.localPosition -= position;
 				}
 			}
-
+			
 			Graphics.SetActive (false);
 			Options.SetActive (true);
 			showOptions = true;
@@ -903,7 +962,7 @@ public class options : MonoBehaviour
 					child.localPosition -= position;
 				}
 			}
-
+			
 			Audio.SetActive (false);
 			Options.SetActive (true);
 			showOptions = true;
@@ -912,7 +971,7 @@ public class options : MonoBehaviour
 			mouseClick.Play ();
 		}
 	}
-
+	
 	public void Play ()
 	{
 		LoadingScreen.SetActive (true);
@@ -920,7 +979,7 @@ public class options : MonoBehaviour
 		Title.SetActive (false);
 		startTune.Stop ();
 		mouseClick.Play ();
-		Application.LoadLevel ("Scene");
+		Application.LoadLevelAsync ("Scene");
 	}
 	
 	public void Tutorial ()
@@ -930,10 +989,23 @@ public class options : MonoBehaviour
 		Title.SetActive (false);
 		startTune.Stop ();
 		mouseClick.Play ();
-
-		tutorialScript = GameObject.Find("FPSController1").GetComponent<Tutorial> ();
-		((Tutorial)tutorialScript.GetComponent<Tutorial>()).reload = true;
-
+		
+		if (!oculusCheck)
+		{
+			FPSController.AddComponent<Tutorial> ();
+			
+			tutorialScript = GameObject.Find("FPSController1").GetComponent<Tutorial> ();
+			((Tutorial)tutorialScript.GetComponent<Tutorial>()).reload = true;
+		}
+		
+		if (oculusCheck)
+		{
+			OculusController.AddComponent<Tutorial> ();
+			
+			tutorialScript = GameObject.Find("FPSController - VR11").GetComponent<Tutorial> ();
+			((Tutorial)tutorialScript.GetComponent<Tutorial>()).reload = true;
+		}
+		
 		Application.LoadLevel ("Tutorial");
 	}
 	
@@ -942,16 +1014,16 @@ public class options : MonoBehaviour
 		Application.Quit ();
 		mouseClick.Play ();
 	}
-
+	
 	public void OculusRift ()
 	{
 		if(GameObject.Find ("Oculus Rift Toggle").GetComponent<Toggle>().isOn == true)
 		{
 			oculusCheck = true;
 		}
-
+		
 		if(GameObject.Find ("Oculus Rift Toggle").GetComponent<Toggle>().isOn == false)
-		   {
+		{
 			oculusCheck = false;
 		}
 	}
