@@ -7,6 +7,7 @@ public class StartMenuSingleton : MonoBehaviour
 	
 	void Awake()
 	{
+
 		//if we don't have an [_instance] set yet
 		if (!_instance)
 		{

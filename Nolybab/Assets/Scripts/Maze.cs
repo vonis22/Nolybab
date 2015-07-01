@@ -48,6 +48,7 @@ public class Maze : MonoBehaviour {
 	public GameObject powerUp2;
 	public GameObject powerUp3;
 	public GameObject mapWallprefab;
+	public GameObject diaryPrefabPage;
 
 	public IntVector2 RandomCoordinates {
 		get {
@@ -80,6 +81,7 @@ public class Maze : MonoBehaviour {
 		lastChildCoords = lastChild.transform.position;
 		nolyChildCoords = transform.GetChild ((size.x * size.z) -2).transform.position;
 		secondChildCoords = transform.GetChild (1).transform.position;
+
 		Instantiate (stairsPrefab, firstChildCoords, Quaternion.identity);
 		Instantiate (endStairs,new Vector3(lastChildCoords.x,(lastChildCoords.y - 0.055f),lastChildCoords.z), Quaternion.identity);
 
@@ -113,8 +115,11 @@ public class Maze : MonoBehaviour {
 		Instantiate (nolyfab, nolyChildCoords, Quaternion.identity);
 		//Destroy (firstChildChild.gameObject);
 		Instantiate (mapWallprefab, secondChildCoords, Quaternion.identity);
-		changeScene.loading = false;
+		if (startMovie.storyMode) {
+			Instantiate(diaryPrefabPage,secondChildCoords,Quaternion.identity);
 
+		}
+		changeScene.loading = false;
 
 	}
 	private void DoFirstGenerationStep (List<MazeCell> activeCells) {

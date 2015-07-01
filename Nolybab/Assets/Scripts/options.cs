@@ -321,9 +321,18 @@ public class options : MonoBehaviour
 				WatchMapSound.clip = WatchMapSoundClip;
 				WatchMapSource.volume = WatchMapSound.volume;
 			}
-			
+			print(Time.timeScale);
 			if (Input.GetKeyDown (KeyCode.Escape))
 			{
+				if (Time.timeScale == 1)
+				{
+					Time.timeScale = 0;
+				}
+				else 
+				{
+					Time.timeScale = 1;
+				}
+
 				if (showOptions == false && toggleOptions == true)
 				{
 					Cursor.lockState = CursorLockMode.None;
@@ -335,7 +344,6 @@ public class options : MonoBehaviour
 					
 					backgroundMusic.Pause ();
 					TorchSound.Pause ();
-					
 					foreach (GameObject Pause in FindObjectsOfType(typeof(GameObject)))
 					{
 						Time.timeScale = 0;
